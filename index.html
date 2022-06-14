@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Able Player Video Demo</title>
+  <!-- Load the source files -->
+  <link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">
+<!--  <script src="http://vjs.zencdn.net/7.0/video.min.js"></script>-->
+  <script src="./src/js/custom/custom_video_min.js"></script>
+
+  <script src="./src/js/custom/jquery.js"></script>
+  <script src="./src/js/custom/accessible_player.js" type="module"></script>
+
+</head>
+
+<body>
+
+<!-- Video Media Element -->
+<video id="video_access" width="480" height="360" poster="media/wwa.jpg" controls class="video-js" data-setup="{ }">
+  <source type="video/webm" src="media/player-dfa-orateur.webm"
+          data-sign-src="media/player-dfa-lsf-optimized.webm"
+          data-sign-opt="media/player-dfa-lsf-optimized.webm"></source>
+  <track kind="captions" src="media/player-dfa-sub-fr.vtt" srclang="fr" label="Français">
+  <track kind="captions" src="media/player-dfa-sub-en.vtt" srclang="en" label="Anglais">
+  <track kind="captions" src="media/player-dfa-sub-es.vtt" srclang="es" label="Espagnol">
+  <track kind="captions" src="media/player-dfa-sub-pl.vtt" srclang="pl" label="Portuguais">
+  <track kind="captions" src="media/player-dfa-sub-ml.vtt" srclang="ml" label="Malentandant">
+  <track kind="descriptions" src="media/player-dfa-desc.vtt" srclang="fr">
+  <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+</video>
+
+
+</body>
+</html>
+
