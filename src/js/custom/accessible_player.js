@@ -37,6 +37,23 @@ const start = () => {
       case "seeked":
         break;
       case "timeupdate":
+        $(".sv-ct").first().text( videoAccess.currentTime );
+        $(".ov-ct").first().text( accesPlayer.signVideo.get(0).currentTime );
+        $(".indication").last()
+          .after(
+            $(".indication").last()
+              .clone()
+              .empty()
+              .append(
+                `<span>Sign Video Current Time : <span class="sv-ct" style="color: green;font-size: 22px;font-weight: bold;">${videoAccess.currentTime}</span>  ------</span>`
+              )
+              .append(
+                `---<span>Original Video Current Time : <span class="or-ct" style="color: red;font-size: 22px;font-weight: bold;">${accesPlayer.signVideo.get(0).currentTime}</span></span>`
+              )
+              .append(
+                `---<span>Marge / Ecart : <span class="step-ct" style="color: blue;font-size: 22px;font-weight: bold;">${ Math.abs( accesPlayer.signVideo.get(0).currentTime - videoAccess.currentTime ) }</span></span>`
+              )
+          )
         console.log( {  ev: "timeupdate", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
         break;
       case "seeking":
