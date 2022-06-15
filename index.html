@@ -19,15 +19,25 @@
 
 <!-- Video Media Element -->
 <video id="video_access" width="480" height="360" poster="media/wwa.jpg" controls class="video-js" data-setup="{ }">
-  <source type="video/webm" src="media/player-dfa-orateur.webm"
-          data-sign-src="media/player-dfa-lsf-optimized.webm"
-          data-sign-opt="media/player-dfa-lsf-optimized.webm"></source>
-  <track kind="captions" src="media/player-dfa-sub-fr.vtt" srclang="fr" label="Français">
-  <track kind="captions" src="media/player-dfa-sub-en.vtt" srclang="en" label="Anglais">
-  <track kind="captions" src="media/player-dfa-sub-es.vtt" srclang="es" label="Espagnol">
-  <track kind="captions" src="media/player-dfa-sub-pl.vtt" srclang="pl" label="Portuguais">
-  <track kind="captions" src="media/player-dfa-sub-ml.vtt" srclang="ml" label="Malentandant">
-  <track kind="descriptions" src="media/player-dfa-desc.vtt" srclang="fr">
+  <source type="video/webm" src="media/wwa_described.webm"
+          data-sign-src="media/wwa_sign.webm"
+          data-sign-opt="media/wwa_sign.webm"></source>
+  <source type="video/mp4" src="media/wwa_described.mp4" data-desc-src="media/wwa_described.mp4" data-sign-src="media/wwa_sign.mp4" data-orig-src="media/wwa.mp4">
+  <source type="video/webm" src="media/wwa_described.webm" data-desc-src="media/wwa_described.webm" data-sign-src="media/wwa_sign.webm" data-orig-src="media/wwa.webm">
+  <track kind="captions" src="media/wwa_captions_de.vtt" srclang="de" label="Deutsche">
+  <track kind="captions" src="media/wwa_captions_en.vtt" srclang="en" label="English">
+  <track kind="captions" src="media/wwa_captions_es.vtt" srclang="es" label="Español">
+  <track kind="subtitles" src="media/wwa_captions_fr.vtt" srclang="fr" label="Français">
+  <track kind="subtitles" src="media/wwa_captions_ja.vtt" srclang="ja" lang="ja" label="日本語">
+  <track kind="descriptions" src="media/wwa_description_de.vtt" srclang="de">
+  <track kind="descriptions" src="media/wwa_description_en.vtt" srclang="en">
+  <track kind="descriptions" src="media/wwa_description_es.vtt" srclang="es">
+  <track kind="descriptions" src="media/wwa_description_fr.vtt" srclang="fr">
+  <track kind="descriptions" src="media/wwa_description_ja.vtt" srclang="ja">
+  <track kind="chapters" src="media/wwa_chapters_de.vtt" srclang="de">
+  <track kind="chapters" src="media/wwa_chapters_en.vtt" srclang="en">
+  <track kind="chapters" src="media/wwa_chapters_es.vtt" srclang="es">
+  <track kind="chapters" src="media/wwa_chapters_fr.vtt" srclang="fr">
   <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 </video>
 

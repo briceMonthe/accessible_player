@@ -5,8 +5,6 @@ let repeat_call = setInterval( function(){
   }
 }, 300)
 
-
-
 const start = () => {
   const accesPlayer = videojs("#video_access");
   //console.log( accesPlayer )
