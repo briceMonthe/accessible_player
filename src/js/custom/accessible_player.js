@@ -7,7 +7,7 @@ let repeat_call = setInterval( function(){
 let accesPlayer ;
 const start = () => {
   accesPlayer = videojs("#video_access");
-  //console.log( accesPlayer )
+  console.log( accesPlayer )
 
   /**
    * Add Sign Video After Original Video
@@ -26,7 +26,7 @@ const start = () => {
   srcElement.attr("src", srcElement.data("signSrc") );
   $(videoAccess).attr("src", srcElement.data("signSrc") );
 
-  $(videoAccess).on("playing pause seeked timeupdate ended seeking", async function(e) {
+  $(videoAccess).on("playing pause seeked timeupdate ended seeking volumechange", async function(e) {
     switch ( e.type ) {
       case "playing":
         accesPlayer.signVideo.get(0).play()
@@ -54,11 +54,16 @@ const start = () => {
                 `---<span>Marge / Ecart : <span class="step-ct" style="color: blue;font-size: 22px;font-weight: bold;">${ Math.abs( accesPlayer.signVideo.get(0).currentTime - videoAccess.currentTime ) }</span></span>`
               )
           )
-        console.log( {  ev: "timeupdate", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
+        //console.log( {  ev: "timeupdate", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
         break;
       case "seeking":
         accesPlayer.signVideo.get(0).currentTime = videoAccess.currentTime;
-        console.log( {  ev: "seeking", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
+        //console.log( {  ev: "seeking", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
+        break;
+
+      case "volumechange":
+        [ accesPlayer.signVideo.get(0).volume, accesPlayer.signVideo.get(0).muted ]  = [ videoAccess.volume, videoAccess.muted ];
+        //console.log( {  ev: "volumechange", signvideo : videoAccess.volume, video: accesPlayer.signVideo.get(0).volume })
         break;
 
     }
