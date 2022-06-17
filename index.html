@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>Able Player Video Demo</title>
   <!-- Load the source files -->
-  <link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">
+<!--  <link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">-->
 <!--  <script src="http://vjs.zencdn.net/7.0/video.min.js"></script>-->
+  <link rel="stylesheet" type="text/css" href="./src/css/video-js.min.css">
   <script src="./src/js/custom/custom_video_min.js"></script>
 
-  <script src="./src/js/custom/jquery.js"></script>
-  <script src="./src/js/custom/accessible_player.js" type="module"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--  <script src="./src/js/custom/jquery.js"></script>-->
+  <script defer src="./src/js/custom/accessible_player.js" type="module"></script>
 
 </head>
 
@@ -17,18 +19,31 @@
 
 <!-- Video Media Element -->
 <video id="video_access" width="480" height="360" poster="media/wwa.jpg" controls class="video-js" data-setup="{ }">
-  <source type="video/webm" src="media/player-dfa-orateur.webm"
-          data-sign-src="media/player-dfa-lsf-optimized.webm"
-          data-sign-opt="media/player-dfa-lsf-optimized.webm"></source>
-  <track kind="captions" src="media/player-dfa-sub-fr.vtt" srclang="fr" label="Français">
-  <track kind="captions" src="media/player-dfa-sub-en.vtt" srclang="en" label="Anglais">
-  <track kind="captions" src="media/player-dfa-sub-es.vtt" srclang="es" label="Espagnol">
-  <track kind="captions" src="media/player-dfa-sub-pl.vtt" srclang="pl" label="Portuguais">
-  <track kind="captions" src="media/player-dfa-sub-ml.vtt" srclang="ml" label="Malentandant">
-  <track kind="descriptions" src="media/player-dfa-desc.vtt" srclang="fr">
+  <source type="video/webm" src="media/wwa.webm"
+          data-sign-src="media/wwa_sign.mp4"
+          data-sign-opt="media/wwa_sign.mp4"></source>
+  <track kind="captions" src="media/wwa_captions_de.vtt" srclang="de" label="Deutsche">
+  <track kind="captions" src="media/wwa_captions_en.vtt" srclang="en" label="English">
+  <track kind="captions" src="media/wwa_captions_es.vtt" srclang="es" label="Español">
+  <track kind="subtitles" src="media/wwa_captions_fr.vtt" srclang="fr" label="Français">
+  <track kind="subtitles" src="media/wwa_captions_ja.vtt" srclang="ja" lang="ja" label="日本語">
+  <track kind="descriptions" src="media/wwa_description_de.vtt" srclang="de">
+  <track kind="descriptions" src="media/wwa_description_en.vtt" srclang="en">
+  <track kind="descriptions" src="media/wwa_description_es.vtt" srclang="es">
+  <track kind="descriptions" src="media/wwa_description_fr.vtt" srclang="fr">
+  <track kind="descriptions" src="media/wwa_description_ja.vtt" srclang="ja">
+  <track kind="chapters" src="media/wwa_chapters_de.vtt" srclang="de">
+  <track kind="chapters" src="media/wwa_chapters_en.vtt" srclang="en">
+  <track kind="chapters" src="media/wwa_chapters_es.vtt" srclang="es">
+  <track kind="chapters" src="media/wwa_chapters_fr.vtt" srclang="fr">
   <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 </video>
 
+<!-- Indication -->
+<div class="indication">
+  <span>Sign Video Current Time : <span class="sv-ct"></span></span>
+  <span>Original Video Current Time : <span class="ov-ct"></span></span>
+</div>
 
 </body>
 </html>
