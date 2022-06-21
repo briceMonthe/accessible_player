@@ -3,12 +3,18 @@ let repeat_call = setInterval( function(){
     start();
     clearInterval( repeat_call );
   }
+
 }, 300)
 let accesPlayer ;
 const start = () => {
   accesPlayer = videojs("#video_access");
   console.log( accesPlayer )
 
+  //handleSignVideo();
+  handleTranscript();
+}
+
+const handleSignVideo = () => {
   /**
    * Add Sign Video After Original Video
    */
@@ -26,6 +32,10 @@ const start = () => {
   srcElement.attr("src", srcElement.data("signSrc") );
   $(videoAccess).attr("src", srcElement.data("signSrc") );
 
+
+  /**
+   * Put Events in the original video
+   */
   $(videoAccess).on("playing pause seeked timeupdate ended seeking volumechange", async function(e) {
     switch ( e.type ) {
       case "playing":
@@ -36,8 +46,17 @@ const start = () => {
         break;
       case "seeked":
         break;
+      case "seeking":
+        accesPlayer.signVideo.get(0).currentTime = videoAccess.currentTime;
+        //console.log( {  ev: "seeking", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
+        break;
+
+      case "volumechange":
+        [ accesPlayer.signVideo.get(0).volume, accesPlayer.signVideo.get(0).muted ]  = [ videoAccess.volume, videoAccess.muted ];
+        //console.log( {  ev: "volumechange", signvideo : videoAccess.volume, video: accesPlayer.signVideo.get(0).volume })
+        break;
       case "timeupdate":
-        $(".sv-ct").first().text( videoAccess.currentTime );
+        /*$(".sv-ct").first().text( videoAccess.currentTime );
         $(".ov-ct").first().text( accesPlayer.signVideo.get(0).currentTime );
         $(".indication").last()
           .after(
@@ -53,19 +72,37 @@ const start = () => {
               .append(
                 `---<span>Marge / Ecart : <span class="step-ct" style="color: blue;font-size: 22px;font-weight: bold;">${ Math.abs( accesPlayer.signVideo.get(0).currentTime - videoAccess.currentTime ) }</span></span>`
               )
-          )
+          )*/
         //console.log( {  ev: "timeupdate", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
-        break;
-      case "seeking":
-        accesPlayer.signVideo.get(0).currentTime = videoAccess.currentTime;
-        //console.log( {  ev: "seeking", signvideo : videoAccess.currentTime, video: accesPlayer.signVideo.get(0).currentTime })
-        break;
-
-      case "volumechange":
-        [ accesPlayer.signVideo.get(0).volume, accesPlayer.signVideo.get(0).muted ]  = [ videoAccess.volume, videoAccess.muted ];
-        //console.log( {  ev: "volumechange", signvideo : videoAccess.volume, video: accesPlayer.signVideo.get(0).volume })
         break;
 
     }
   })
+}
+
+const handleTranscript = () => {
+  let videoAccess = accesPlayer.children_.at( 0 );
+  $( videoAccess ).css("width", "50%");
+
+
+  accesPlayer.ready(function(){
+    // Set up any options.
+    let options = {
+      showTitle: true,
+      showTrackSelector: false,
+      autoscroll: true,
+      clickArea: 'line',
+      followPlayerTrack: true,
+      stopScrollWhenInUse: true
+    };
+
+    // Initialize the plugin.
+    let transcript = this.transcript(options);
+
+    // Then attach the widget to the page.
+    let transcriptContainer = document.querySelector('#transcript');
+    transcriptContainer.appendChild(transcript.el());
+  });
+
+  $( videoAccess ).after( $("#transcript") );
 }

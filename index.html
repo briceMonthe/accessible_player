@@ -6,11 +6,27 @@
   <!-- Load the source files -->
 <!--  <link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">-->
 <!--  <script src="http://vjs.zencdn.net/7.0/video.min.js"></script>-->
+
+  <!-- videojs stylesheet -->
   <link rel="stylesheet" type="text/css" href="./src/css/video-js.min.css">
+
+  <!-- videojs transcript stylesheet -->
+  <link href="./src/css/videojs-transcript.css" rel="stylesheet">
+
+  <!-- Custom videosjs transcript stylesheet -->
+  <link href="./src/css/videojs-transcript_extend.css" rel="stylesheet">
+
+  <!-- Videojs Plugin -->
   <script src="./src/js/custom/custom_video_min.js"></script>
 
+  <!-- JQuery Plugin -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--  <script src="./src/js/custom/jquery.js"></script>-->
+
+  <!-- Video JS Transcript Plugin -->
+  <script src="src/js/custom/videojs-transcript.js"></script>
+
+  <!-- Accessible Player Script -->
   <script defer src="./src/js/custom/accessible_player.js" type="module"></script>
 
 </head>
@@ -18,13 +34,13 @@
 <body>
 
 <!-- Video Media Element -->
-<video id="video_access" width="480" height="360" poster="media/wwa.jpg" controls class="video-js" data-setup="{ }">
+<video id="video_access" width="650" height="500"  controls class="video-js" data-setup="{ }">
   <source type="video/webm" src="media/wwa.webm"
           data-sign-src="media/wwa_sign.mp4"
           data-sign-opt="media/wwa_sign.mp4"></source>
-  <track kind="captions" src="media/wwa_captions_de.vtt" srclang="de" label="Deutsche">
   <track kind="captions" src="media/wwa_captions_en.vtt" srclang="en" label="English">
   <track kind="captions" src="media/wwa_captions_es.vtt" srclang="es" label="Español">
+  <track kind="captions" src="media/wwa_captions_de.vtt" srclang="de" label="Deutsche">
   <track kind="subtitles" src="media/wwa_captions_fr.vtt" srclang="fr" label="Français">
   <track kind="subtitles" src="media/wwa_captions_ja.vtt" srclang="ja" lang="ja" label="日本語">
   <track kind="descriptions" src="media/wwa_description_de.vtt" srclang="de">
@@ -39,11 +55,15 @@
   <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 </video>
 
+<!-- Transcript Template -->
+<div id="transcript"></div>
+
 <!-- Indication -->
 <div class="indication">
   <span>Sign Video Current Time : <span class="sv-ct"></span></span>
   <span>Original Video Current Time : <span class="ov-ct"></span></span>
 </div>
+
 
 </body>
 </html>

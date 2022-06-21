@@ -1,0 +1,21 @@
+/*Custom Css*/
+#transcript{
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#transcript-video_access {
+  height: 100%;
+}
+
+.transcript-body{
+  height: 100%;
+}
+
+.transcript-line:is(.is-active, :hover) .transcript-text {
+  color: #000000
+}
