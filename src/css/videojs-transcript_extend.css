@@ -6,16 +6,52 @@
   position: absolute;
   top: 0;
   right: 0;
+  background-color: #ffffff;
 }
 
 #transcript-video_access {
   height: 100%;
+  display: grid;
 }
 
 .transcript-body{
   height: 100%;
+  display: grid;
+}
+
+.transcript-line:is( .is-active, :hover ){
+  background: rgb(255, 255, 102);
+}
+
+.transcript-timestamp{
+  display: none;
+}
+
+.transcript-header{
+  font-weight: bold;
+  letter-spacing: -.05rem;
+}
+
+:is(.transcript-text, .transcript-header ) {
+  margin: 0;
+  font-size: clamp(1.188rem, 2vw + 1rem, 1.688rem);
+  color: #000000;
 }
 
 .transcript-line:is(.is-active, :hover) .transcript-text {
-  color: #000000
+  color: #000000;
+  font-family: Arial;
+}
+
+
+/* Set The UI of Scrollbar*/
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+  background: gray;
+  border-radius: 5px;
 }

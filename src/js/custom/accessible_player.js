@@ -84,7 +84,9 @@ const handleTranscript = () => {
   let videoAccess = accesPlayer.children_.at( 0 );
   $( videoAccess ).css("width", "50%");
 
-
+  /**
+   * Add Transcript to video player
+   */
   accesPlayer.ready(function(){
     // Set up any options.
     let options = {
@@ -93,11 +95,18 @@ const handleTranscript = () => {
       autoscroll: true,
       clickArea: 'line',
       followPlayerTrack: true,
-      stopScrollWhenInUse: true
+      stopScrollWhenInUse: false
     };
 
     // Initialize the plugin.
     let transcript = this.transcript(options);
+
+    /**
+     * Mode the title of Transcript in the transcript body
+     */
+    setTimeout( () => {
+      $(".transcript-body").prepend( $(".transcript-header") );
+    }, 300)
 
     // Then attach the widget to the page.
     let transcriptContainer = document.querySelector('#transcript');
