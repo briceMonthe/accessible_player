@@ -4,7 +4,7 @@ let repeat_call = setInterval( function(){
     clearInterval( repeat_call );
   }
 
-}, 300)
+}, 200)
 let accesPlayer ;
 const start = () => {
   accesPlayer = videojs("#video_access");
@@ -91,15 +91,16 @@ const handleTranscript = () => {
     // Set up any options.
     let options = {
       showTitle: true,
-      showTrackSelector: false,
+      showTrackSelector: true,
       autoscroll: true,
       clickArea: 'line',
       followPlayerTrack: true,
-      stopScrollWhenInUse: false
+      stopScrollWhenInUse: false,
     };
 
     // Initialize the plugin.
     let transcript = this.transcript(options);
+    accesPlayer.transcript = transcript;
 
     /**
      * Mode the title of Transcript in the transcript body
@@ -114,4 +115,8 @@ const handleTranscript = () => {
   });
 
   $( videoAccess ).after( $("#transcript") );
+}
+
+const changeTranscriptLanguage = () => {
+
 }

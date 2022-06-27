@@ -326,6 +326,18 @@
         // fallback to first track
         return activeTrack || tracks[0];
       },
+
+      getDescriptionForCrrTrack: function ( currTrack ) {
+        var i, track;
+        for (i = 0; i < my.tracks.length; i++) {
+          track = my.tracks[i];
+          if ( track.kind === "descriptions" && currTrack.language === track.language ) {
+            return track;
+          }
+        }
+        // fallback to first track
+        return null;
+      },
     };
   }(my);
 
@@ -383,12 +395,25 @@
       line.appendChild(text);
       return line;
     };
+
+    var createDescLine = function (cue) {
+      var line = utils.createEl('div', '-desc-line');
+      var timestamp = utils.createEl('span', '-timestamp');
+      var text = utils.createEl('span', '-text');
+      line.setAttribute('data-begin', cue.startTime);
+      line.setAttribute('tabindex', my._options.tabIndex || 0);
+      timestamp.textContent = utils.secondsToTime(cue.startTime);
+      text.innerHTML = cue.text;
+      line.appendChild(timestamp);
+      line.appendChild(text);
+      return line;
+    };
     var createTranscriptBody = function (track) {
       if (typeof track !== 'object') {
         track = plugin.player.textTracks()[track];
       }
       var body = utils.createEl('div', '-body');
-      var line, i;
+      var line, i, j;
       var fragment = document.createDocumentFragment();
       // activeCues returns null when the track isn't loaded (for now?)
       if (!track.activeCues) {
@@ -402,11 +427,28 @@
         }, 100);
       } else {
         var cues = track.cues;
+
+        var cuesDescAdded = [];
+        var descriptionTrack = trackList.getDescriptionForCrrTrack( track );
+        var cuesDesc = descriptionTrack.cues;
         for (i = 0; i < cues.length; i++) {
+          for( j=0; j < cuesDesc.length;  j++ ){
+            if( cuesDesc[j].startTime < cues[i].startTime ){
+              if( !cuesDescAdded.includes( j ) ){
+                line = createDescLine(cuesDesc[j]);
+                fragment.appendChild(line);
+                cuesDescAdded.push( j )
+              }
+            }
+          }
           line = createLine(cues[i]);
           fragment.appendChild(line);
         }
         body.innerHTML = '';
+        if (plugin.settings.showTitle && document.querySelector(".transcript-header")) {
+          var title = createTitle();
+          body.appendChild(title);
+        }
         body.appendChild(fragment);
         body.setAttribute('lang', track.language);
         body.scroll = scroller(body);
