@@ -43,3 +43,5 @@ lang/zh-Han*.json
 deploy/
 
 .idea
+media/orange
+button-icons
