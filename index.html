@@ -6,7 +6,7 @@
 
   <!-- Custom videosjs transcript stylesheet -->
   <link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">
-<!--  <script src="http://vjs.zencdn.net/7.0/video.min.js"></script>-->
+  <!--<script src="http://vjs.zencdn.net/7.0/video.min.js"></script>-->
 
   <!-- Boosted CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.4.1/dist/css/boosted.min.css" integrity="sha384-OB/gcmnjN4zOvILOKtMqzd/ZUoKc/cgZDpn0c2C5FoQAJqmQdjX4ITe6XSK32JyO" crossorigin="anonymous">
@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="src/css/video-js-extends.css" type="text/css">
 
   <!-- Videojs Plugin -->
-  <script src="./src/js/custom/custom_video_min.js"></script>
+  <script src="src/js/custom/video.min.js"></script>
+
 
   <!-- fontawesome plugin -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -69,7 +70,7 @@
           Find out more<span class="sr-only">&nbsp;about the TITLE OF THE INSIGHT</span>
         </a>
       </div>
-      <div class="col">
+      <div class="col" id="video_area">
         <!-- Video Media Element -->
 <!--        poster="media/wwa.jpg"-->
         <video id="video_access" width="1000px"   controls class="video-js" data-setup="{ }">
@@ -93,6 +94,95 @@
   </div>
 
 
+  <div id="player-profile-container" class="vjs-access-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button">
+    <button type="button" tabindex="0" aria-label="Choisir son profil d'accessibilité" aria-disabled="false" title="Profile" class="vjs-access-control vjs-control vjs-button container__button">
+      <svg focusable="false" aria-hidden="true"class="vjs-icon-placeholder" viewBox="0 0 15 20">
+        <circle cx="8" cy="10" r="9" stroke="white" stroke-width="1.5" fill="transparent"></circle>
+        <path d="m 6.4715267,4.8146068 c 0,-0.6982433 0.5444396,-1.2649335 1.2152669,-1.2649335 0.6708273,0 1.2152668,0.5666902 1.2152668,1.2649335 0,0.6982434 -0.5444395,1.2649336 -1.2152668,1.2649336 -0.6708273,0 -1.2152669,-0.5666902 -1.2152669,-1.2649336 z M 9.3071494,7.7661184 13.479566,5.8931735 13.17899,5.109758 8.0918825,6.9228294 H 7.2817046 L 2.1945976,5.109758 1.8940216,5.8931735 6.0664378,7.7661184 v 3.3731566 l -1.6616749,5.59438 0.7575163,0.299367 2.3511363,-5.472103 h 0.3475663 l 2.3511362,5.472103 0.757517,-0.299367 -1.6616754,-5.59438 z"></path>
+      </svg>
+      <div class="vjs-tooltip" aria-hidden="true"></div>
+    </button>
+
+    <div class="vjs-menu">
+      <ul class="vjs-menu-content vjs-access-menu" role="menu">
+        <li class="vjs-menu-item vjs-access-menu-item" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false" data-profile="Vision+">
+          <span aria-hidden="true" class="vjs-icon-placeholder vjs-access-menu-item-icon"></span>
+          <span class="vjs-menu-item-text">Vision+
+                            <span class="vjs-control-text"> Profile</span>
+                    </span>
+          <span class="vjs-control-text" aria-live="polite"></span>
+        </li>
+
+        <li class="vjs-menu-item vjs-access-menu-item" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false" data-profile="Sans Vision+">
+          <span aria-hidden="true" class="vjs-icon-placeholder vjs-access-menu-item-icon"></span>
+          <span class="vjs-menu-item-text">Sans Vision+
+                            <span class="vjs-control-text"> Profile</span>
+                    </span>
+          <span class="vjs-control-text" aria-live="polite"></span>
+        </li>
+
+        <li class="vjs-menu-item vjs-access-menu-item" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false" data-profile="LSF +">
+          <span aria-hidden="true" class="vjs-icon-placeholder vjs-access-menu-item-icon"></span>
+          <span class="vjs-menu-item-text">LSF +
+                            <span class="vjs-control-text"> Profile</span>
+                    </span>
+          <span class="vjs-control-text" aria-live="polite"></span>
+        </li>
+
+        <li class="vjs-menu-item vjs-access-menu-item" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false" data-profile="Concentration +">
+          <span aria-hidden="true" class="vjs-icon-placeholder vjs-access-menu-item-icon"></span>
+          <span class="vjs-menu-item-text">Concentration +
+                            <span class="vjs-control-text"> Profile</span>
+                    </span>
+          <span class="vjs-control-text" aria-live="polite"></span>
+        </li>
+
+        <li class="vjs-menu-item vjs-access-menu-item" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false" data-profile="Audition +">
+          <span aria-hidden="true" class="vjs-icon-placeholder vjs-access-menu-item-icon"></span>
+          <span class="vjs-menu-item-text">Audition +
+                            <span class="vjs-control-text"> Profile</span>
+                    </span>
+          <span class="vjs-control-text" aria-live="polite"></span>
+        </li>
+
+        <li class="vjs-menu-item vjs-access-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false" aria-checked="false" data-profile="Standard">
+          <span aria-hidden="true" class="vjs-icon-placeholder vjs-access-menu-item-icon"></span>
+          <span class="vjs-menu-item-text">Standard
+                            <span class="vjs-control-text"> Profile</span>
+                    </span>
+          <span class="vjs-control-text" aria-live="polite"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--<template id="tpl_zone">
+    <div title="{{test_title}}" class="test_title"></div>
+    <div title="{{nom}}" class="nom"></div>
+    <input type="text" value="{{nom}}"></input>
+  </template>
+<div id="zone"></div>
+  <script>
+    var lang = 'en';
+    var traduction = {
+      'fr': {test_title:'demo fr', nom: 'Brice fr'},
+      'en': {test_title:'demo en', nom: 'Brice en'}
+    };
+
+    set_traduction();
+    function set_traduction() {
+      $('#zone').html($('#tpl_zone').html());
+      $.each(traduction[lang], function(index,value) {
+        $('#zone').find('.'+index).text(value);
+        if (new RegExp("{{" + index + "?}}", 'g').test($('#zone').html())) {
+          $.each($('#zone').find('*'), function (ie, ele) {
+            $.each(ele.attributes, function (it, at) {
+              at.value = at.value.replace(new RegExp("{{" + index + "}}", 'g'), value);
+            });
+          });
+        }
+      });
+    }
+  </script>-->
   <section class="access-menu">
     <div class="access-menu-btn access-menu-row">
       <div class="access-menu-btn-icon">
@@ -132,7 +222,7 @@
       </div>
       <div class="access-menu-btn-text">Sous-titres</div>
     </div>
-    <div class="access-menu-btn access-menu-row">
+    <div  id="contrast-btn" class="access-menu-btn access-menu-row">
       <div class="access-menu-btn-icon"></div>
       <div class="access-menu-btn-text">Vitesse Normale</div>
     </div>
@@ -150,14 +240,14 @@
     </div>
 
 
-    <section class="profils-menu">
+    <section id="profiles" class="profils-menu">
       <div class="profils-menu-btn " data-class="profils-menu-show">
         <div class="profils-menu-btn-icon" >
           <i class="fa-solid fa-left-long"></i>
         </div>
         <div class="profils-menu-btn-text">Menu</div>
       </div>
-      <div class="profils-menu-btn profil">
+      <div class="profils-menu-btn profil" data-profile="Vision+">
         <div class="profils-menu-btn-icon">
           <svg
             xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -240,7 +330,7 @@
         </div>
         <div class="profils-menu-btn-text">Vision +</div>
       </div>
-      <div class="profils-menu-btn profil">
+      <div class="profils-menu-btn profil" data-profile="Sans Vision+">
         <div class="profils-menu-btn-icon">
           <svg
             xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -337,7 +427,7 @@
         </div>
         <div class="profils-menu-btn-text">Sans Vision +</div>
       </div>
-      <div class="profils-menu-btn profil">
+      <div class="profils-menu-btn profil" data-profile="Audition +">
         <div class="profils-menu-btn-icon">
           <svg
             xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -402,7 +492,7 @@
         </div>
         <div class="profils-menu-btn-text">Audition +</div>
       </div>
-      <div class="profils-menu-btn profil">
+      <div class="profils-menu-btn profil" data-profile="LSF +">
         <div class="profils-menu-btn-icon">
           <svg
             xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -469,7 +559,7 @@
         </div>
         <div class="profils-menu-btn-text">LSF</div>
       </div>
-      <div class="profils-menu-btn profil">
+      <div class="profils-menu-btn profil" data-profile="Concentration +">
         <div class="profils-menu-btn-icon">
           <svg
             xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -538,7 +628,7 @@
         </div>
         <div class="profils-menu-btn-text">Concentration +</div>
       </div>
-      <div class="profils-menu-btn profil">
+      <div class="profils-menu-btn profil" data-profile="Standard">
         <div class="profils-menu-btn-icon">
           <svg
             xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -634,11 +724,11 @@
         </div>
         <div class="settings-menu-btn-text">Activer La LSF</div>
       </div>
-      <div class="settings-menu-btn ">
+      <div class="settings-menu-btn" id="audioDesc">
         <div class="settings-menu-btn-icon" >
-          <svg viewBox="0 0 30 20"><line x1="0" y1="0" x2="200" y2="200" style="display: none;"></line><path d="M 18.02,15.96 C 20.08,15.51 21.67,13.84 22.12,11.64 22.32,10.67 22.32,9.43 22.12,8.63 21.59,6.55 19.66,4.65 17.68,4.28 17.36,4.22 16.15,4.14 14.99,4.11 14.99,4.11 12.87,4.05 12.87,4.05 12.87,4.05 12.87,10.08 12.87,10.08 12.87,10.08 12.87,16.12 12.87,16.12 12.87,16.12 15.09,16.12 15.09,16.12 16.61,16.12 17.53,16.07 18.02,15.96 18.02,15.96 18.02,15.96 18.02,15.96 Z M 15.88,13.02 C 15.88,13.02 15.59,12.98 15.59,12.98 15.59,12.98 15.59,10.13 15.59,10.13 15.59,10.13 15.59,7.28 15.59,7.28 15.59,7.28 16.38,7.28 16.38,7.28 17.31,7.28 17.72,7.43 18.16,7.95 18.66,8.53 18.86,9.29 18.81,10.35 18.75,11.47 18.37,12.25 17.67,12.69 17.21,12.97 16.45,13.11 15.88,13.02 Z M 4.71,15.31 C 4.71,15.31 5.16,14.61 5.16,14.61 5.16,14.61 7.24,14.61 7.24,14.61 7.24,14.61 9.32,14.61 9.32,14.61 9.32,14.61 9.32,15.31 9.32,15.31 9.32,15.31 9.32,16.01 9.32,16.01 9.32,16.01 10.68,16.01 10.68,16.01 10.68,16.01 12.04,16.01 12.04,16.01 12.04,16.01 12.04,10.14 12.04,10.14 12.04,6.90 12.05,4.22 12.06,4.18 12.08,4.13 11.31,4.09 10.36,4.07 10.36,4.07 8.64,4.04 8.64,4.04 8.64,4.04 4.81,9.57 4.81,9.57 2.70,12.61 0.82,15.30 0.64,15.55 0.64,15.55 0.32,16.01 0.32,16.01 0.32,16.01 2.28,16.01 2.28,16.01 2.28,16.01 4.25,16.00 4.25,16.00 4.25,16.00 4.71,15.31 4.71,15.31 Z M 6.57,12.55 C 6.57,12.49 7.69,10.75 8.43,9.66 8.43,9.66 8.86,9.02 8.86,9.02 8.86,9.02 8.86,10.81 8.86,10.81 8.86,10.81 8.86,12.61 8.86,12.61 8.86,12.61 7.71,12.61 7.71,12.61 7.08,12.61 6.57,12.59 6.57,12.55 6.57,12.55 6.57,12.55 6.57,12.55 Z M 22.78,15.90 C 24.45,13.36 24.68,9.55 23.33,6.77 23.12,6.34 22.81,5.81 22.64,5.58 22.37,5.23 22.26,5.17 21.92,5.17 21.92,5.17 21.51,5.17 21.51,5.17 21.51,5.17 21.88,5.67 21.88,5.67 22.95,7.12 23.46,9.10 23.36,11.35 23.27,13.17 22.83,14.57 21.91,15.98 21.69,16.32 21.51,16.63 21.51,16.66 21.51,16.69 21.68,16.71 21.89,16.69 22.24,16.66 22.33,16.58 22.78,15.90 22.78,15.90 22.78,15.90 22.78,15.90 Z M 25.21,16.18 C 25.70,15.49 26.34,14.05 26.59,13.10 26.87,11.99 26.84,9.52 26.54,8.39 26.31,7.49 25.78,6.34 25.28,5.63 24.99,5.22 24.91,5.17 24.54,5.17 24.54,5.17 24.12,5.17 24.12,5.17 24.12,5.17 24.48,5.66 24.48,5.66 24.96,6.31 25.41,7.30 25.70,8.35 26.05,9.58 26.05,12.05 25.71,13.28 25.41,14.36 25.07,15.15 24.55,15.94 24.31,16.30 24.12,16.62 24.12,16.65 24.12,16.68 24.28,16.71 24.47,16.71 24.78,16.71 24.88,16.63 25.21,16.18 25.21,16.18 25.21,16.18 25.21,16.18 Z M 27.46,16.30 C 28.28,15.27 28.92,13.54 29.13,11.76 29.37,9.73 28.77,7.26 27.66,5.65 27.36,5.23 27.27,5.17 26.93,5.17 26.93,5.17 26.53,5.17 26.53,5.17 26.53,5.17 27.04,6.01 27.04,6.01 28.40,8.23 28.72,11.22 27.87,13.84 27.56,14.81 26.90,16.11 26.58,16.38 26.32,16.60 26.39,16.71 26.77,16.71 27.06,16.71 27.20,16.63 27.46,16.30 27.46,16.30 27.46,16.30 27.46,16.30 Z" <="" path=""></path></svg>
+          <svg viewBox="0 0 30 20"><line x1="0" y1="0" x2="200" y2="200"></line><path d="M 18.02,15.96 C 20.08,15.51 21.67,13.84 22.12,11.64 22.32,10.67 22.32,9.43 22.12,8.63 21.59,6.55 19.66,4.65 17.68,4.28 17.36,4.22 16.15,4.14 14.99,4.11 14.99,4.11 12.87,4.05 12.87,4.05 12.87,4.05 12.87,10.08 12.87,10.08 12.87,10.08 12.87,16.12 12.87,16.12 12.87,16.12 15.09,16.12 15.09,16.12 16.61,16.12 17.53,16.07 18.02,15.96 18.02,15.96 18.02,15.96 18.02,15.96 Z M 15.88,13.02 C 15.88,13.02 15.59,12.98 15.59,12.98 15.59,12.98 15.59,10.13 15.59,10.13 15.59,10.13 15.59,7.28 15.59,7.28 15.59,7.28 16.38,7.28 16.38,7.28 17.31,7.28 17.72,7.43 18.16,7.95 18.66,8.53 18.86,9.29 18.81,10.35 18.75,11.47 18.37,12.25 17.67,12.69 17.21,12.97 16.45,13.11 15.88,13.02 Z M 4.71,15.31 C 4.71,15.31 5.16,14.61 5.16,14.61 5.16,14.61 7.24,14.61 7.24,14.61 7.24,14.61 9.32,14.61 9.32,14.61 9.32,14.61 9.32,15.31 9.32,15.31 9.32,15.31 9.32,16.01 9.32,16.01 9.32,16.01 10.68,16.01 10.68,16.01 10.68,16.01 12.04,16.01 12.04,16.01 12.04,16.01 12.04,10.14 12.04,10.14 12.04,6.90 12.05,4.22 12.06,4.18 12.08,4.13 11.31,4.09 10.36,4.07 10.36,4.07 8.64,4.04 8.64,4.04 8.64,4.04 4.81,9.57 4.81,9.57 2.70,12.61 0.82,15.30 0.64,15.55 0.64,15.55 0.32,16.01 0.32,16.01 0.32,16.01 2.28,16.01 2.28,16.01 2.28,16.01 4.25,16.00 4.25,16.00 4.25,16.00 4.71,15.31 4.71,15.31 Z M 6.57,12.55 C 6.57,12.49 7.69,10.75 8.43,9.66 8.43,9.66 8.86,9.02 8.86,9.02 8.86,9.02 8.86,10.81 8.86,10.81 8.86,10.81 8.86,12.61 8.86,12.61 8.86,12.61 7.71,12.61 7.71,12.61 7.08,12.61 6.57,12.59 6.57,12.55 6.57,12.55 6.57,12.55 6.57,12.55 Z M 22.78,15.90 C 24.45,13.36 24.68,9.55 23.33,6.77 23.12,6.34 22.81,5.81 22.64,5.58 22.37,5.23 22.26,5.17 21.92,5.17 21.92,5.17 21.51,5.17 21.51,5.17 21.51,5.17 21.88,5.67 21.88,5.67 22.95,7.12 23.46,9.10 23.36,11.35 23.27,13.17 22.83,14.57 21.91,15.98 21.69,16.32 21.51,16.63 21.51,16.66 21.51,16.69 21.68,16.71 21.89,16.69 22.24,16.66 22.33,16.58 22.78,15.90 22.78,15.90 22.78,15.90 22.78,15.90 Z M 25.21,16.18 C 25.70,15.49 26.34,14.05 26.59,13.10 26.87,11.99 26.84,9.52 26.54,8.39 26.31,7.49 25.78,6.34 25.28,5.63 24.99,5.22 24.91,5.17 24.54,5.17 24.54,5.17 24.12,5.17 24.12,5.17 24.12,5.17 24.48,5.66 24.48,5.66 24.96,6.31 25.41,7.30 25.70,8.35 26.05,9.58 26.05,12.05 25.71,13.28 25.41,14.36 25.07,15.15 24.55,15.94 24.31,16.30 24.12,16.62 24.12,16.65 24.12,16.68 24.28,16.71 24.47,16.71 24.78,16.71 24.88,16.63 25.21,16.18 25.21,16.18 25.21,16.18 25.21,16.18 Z M 27.46,16.30 C 28.28,15.27 28.92,13.54 29.13,11.76 29.37,9.73 28.77,7.26 27.66,5.65 27.36,5.23 27.27,5.17 26.93,5.17 26.93,5.17 26.53,5.17 26.53,5.17 26.53,5.17 27.04,6.01 27.04,6.01 28.40,8.23 28.72,11.22 27.87,13.84 27.56,14.81 26.90,16.11 26.58,16.38 26.32,16.60 26.39,16.71 26.77,16.71 27.06,16.71 27.20,16.63 27.46,16.30 27.46,16.30 27.46,16.30 27.46,16.30 Z" <="" path=""></path></svg>
         </div>
-        <div class="settings-menu-btn-text">Ôter L'audiodescription</div>
+        <div class="settings-menu-btn-text">Activer L'audiodescription</div>
       </div>
       <div class="settings-menu-btn ">
         <div class="settings-menu-btn-icon" >
@@ -704,57 +794,6 @@
         <div class="subtitles-menu-btn-text">Activer ST PL</div>
       </div>
     </section>
-
-   <!-- <section class="font-menu">
-      <div class="font-menu-btn " data-class="font-menu-show">
-        <div class="font-menu-btn-icon" data-class="font-menu-show">
-          <i class="fa-solid fa-arrow-left-long"></i>
-        </div>
-        <div class="font-menu-btn-text">Réglages</div>
-      </div>
-      <div class="font-menu-btn ">
-        <div class="font-menu-btn-text">Couleur du texte</div>
-        <div class="font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </div>
-      </div>
-      <div class="font-menu-btn ">
-        <div class="font-menu-btn-text">Couleur de l'arrière plan</div>
-        <div class="font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </div>
-      </div>
-      <div class="font-menu-btn ">
-        <div class="font-menu-btn-text">Couleur de suivi du texte</div>
-        <div class="font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </div>
-      </div>
-      <div class="font-menu-btn ">
-        <div class="font-menu-btn-text">Taille du texte</div>
-        <div class="font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </div>
-      </div>
-      <div class="font-menu-btn ">
-        <div class="font-menu-btn-text">Contour du texte</div>
-        <div class="font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </div>
-      </div>
-      <div class="font-menu-btn ">
-        <div class="font-menu-btn-text">Style de police</div>
-        <div class="font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </div>
-      </div>
-      <div class="font-menu-btn ">
-        <div class="font-menu-btn-text">Paramètres du menu</div>
-        <div class="font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
-        </div>
-      </div>
-    </section>-->
 
     <section class="menu font-menu">
       <div class="menu-btn font-menu-btn " data-class="font-menu-show">
