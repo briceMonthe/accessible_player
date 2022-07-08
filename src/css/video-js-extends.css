@@ -474,6 +474,7 @@ svg line{
   height: 94%; /*80%*/;
   /*border: 1Px solid red;*/
   position: absolute;
+  z-index: 0;
 }
 
 .profile-container.profile-container--hide{
