@@ -23,6 +23,7 @@
 .video-js{
   width: 100%;
   height: 100%;
+  background-color: var( --c-gray-hovered );
 }
 
 .vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar{
@@ -453,3 +454,72 @@ svg line{
 
 
 /******************/
+
+
+/**
+    LSF Profile Style Container Template start
+ */
+
+/*body{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}*/
+
+.profile-container{
+  display: flex;
+  justify-content: center;
+  width : 100%; /*60%*/;
+  height: 94%; /*80%*/;
+  /*border: 1Px solid red;*/
+  position: absolute;
+}
+
+.profile-container.profile-container--hide{
+  display: none;
+}
+
+.container__side{
+  width: 50%;
+  height: 100%;
+  border: 1px solid black;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__right{
+  position: relative;
+  z-index : 1;
+  flex: 1;
+}
+
+.container__btn{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: 1px solid red;
+  width: 30px;
+  aspect-ratio: 1;
+  background-color: #ffffff !important;
+}
+
+.container__btn:active{
+  cursor: pointer;
+  background-color: var( --c-orange-first ) !important;
+}
+
+.container__icon{
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  fill : #000000;
+}
+
+/**
+    LSF Profile Style Container Template end
+ */

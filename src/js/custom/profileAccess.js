@@ -1,6 +1,13 @@
 import { addClassToEl, removeClassToEl, toggleClassToEl , setTextContentFromEL} from "./operationsClassEl.js";
 import {getProfileFromCookie, updateProfileFromCookie, getProfileMap } from "./third-party-api.js";
-import { updateTranscriptComponent, updateCaptionsSubtitlesComponent, updateAudioDescriptionComponent, updateAccessMenuProfileComponent, updateContrastComponent} from "./component-api.js";
+import {
+  updateTranscriptComponent,
+  updateCaptionsSubtitlesComponent,
+  updateAudioDescriptionComponent,
+  updateAccessMenuProfileComponent,
+  updateContrastComponent,
+  updateLSFTranscriptComponent
+} from "./component-api.js";
 
 const profileAccess = {
   isDisplayed : false,
@@ -84,6 +91,12 @@ const selectProfile = ( playerEl, { selectedProfile } ) => {
     case auditionPlus :
       selectAuditionPlusProfile("audition-plus");
       break;
+    case lsfPlus :
+      selectLSFPlusProfile( "show" );
+      break;
+    case concentrationPlus :
+      selectConcentrationPlusProfile( "show" );
+      break;
     case standard :
       selectStandardProfile({selectedProfile : selectedProfile} );
       break;
@@ -112,6 +125,20 @@ const selectAuditionPlusProfile = ( ) => {
 }
 
 
+const selectLSFPlusProfile = ( state =  "hide", className =  "profile-container--hide") => {
+
+  updateLSFTranscriptComponent( state, className, "#lsf-plus", ".container__right")
+
+}
+
+
+const selectConcentrationPlusProfile = ( state =  "hide", className =  "profile-container--hide" ) => {
+  updateLSFTranscriptComponent( state, className, "#concentration-plus", ".container__left")
+
+
+}
+
+
 const selectStandardProfile = ( { selectedProfile } , accessMenuEl = $(".access-menu"), className = "access-menu--hide" ) => {
   let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileMap( profileAccess.profiles, "profile");
   selectedProfile === standard ? addClassToEl( accessMenuEl, className) : removeClassToEl( accessMenuEl, className );
@@ -129,6 +156,12 @@ const resetPreviousProfile = ( playerEl , { previousProfile, selectedProfile } )
       break;
     case auditionPlus:
       selectAuditionPlusProfile( "audition-plus");
+      break;
+    case lsfPlus :
+      selectLSFPlusProfile("hide");
+      break;
+    case concentrationPlus :
+      selectConcentrationPlusProfile( "hide" );
       break;
     case standard :
       selectStandardProfile({ selectedProfile : selectedProfile } );
