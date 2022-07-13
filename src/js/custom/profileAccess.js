@@ -1,28 +1,38 @@
-import { addClassToEl, removeClassToEl, toggleClassToEl , setTextContentFromEL} from "./operationsClassEl.js";
-import {getProfileFromCookie, updateProfileFromCookie, getProfileMap } from "./third-party-api.js";
+import { addClassToEl, removeClassToEl, toggleClassToEl, findEl} from "./operationsClassEl.js";
+import {getProfileFromCookie, updateProfileFromCookie, getProfileObjectToMap } from "./third-party-api.js";
 import {
   updateTranscriptComponent,
   updateCaptionsSubtitlesComponent,
   updateAudioDescriptionComponent,
   updateAccessMenuProfileComponent,
-  updateContrastComponent,
-  updateLSFTranscriptComponent
+  createTwoAsideContainers
 } from "./component-api.js";
+import {playPauseVideo} from "./handlePlayPauseVideo.js";
 
-const profileAccess = {
+let profileAccess = {
   isDisplayed : false,
   defaultProfile : "Standard",
   selectedProfile : "Standard",
   previousProfile : null,
   isProfileChanged : false,
   isPopupDisplayed : false,
+  playPauseObject: null,
+  accessMenuObject : null,
   components: {
     profileContainerEl : null,
     profileBtnEl : null,
     profileMenuEl : null,
   },
-  displayPopup : function ( state ) {
-    this.isPopupDisplayed = state;
+  instance : null,
+  getInstance : function(){
+    if( this.instance )
+      return this.instance;
+    handleProfile( this );
+    this.instance = this;
+    return this.instance;
+  },
+  changePreviousProfile : function( previousProfile ){
+    this.previousProfile = previousProfile;
   },
   changeProfile : function ( newProfile, isProfileChanged = true ) {
     if( newProfile === this.selectedProfile ){
@@ -31,32 +41,37 @@ const profileAccess = {
     }
     this.isProfileChanged = isProfileChanged;
     this.defaultProfile = newProfile;
-    this.previousProfile = this.selectedProfile;
+    this.changePreviousProfile( this.selectedProfile );
     this.selectedProfile = newProfile;
-    updateProfileFromCookie( newProfile );
+    updateProfileFromCookie( "profile" , newProfile );
     updateAccessMenuProfileComponent( $("#profiles") , "vjs-selected", this.selectedProfile);
   },
   displayMenu : function ( state ) {
     this.isDisplayed = state;
   },
-  loadDefaultProfile : function(  ){
+  setComponents : function( components ){
+    this.components = components;
+  },
+  loadDefaultProfile : function( profileContainerEl, volumeContainerEl ){
     let newProfile = getProfileFromCookie();
+    this.playPauseObject = playPauseVideo.getInstance();
+    let components = {
+      profileContainerEl : profileContainerEl,
+    }
+    this.setComponents( components );
+    addEventsToProfileContainerEl( this );
+
     if( !newProfile || this.defaultProfile === newProfile ){
-      updateProfileFromCookie( this.defaultProfile )
-      selectProfile( undefined, this );
+      updateProfileFromCookie( "profile", this.defaultProfile )
+      addProfileContainer( volumeContainerEl, profileContainerEl, this.defaultProfile );
+      selectProfile( this );
       return;
     }
     this.changeProfile( newProfile, false );
+    addProfileContainer( volumeContainerEl, profileContainerEl, newProfile );
+    selectProfile( this );
     this.profiles = this.profiles.map( ( { profile } ) => profile === newProfile ? { profile , classList : "vjs-selected" } : { profile , classList : "" }  );
-    selectProfile( undefined, this );
   },
-  loadProfiles : function(){
-    /**
-     * Ici on charge les differents profils selon le langage de la page HTML
-     */
-  },
-  resetPreviousProfile : () => resetPreviousProfile,
-  selectProfile : () => selectProfile,
   profiles : [
     { profile : "Vision+", classList : ""},
     { profile : "Sans Vision+", classList : ""},
@@ -67,38 +82,36 @@ const profileAccess = {
   ]
 }
 
-const addDefaultSelectedProfile = ( { defaultProfile, components : { profileContainerEl } } ) => {
+const addDefaultSelectedProfile = ( profileContainerEl, defaultProfile ) => {
   profileContainerEl.find("li").each( (index, el ) => $(el).data("profile")=== defaultProfile ? $(el).addClass("vjs-selected") : $(el).removeClass("vjs-selected") ) ;
 }
 
-const addProfileContainer = ( parentEl = ".vjs-volume-panel" ) => {
-  profileAccess.loadDefaultProfile();
-  profileAccess.components.profileContainerEl = $("#player-profile-container");
-  addDefaultSelectedProfile( profileAccess );
-  $( parentEl ).after( $( profileAccess.components.profileContainerEl ) );
+const addProfileContainer = ( prevEl, childEl, defaultProfile  ) => {
+  addDefaultSelectedProfile( childEl, defaultProfile );
+  $( prevEl ).after( childEl );
 }
 
 
-const selectProfile = ( playerEl, { selectedProfile } ) => {
-  let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileMap( profileAccess.profiles, "profile");
+const selectProfile = ({ previousProfile, selectedProfile, accessMenuObject, playPauseObject: { components : { videoAccessEl, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl } } } ) => {
+  let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileObjectToMap( profileAccess.profiles, "profile");
   switch ( selectedProfile ) {
     case visionPlus :
-      selectVisionPlusProfile( playerEl );
+      selectVisionPlusProfile( videoAccessEl, "vision-plus--default" );
       break;
     case noVisionPlus :
-      selectNoVisionPlusProfile( playerEl );
+      selectNoVisionPlusProfile( accessMenuObject );
       break;
     case auditionPlus :
-      selectAuditionPlusProfile("audition-plus");
+      selectAuditionPlusProfile(accessMenuObject);
       break;
     case lsfPlus :
-      selectLSFPlusProfile( "show" );
+      selectLSFPlusProfile( videoAccessEl,bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  "show",   "profile-container--hide" );
       break;
     case concentrationPlus :
-      selectConcentrationPlusProfile( "show" );
+      selectConcentrationPlusProfile( videoAccessEl,bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl, "show", "profile-container--hide" );
       break;
     case standard :
-      selectStandardProfile({selectedProfile : selectedProfile} );
+      selectStandardProfile( selectedProfile, standard, accessMenuObject, "access-menu--hide" );
       break;
     default:
       console.log("Autre esseai")
@@ -107,112 +120,111 @@ const selectProfile = ( playerEl, { selectedProfile } ) => {
 }
 
 
-const selectVisionPlusProfile = ( playerEl = $("#video_access_html5_api"), className = "vision-plus--default" ) => {
-  toggleClassToEl(playerEl, className);
+const selectVisionPlusProfile = ( videoEl , className  ) => {
+  toggleClassToEl(videoEl, className);
   updateContrastComponent();
 }
 
 
-const selectNoVisionPlusProfile = ( audioDescEl ) => {
-
-  updateAudioDescriptionComponent( audioDescEl );
-
+const selectNoVisionPlusProfile = ( accessMenuObject ) => {
+  if ( !accessMenuObject )
+    updateAudioDescriptionComponent( );
+  else
+    accessMenuObject.updateAudioDescriptionComponent();
 }
 
-const selectAuditionPlusProfile = ( ) => {
-  updateCaptionsSubtitlesComponent( "audition-plus");
-  updateTranscriptComponent("audition-plus");
-}
-
-
-const selectLSFPlusProfile = ( state =  "hide", className =  "profile-container--hide") => {
-
-  updateLSFTranscriptComponent( state, className, "#lsf-plus", ".container__right")
-
+const selectAuditionPlusProfile = ( accessMenuObject  ) => {
+  if( !accessMenuObject ){
+    updateCaptionsSubtitlesComponent( "audition-plus");
+    updateTranscriptComponent("audition-plus");
+  }
 }
 
 
-const selectConcentrationPlusProfile = ( state =  "hide", className =  "profile-container--hide" ) => {
-  updateLSFTranscriptComponent( state, className, "#concentration-plus", ".container__left")
-
-
+const selectLSFPlusProfile = (videoAccessEl,bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
+  createTwoAsideContainers( videoAccessEl, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl , state, className, "#lsf-plus", ".container__right")
 }
 
 
-const selectStandardProfile = ( { selectedProfile } , accessMenuEl = $(".access-menu"), className = "access-menu--hide" ) => {
-  let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileMap( profileAccess.profiles, "profile");
-  selectedProfile === standard ? addClassToEl( accessMenuEl, className) : removeClassToEl( accessMenuEl, className );
+const selectConcentrationPlusProfile = (videoAccessEl, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
+  createTwoAsideContainers(videoAccessEl,bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl , state, className, "#concentration-plus", ".container__left")
 }
 
 
-const resetPreviousProfile = ( playerEl , { previousProfile, selectedProfile } ) => {
-  let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileMap( profileAccess.profiles, "profile")
+const selectStandardProfile = ( selectedProfile, standard, accessMenuObject, classNameEl  ) => {
+  if( !accessMenuObject )
+    selectedProfile === standard ? addClassToEl( $(".access-menu"), classNameEl) : removeClassToEl( $(".access-menu"), classNameEl );
+}
+
+
+const resetPreviousProfile = ( { previousProfile, selectedProfile, accessMenuObject, playPauseObject: { components : { videoAccessEl, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl } } }, playerEl  ) => {
+  let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileObjectToMap( profileAccess.profiles, "profile")
   switch ( previousProfile ) {
     case visionPlus :
-      selectVisionPlusProfile( playerEl );
+      selectVisionPlusProfile( videoAccessEl, "vision-plus--default" );
       break;
     case noVisionPlus :
-      selectNoVisionPlusProfile( playerEl );
+      selectNoVisionPlusProfile( accessMenuObject );
       break;
     case auditionPlus:
-      selectAuditionPlusProfile( "audition-plus");
+      selectAuditionPlusProfile( accessMenuObject );
       break;
     case lsfPlus :
-      selectLSFPlusProfile("hide");
+      selectLSFPlusProfile( videoAccessEl,bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  "hide",   "profile-container--hide" );
       break;
     case concentrationPlus :
-      selectConcentrationPlusProfile( "hide" );
+      selectConcentrationPlusProfile( videoAccessEl,bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  "hide",   "profile-container--hide" );
       break;
     case standard :
-      selectStandardProfile({ selectedProfile : selectedProfile } );
+      selectStandardProfile(selectedProfile, previousProfile, accessMenuObject, "access-menu--hide" );
       break;
   }
 };
 
 
-const addEventsToProfileContainerEl = () => {
+const addEventsToProfileContainerEl = ( instance ) => {
   $(".vjs-menu").on("click", function(e){
     switch (e.type) {
       case "click":
         addClassToEl( this, "vjs-menu-block");
-        profileAccess.displayMenu( true );
+        instance.displayMenu( true );
         break;
     }
-  })
+  });
 
   $(".vjs-menu-content").on("pointerleave", function(e){
     switch (e.type) {
       case "pointerleave":
         removeClassToEl( $(this).parent(), "vjs-menu-block");
-        profileAccess.displayMenu( false );
+        instance.displayMenu( false );
         break;
     }
-  })
+  });
 
   $("li.vjs-menu-item").on("click", function(e){
     switch (e.type) {
       case "click":
-        removeClassToEl(  $(this).parent().find("li"), "vjs-selected");
+        let liItems = findEl( $(this).parent(), "li");
+        removeClassToEl( liItems , "vjs-selected");
         addClassToEl( $(this), "vjs-selected" );
-
-        profileAccess.changeProfile( $(this).data("profile")  );
-        if( profileAccess.isProfileChanged ){
-          resetPreviousProfile( undefined , profileAccess  );
-          selectProfile( undefined, profileAccess );
+        instance.changeProfile( $(this).data("profile")  );
+        if( instance.isProfileChanged ){
+          resetPreviousProfile( instance  );
+          selectProfile( instance );
         }
-
         break;
     }
   })
 }
 
 
-const handleProfile = () => {
-  addProfileContainer();
-  addEventsToProfileContainerEl();
+const handleProfile = ( instance ) => {
+  let volumeContainerEl = $(".vjs-volume-panel" );
+  let profileContainerEl = $("#player-profile-container");
+  instance.loadDefaultProfile( profileContainerEl, volumeContainerEl );
 }
 
 
-export { handleProfile };
+export { profileAccess };
 
 

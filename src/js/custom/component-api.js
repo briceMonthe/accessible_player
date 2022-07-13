@@ -1,4 +1,4 @@
-import {addClassToEl, removeClassToEl, setTextContentFromEL, toggleClassToEl} from "./operationsClassEl.js";
+import {addClassToEl, removeClassToEl, setTextContentFromEL, toggleClassToEl, addChildAfterEl, appendChildToParent, prependChildToParent} from "./operationsClassEl.js";
 
 const updateAudioDescriptionComponent = ( El = $("#audioDesc") ) => {
   if( El.is( ".settings-menu-btn-noVisionPlus" ) ){
@@ -30,7 +30,6 @@ const updateTranscriptComponent = ( className = "audition-plus", El = $(".vjs-tr
 };
 
 const updateAccessMenuProfileComponent = ( El = $("#profiles") , className = "vjs-selected", selectedProfile ) => {
-  console.log( selectedProfile )
   removeClassToEl( El.children(), className );
   El.find(".profils-menu-btn")
     .each(
@@ -38,10 +37,9 @@ const updateAccessMenuProfileComponent = ( El = $("#profiles") , className = "vj
         ? addClassToEl($(el), "vjs-selected") : null );
 };
 
-const updateLSFComponent = (parent) => {
+const createMoveSeparator = (parent) => {
   let [ containerLeft, containerRight ] = document.querySelectorAll(`${ parent} .container__side`);
   let btn = document.querySelector(`${parent} .container__btn`);
-  console.log( btn );
   btn.draggable = true;
   btn.onmousedown = function(event) {
     let shiftX = event.clientX - btn.getBoundingClientRect().left;
@@ -55,12 +53,10 @@ const updateLSFComponent = (parent) => {
       if( dimContainerRight.width < dimBtn.width + dX ){
         return;
       }
-
       let containerLeftEl = $(".container__left");
       let widthLeft = containerLeftEl.css("width");
       let newWidth = extractValue(widthLeft, "px") + dX + 'px';
       containerLeftEl.css("width",  newWidth );
-
     }
 
     function onMouseMove(event) {
@@ -92,25 +88,77 @@ const updateLSFComponent = (parent) => {
   };
 }
 
-const updateLSFTranscriptComponent = ( state =  "hide", className =  "profile-container--hide" , idName, newVideoContainerEl  ) => {
-
-
-  let videoAccessEl = $("#video_access_html5_api");
+const createTwoAsideContainers = ( videoAccessEl, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl , state, className , idName, newVideoContainerEl  ) => {
+  //let videoAccessEl = $("#video_access_html5_api");
   let profileContainerEl = $( idName );
   let videoContainerEl = $("#video_access.video-js");
   if( state !== "hide" ){
     profileContainerEl = profileContainerEl.find( newVideoContainerEl ).prepend( videoAccessEl ).parent();
     removeClassToEl( profileContainerEl, className)
-    videoContainerEl.prepend( profileContainerEl );
-    updateLSFComponent(idName);
-    return;
+    prependChildToParent( videoContainerEl, profileContainerEl );
+    createMoveSeparator(idName);
+    addVideoSign();
   }
 
   if( state === "hide" ){
     addClassToEl( profileContainerEl, className)
-    videoContainerEl.prepend( videoAccessEl );
-    return;
+    prependChildToParent( videoContainerEl, videoAccessEl );
   }
+
+
+  if( $(idName).find(bigPlayPauseContainerEl).length ){
+    addChildAfterEl( $( previousElFromBigPlayContainerEl ), $(".big-play-container") )
+  }else{
+    appendChildToParent( $( `${idName} .container__left` ),  $(bigPlayPauseContainerEl) );
+  }
+
+}
+
+const addVideoSign = () => {
+  let accesPlayer = videojs("#video_access");
+  console.log( accesPlayer )
+
+  /**
+   * Add Sign Video After Original Video
+   */
+  let videoAccess = accesPlayer.children_.at( 0 );
+  //$( videoAccess ).css("width", "50%");
+  accesPlayer.signVideo = $(videoAccess).clone(true, true);
+  let signId = videoAccess.id;
+  //accesPlayer.signVideo.attr( "id", `sign-${ signId }`).css({ left: "initial", right : 0, backgroundColor: "#3c3c3c" } );
+  accesPlayer.signVideo.attr( "id", `sign-${ signId }` );
+  //$( videoAccess ).after( accesPlayer.signVideo );
+  prependChildToParent( "#lsf-plus .container__left", accesPlayer.signVideo );
+
+  /**
+   * Change the src of the Access Video
+   */
+  const srcElement = $(accesPlayer.signVideo).find("source");
+  srcElement.attr("src", srcElement.data("signSrc") );
+  $(accesPlayer.signVideo).attr("src", srcElement.data("signSrc") );
+
+  $(videoAccess).on("playing pause seeked timeupdate ended seeking volumechange", async function(e) {
+    switch ( e.type ) {
+      case "playing":
+        accesPlayer.signVideo.get(0).play()
+        break;
+      case "pause":
+        accesPlayer.signVideo.get(0).pause();
+        break;
+      case "seeked":
+        break;
+      case "timeupdate":
+        break;
+      case "seeking":
+        accesPlayer.signVideo.get(0).currentTime = videoAccess.currentTime;
+        break;
+
+      case "volumechange":
+        [ accesPlayer.signVideo.get(0).volume, accesPlayer.signVideo.get(0).muted ]  = [ videoAccess.volume, videoAccess.muted ];
+        break;
+
+    }
+  })
 }
 
 export {
@@ -119,6 +167,5 @@ export {
   updateAudioDescriptionComponent,
   updateCaptionsSubtitlesComponent,
   updateTranscriptComponent,
-  updateLSFComponent,
-  updateLSFTranscriptComponent,
+  createTwoAsideContainers,
 }

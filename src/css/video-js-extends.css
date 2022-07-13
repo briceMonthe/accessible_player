@@ -491,6 +491,12 @@ svg line{
   align-items: center;
 }
 
+.container__left .big-play-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .container__right{
   position: relative;
   z-index : 1;
@@ -521,6 +527,69 @@ svg line{
   fill : #000000;
 }
 
+
+
 /**
     LSF Profile Style Container Template end
  */
+
+
+/**
+    Big Play Container Style Template start
+ */
+
+.big-play-container{
+  --replay-icon: "\f116";
+  --play-icon : "\f101";
+  --pause-icon: "\f103";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.big-play-container.container--hide{
+  opacity: 0;
+}
+
+
+.big-play-container .vjs-big-play-button{
+  position: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-play-container.container--hide .vjs-big-play-button{
+  display: none;
+}
+
+.big-play-container .vjs-icon-placeholder{
+  width: 100%;
+  height: 100%;
+}
+
+.big-play-container .vjs-icon-placeholder::before{
+  position: initial !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-play-container.big-play-container--pause .vjs-icon-placeholder::before{
+  content: var(--pause-icon);
+}
+
+.big-play-container.big-play-container--play .vjs-icon-placeholder::before{
+  content: var(--play-icon);
+}
+
+.big-play-container.big-play-container--ended .vjs-icon-placeholder::before{
+  content: var(--replay-icon);
+}
+
+

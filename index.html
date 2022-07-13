@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Able Player Video Demo</title>
@@ -72,8 +72,8 @@
       </div>
       <div class="col" id="video_area">
         <!-- Video Media Element Orange Start-->
-<!--        poster="media/wwa.jpg"-->
-        <!--<video id="video_access" width="1000px"   controls class="video-js" data-setup="{ }">
+        <!-- poster="media/wwa.jpg"-->
+        <!--<video id="video_access" width="1000px" controls class="video-js" data-setup="{ }">
           <source type="video/webm" src="media/orange/player-dfa-orateur.webm"
                   data-sign-src="media/orange/player-dfa-lsf-optimized.webm"
                   data-sign-opt="media/orange/player-dfa-lsf-optimized.webm" muted></source>
@@ -83,7 +83,8 @@
           <track kind="captions" src="media/orange/player-dfa-sub-pl.vtt" srclang="pl" label="Portuguais">
           <track kind="captions" src="media/orange/player-dfa-sub-ml.vtt" srclang="ml" label="Malentandant">
           <track kind="descriptions" src="media/orange/player-dfa-desc.vtt" srclang="fr">
-          <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+          <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
         </video>
         <ul class="able-playlist" data-player="video1" data-embedded style="display:none">
           <li data-webm="media/orange/player-dfa-orateur"></li>
@@ -91,11 +92,11 @@
         </ul>-->
         <!-- Video Media Element Orange End-->
 
-        <!-- Video Media Element Able Player Start-->
+         <!-- Video Media Element Able Player Start-->
         <video id="video_access" width="1000px"  poster="media/wwa.jpg" controls class="video-js" data-setup="{ }">
           <source type="video/webm" src="media/wwa.webm"
-                  data-sign-src="media/wwa.webm"
-                  data-sign-opt="media/wwa.webm" muted></source>
+                  data-sign-src="media/wwa_sign.webm"
+                  data-sign-opt="media/wwa_sign.mp4" muted></source>
           <track kind="captions" src="media/wwa_captions_fr.vtt" srclang="fr" label="Français">
           <track kind="captions" src="media/wwa_captions_en.vtt" srclang="en" label="Anglais">
           <track kind="captions" src="media/wwa_captions_es.vtt" srclang="es" label="Espagnol">
@@ -112,6 +113,18 @@
       </div>
     </div>
   </div>
+
+  <!-- Big Play button Template Start -->
+  <div class="big-play-container big-play-container--play">
+
+  </div>
+  <!-- Bog Play Button Template End -->
+
+  <!-- Tooltip template start -->
+  <div class="vjs-tooltip--play vjs-tooltip" aria-hidden="true">
+
+  </div>
+  <!-- Tooltip Template end -->
 
 
   <!-- Profile Menu Template Start-->
@@ -180,7 +193,7 @@
 
   <!-- LSF Profile Template Start-->
   <div id="lsf-plus" class="profile-container profile-container--hide">
-    <div class="container__side container__left"> VIDEO EN LSF</div>
+    <div class="container__side container__left"></div>
     <div class="container__side container__right">
       <button class="container__btn">
         <svg class="container__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M503.1 273.6l-112 104c-6.984 6.484-17.17 8.219-25.92 4.406s-14.41-12.45-14.41-22v-56l-192 .001V360c0 9.547-5.656 18.19-14.41 22c-8.75 3.812-18.94 2.078-25.92-4.406l-112-104c-9.781-9.094-9.781-26.09 0-35.19l112-104c6.984-6.484 17.17-8.219 25.92-4.406C154 133.8 159.7 142.5 159.7 152v55.1l192-.001v-56c0-9.547 5.656-18.19 14.41-22s18.94-2.078 25.92 4.406l112 104C513.8 247.5 513.8 264.5 503.1 273.6z"/></svg>

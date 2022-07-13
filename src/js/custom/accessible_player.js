@@ -1,7 +1,8 @@
-import {handleProfile} from "./profileAccess.js";
 import {handleFullscreen} from "./handleFullscreen.js";
 import {addAccessMenu} from "./handleAccessMenu.js";
 import {handleMenuPopup, handlePopupTooltip} from "./handleControlBar.js";
+import {playPauseVideo} from "./handlePlayPauseVideo.js";
+import {profileAccess} from "./profileAccess.js";
 
 
 let repeat_call = setInterval( function(){
@@ -16,7 +17,11 @@ const start = () => {
   accesPlayer = videojs("#video_access");
   console.log( accesPlayer );
   handleFullscreen();
-  handleProfile();
+  //handlePlayPauseVideo();
+  playPauseVideo.getInstance();
+  //handleProfile();
+  profileAccess.getInstance();
+
   handleMenuPopup();
   handlePopupTooltip();
   addAccessMenu();
