@@ -1,0 +1,57 @@
+.big-play-container {
+  --replay-icon: "\f116";
+  --play-icon: "\f101";
+  --pause-icon: "\f103";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.5);
+  &.container--hide {
+    opacity: 0;
+
+    .vjs-big-play-button {
+      display: none;
+    }
+  }
+  &.big-play-container--pause {
+    .vjs-icon-placeholder {
+      &::before {
+        content: var(--pause-icon);
+      }
+    }
+  }
+  &.big-play-container--play {
+    .vjs-icon-placeholder {
+      &::before {
+        content: var(--play-icon);
+      }
+    }
+  }
+  &.big-play-container--ended {
+    .vjs-icon-placeholder {
+      &::before {
+        content: var(--replay-icon);
+      }
+    }
+  }
+  .vjs-big-play-button {
+    position: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .vjs-icon-placeholder {
+    width: 100%;
+    height: 100%;
+    &::before {
+      position: initial !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
