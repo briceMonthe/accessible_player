@@ -33,12 +33,31 @@ function getPreviousEl( currentEl ){
   return $( currentEl ).prev();
 }
 
+function removeEl( El ){
+  $(El).remove();
+}
+
 function findEl( parentEl, selector ){
+  if( typeof selector === 'string' )
+    return $(parentEl).find( selector );
   return $(parentEl).find( $(selector) );
 }
 
 function getHTMLEl ( El ){
   return $(El).get(0);
+}
+
+function getPropertyValue( El, property ) {
+  return $(El).prop(property );
+
+}
+
+function setPropertyValue( El, property, value ){
+  $(El).prop( property, value );
+}
+
+function setAttrEl( El, attributeName, value ){
+  $(El).attr( attributeName, value );
 }
 
 function addEventsToAllButtonWithTooltipElement(){
@@ -66,6 +85,20 @@ function setContentEl ( El, content ){
   $(El).css( "content", content );
 }
 
+function getWidthInPerc( containerParentSize, childSize ) {
+  return ( childSize * 100 ) / containerParentSize;
+}
+
+function setCssProperty( El, property, value ){
+  $(El).css( property, value );
+}
+
+const getWidthFromElInPercent = ( El, containerParentEl ) => {
+  let width = getPropertyValue(El , "offsetWidth");
+  let widthParent = getPropertyValue( containerParentEl, "offsetWidth");
+  return getWidthInPerc( widthParent, width );
+}
+
 export {
   addClassToEl ,
   removeClassToEl,
@@ -78,5 +111,12 @@ export {
   addEventsToAllButtonWithTooltipElement,
   setContentEl,
   findEl,
-  getHTMLEl
+  getHTMLEl,
+  getPropertyValue,
+  setAttrEl,
+  setPropertyValue,
+  removeEl,
+  getWidthInPerc,
+  setCssProperty,
+  getWidthFromElInPercent,
 }

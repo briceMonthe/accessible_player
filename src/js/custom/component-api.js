@@ -38,8 +38,8 @@ const updateAccessMenuProfileComponent = ( El = $("#profiles") , className = "vj
 };
 
 const createMoveSeparator = (parent) => {
-  let [ containerLeft, containerRight ] = document.querySelectorAll(`${ parent} .container__side`);
-  let btn = document.querySelector(`${parent} .container__btn`);
+  let [ containerLeft, containerRight ] = document.querySelectorAll(`#${ parent} .container__side`);
+  let btn = document.querySelector(`#${parent} .container__btn.container__btn-resize`);
   btn.draggable = true;
   btn.onmousedown = function(event) {
     let shiftX = event.clientX - btn.getBoundingClientRect().left;
@@ -55,7 +55,7 @@ const createMoveSeparator = (parent) => {
       }
       let containerLeftEl = $(".container__left");
       let widthLeft = containerLeftEl.css("width");
-      let newWidth = extractValue(widthLeft, "px") + dX + 'px';
+      let newWidth = extractValue(widthLeft, "px") + dX;
       containerLeftEl.css("width",  newWidth );
     }
 
@@ -88,15 +88,15 @@ const createMoveSeparator = (parent) => {
   };
 }
 
-const createTwoAsideContainers = ( videoAccessEl, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl , state, className , idName, newVideoContainerEl  ) => {
-  //let videoAccessEl = $("#video_access_html5_api");
-  let profileContainerEl = $( idName );
+const createTwoAsideContainers = ( videoAccessEl, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl , state, className , containerEl,  newVideoContainerEl, id  ) => {
+  let profileContainerEl = containerEl;
   let videoContainerEl = $("#video_access.video-js");
   if( state !== "hide" ){
-    profileContainerEl = profileContainerEl.find( newVideoContainerEl ).prepend( videoAccessEl ).parent();
+    profileContainerEl = $(profileContainerEl).find( newVideoContainerEl ).prepend( videoAccessEl ).parent();
     removeClassToEl( profileContainerEl, className)
     prependChildToParent( videoContainerEl, profileContainerEl );
-    createMoveSeparator(idName);
+    profileContainerEl.prop("id", id)
+    createMoveSeparator( id );
     addVideoSign();
   }
 
@@ -105,11 +105,10 @@ const createTwoAsideContainers = ( videoAccessEl, bigPlayPauseContainerEl,  prev
     prependChildToParent( videoContainerEl, videoAccessEl );
   }
 
-
-  if( $(idName).find(bigPlayPauseContainerEl).length ){
+  if( $(containerEl).find(bigPlayPauseContainerEl).length ){
     addChildAfterEl( $( previousElFromBigPlayContainerEl ), $(".big-play-container") )
   }else{
-    appendChildToParent( $( `${idName} .container__left` ),  $(bigPlayPauseContainerEl) );
+    appendChildToParent( $( `#${ $(containerEl).prop("id") } .container__left` ),  $(bigPlayPauseContainerEl) );
   }
 
 }
@@ -152,7 +151,6 @@ const addVideoSign = () => {
       case "seeking":
         accesPlayer.signVideo.get(0).currentTime = videoAccess.currentTime;
         break;
-
       case "volumechange":
         [ accesPlayer.signVideo.get(0).volume, accesPlayer.signVideo.get(0).muted ]  = [ videoAccess.volume, videoAccess.muted ];
         break;
@@ -167,5 +165,4 @@ export {
   updateAudioDescriptionComponent,
   updateCaptionsSubtitlesComponent,
   updateTranscriptComponent,
-  createTwoAsideContainers,
 }
