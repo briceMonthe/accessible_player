@@ -10,12 +10,10 @@ const handlePopupTooltip = () => {
   let tooltipElement = document.createElement( "div" );
   tooltipElement.setAttribute("class" , "vjs-tooltip" );
   tooltipElement.setAttribute("aria-hidden", "true");
-  //accesPlayer.controlBar.playToggle.el_.appendChild(  tooltipElement );
-  accesPlayer.controlBar.volumePanel.el_.appendChild(  tooltipElement.cloneNode(true) );
   accesPlayer.controlBar.subsCapsButton.el_.appendChild(  tooltipElement.cloneNode(true) );
   accesPlayer.controlBar.fullscreenToggle.el_.appendChild(  tooltipElement.cloneNode(true) );
 
-  addEventsToAllButtonWithTooltipElement();
+  //addEventsToAllButtonWithTooltipElement();
 }
 
 
