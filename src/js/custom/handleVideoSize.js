@@ -72,7 +72,7 @@ let videoSize = {
     }
 
     if( findEl( container, bigPlayPauseContainerEl).length ){
-      addChildAfterEl( previousElFromBigPlayContainerEl,bigPlayPauseContainerEl )
+      addChildAfterEl( previousElFromBigPlayContainerEl.el(),bigPlayPauseContainerEl )
     }else{
       appendChildToParent( containerLeft,  bigPlayPauseContainerEl );
     }

@@ -12,13 +12,14 @@ let repeat_call = setInterval( function(){
   }
 
 }, 200)
-let accesPlayer ;
+let accessPlayer ;
 const start = () => {
-  accesPlayer = videojs("#video_access");
-  console.log( accesPlayer );
+  accessPlayer = videojs("#video_access");
+  let videoEl = accessPlayer.children().at(0);
+  console.log( accessPlayer );
   handleFullscreen();
   //handlePlayPauseVideo();
-  playPauseVideo.getInstance();
+  playPauseVideo.getInstance( { accessPlayer, videoEl });
   //handleProfile();
   profileAccess.getInstance();
 

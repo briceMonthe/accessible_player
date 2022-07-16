@@ -99,6 +99,15 @@ const getWidthFromElInPercent = ( El, containerParentEl ) => {
   return getWidthInPerc( widthParent, width );
 }
 
+const createElement = function( tagName, attributes ){
+  let newEl = document.createElement( tagName, attributes );
+  if( attributes ){
+    newEl.setAttribute("class", `${ Object.values(attributes).join(" ")}`);
+  }
+  return newEl;
+}
+
+
 export {
   addClassToEl ,
   removeClassToEl,
@@ -119,4 +128,5 @@ export {
   getWidthInPerc,
   setCssProperty,
   getWidthFromElInPercent,
+  createElement
 }
