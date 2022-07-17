@@ -1,40 +1,36 @@
-const accesPlayer = videojs("#video_access");
-//console.log( accesPlayer )
+import {handleFullscreen} from "./handleFullscreen.js";
+import {addAccessMenu} from "./handleAccessMenu.js";
+import {handleMenuPopup, handlePopupTooltip} from "./handleControlBar.js";
+import {playPauseVideo} from "./handlePlayPauseVideo.js";
+import {profileMenu} from "./profileAccess.js";
 
-/**
- * Add Sign Video After Original Video
- */
-let videoAccess = accesPlayer.children_.at( 0 );
-$( videoAccess ).css("width", "50%");
-accesPlayer.signVideo = $(videoAccess).clone();
-let signId = videoAccess.id;
-accesPlayer.signVideo.attr( "id", `sign-${ signId }`).css({ left: "initial", right : 0, backgroundColor: "#3c3c3c" } );
-$( videoAccess ).after( accesPlayer.signVideo );
 
-/**
- * Change the src of the sign Video
- */
-const srcElement = accesPlayer.signVideo.find("source");
-srcElement.attr("src", srcElement.data("signSrc") );
-accesPlayer.signVideo.attr("src", srcElement.data("signSrc") );
-
-$(videoAccess).on("playing pause seeked timeupdate", function(e) {
-  switch ( e.type ) {
-    case "playing":
-      accesPlayer.signVideo.get(0).play();
-      break;
-    case "pause":
-      accesPlayer.signVideo.get(0).pause();
-      break;
-
-    case "seeked":
-      accesPlayer.signVideo.get(0).currentTime = videoAccess.currentTime;
-      break;
-    case "timeupdate":
-      console.log( { video : videoAccess.currentTime, signvideo: accesPlayer.signVideo.get(0).currentTime })
-      break;
+let repeat_call = setInterval( function(){
+  if( !!videojs ){
+    start();
+    clearInterval( repeat_call );
   }
-})
+
+}, 200)
+let accessPlayer ;
+const start = () => {
+  accessPlayer = videojs("#video_access");
+  let videoEl = accessPlayer.children().at(0);
+  console.log( accessPlayer );
+  handleFullscreen();
+  //handlePlayPauseVideo();
+  playPauseVideo.getInstance( { accessPlayer, videoEl });
+  //handleProfile();
+  profileMenu.getInstance( { accessPlayer, videoEl } );
+
+  handleMenuPopup();
+  handlePopupTooltip();
+  addAccessMenu();
+
+}
+
+
+
 
 
 
