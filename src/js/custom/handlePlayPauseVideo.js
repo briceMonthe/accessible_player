@@ -149,7 +149,7 @@ let playPauseVideo = {
       setTimeout(function(){
         playToggleEl.setAttribute("title", "");
         instance.setToolTipText( playToggleEl.controlText_ );
-        setTextContentFromEL( tooltipEl, playToggleEl.controlText_ );
+        setTextContentFromEL( tooltipEl, instance.toolTipText );
       }, 2)
     })
   }
