@@ -3,6 +3,7 @@ import {addAccessMenu} from "./handleAccessMenu.js";
 import {handleMenuPopup, handlePopupTooltip} from "./handleControlBar.js";
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {profileMenu} from "./profileAccess.js";
+import {volumePlayer} from "./handleVolume.js";
 
 
 let repeat_call = setInterval( function(){
@@ -16,12 +17,12 @@ let accessPlayer ;
 const start = () => {
   accessPlayer = videojs("#video_access");
   let videoEl = accessPlayer.children().at(0);
+  const volumePanel = accessPlayer.controlBar.volumePanel;
   console.log( accessPlayer );
   handleFullscreen();
-  //handlePlayPauseVideo();
   playPauseVideo.getInstance( { accessPlayer, videoEl });
-  //handleProfile();
   profileMenu.getInstance( { accessPlayer, videoEl } );
+  volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  })
 
   handleMenuPopup();
   handlePopupTooltip();

@@ -9,6 +9,8 @@ import {
 } from "./component-api.js";
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {videoSize} from "./handleVideoSize.js";
+import {createElement, setTextContentFromEL} from "./operationsClassEl.js";
+import {appendChildToParent} from "./operationsClassEl.js";
 
 let profileMenu = {
   isDisplayed : false,
@@ -20,6 +22,7 @@ let profileMenu = {
   playPauseObject: null,
   videoSizeObject: null,
   accessMenuObject : null,
+  tooltipText: null,
   components: {
     profileContainerEl : null,
     profileBtnEl : null,
@@ -34,6 +37,9 @@ let profileMenu = {
     { profile : "Audition +", classList : ""},
     { profile : "Standard", classList : "vjs-selected"}
   ],
+  setToolTipText : function( text ){
+    this.tooltipText = text;
+  },
   setInstance : function( instance ){
     this.instance = instance;
   },
@@ -73,6 +79,7 @@ let profileMenu = {
     this.playPauseObject = playPauseVideo.getInstance();
     this.videoSizeObject = videoSize.getInstance();
     this.setComponents( components );
+    console.log( components );
     this.addEventsToProfileContainerEl( this );
 
     if( !newProfile || this.defaultProfile === newProfile ){
@@ -86,9 +93,26 @@ let profileMenu = {
     selectProfile( this );
     this.profiles = this.profiles.map( ( { profile } ) => profile === newProfile ? { profile , classList : "vjs-selected" } : { profile , classList : "" }  );
   },
-  addEventsToProfileContainerEl : function(  )  {
-    let instance = this;
-    let { profileMenuEl } = instance;
+  addEventsToProfileContainerEl : function( instance )  {
+    let { profileMenuEl, profileMenuBtnEl, tooltipEl, profileMenuContainerEl } = instance.components;
+
+    $( profileMenuContainerEl ).on("pointerenter click pointerleave", function(e) {
+      switch ( e.type ) {
+        case "click":
+          toggleClassToEl( tooltipEl, "vjs-tooltip-hide");
+          toggleClassToEl( this, "vjs-menu-button-popup-hide" );
+          break;
+        case "pointerleave":
+          addClassToEl( this, "vjs-menu-button-popup-hide" )
+          break;
+        case "pointerenter":
+          addClassToEl( this, "vjs-menu-button-popup-hide" );
+          $(tooltipEl).is(".vjs-tooltip-hide") ? removeClassToEl( tooltipEl, "vjs-tooltip-hide" ) : null;
+          break;
+      }
+
+    });
+
     $( profileMenuEl ).on("click", function(e){
       switch (e.type) {
         case "click":
@@ -120,6 +144,14 @@ let profileMenu = {
           }
           break;
       }
+    });
+
+    $( profileMenuBtnEl ).on( "pointerenter click" , function(e){
+      setTimeout(function(){
+        profileMenuBtnEl.attr("title", "");
+        instance.setToolTipText( profileMenuBtnEl.controlText_ || $(profileMenuBtnEl).data("title") );
+        setTextContentFromEL( tooltipEl, instance.toolTipText || $(profileMenuBtnEl).data("title") );
+      }, 2)
     })
   }
 }
@@ -130,8 +162,10 @@ const handleProfile = ( instance, { videoEl, accessPlayer} ) => {
   let profileMenuContainerEl = $("#player-profile-container");
   let profileMenuBtnEl = profileMenuContainerEl.find("button");
   let profileMenuEl = profileMenuContainerEl.find(".vjs-menu");
+  let tooltipEl = createElement("div", { class: "vjs-tooltip" });
+  appendChildToParent( profileMenuBtnEl, tooltipEl );
 
-  instance.loadDefaultProfile({ videoElement: videoEl , volumeContainerEl, profileMenuContainerEl, profileMenuBtnEl, profileMenuEl } );
+  instance.loadDefaultProfile({ videoElement: videoEl , volumeContainerEl, profileMenuContainerEl, profileMenuBtnEl, profileMenuEl, tooltipEl } );
 }
 
 const addDefaultSelectedProfile = ( profileContainerEl, defaultProfile ) => {

@@ -33,6 +33,9 @@ let volumePlayer = {
     this.components.volumePanel.options( this.options );
     //this.components.volumeControl.options( this.options );
   },
+  setInstance : function( instance ){
+    this.instance = instance;
+  },
   setComponents : function( components ){
     this.components = {
       ...this.components,
@@ -44,7 +47,7 @@ let volumePlayer = {
       return this;
     }
     this.loadVolumePlayer( components );
-    this.instance = this;
+    this.setInstance( this );
     return this;
   },
   loadVolumePlayer : function( { videoElement, volumePanel } ){
@@ -57,7 +60,8 @@ let volumePlayer = {
     this.addEventsVolumePlayer(this,  this.components );
   },
   addEventsVolumePlayer : function (instance,  { videoElement, volumePanel, muteToggleEl, volumeControl, toolTipEl, volumeBar  }){
-    muteToggleEl.on("pointerover pointermove click", function( e ){
+    console.log( videoElement );
+    $( muteToggleEl.el() ).on("pointerover pointermove click", function( e ){
       e.preventDefault();
       setTimeout( function(){
         muteToggleEl.removeAttribute("title");
@@ -78,25 +82,17 @@ let volumePlayer = {
 
     volumeBar.on( "mousedown", function(e){
       volumeBar.on("mouseup", function( e ){
+        console.log( instance );
         e.preventDefault();
         instance.setVolume( videoElement.volume );
         volumeBar.off( "mousemove");
+
       });
       volumeBar.on("mousemove", function(e){
         e.preventDefault();
       })
     });
-
   }
-}
-
-const getInstanceInMiddle = function( ){
-  return volumePlayer.getInstance();
-}
-
-const changeVolume = function( e ){
-  let instance = getInstanceInMiddle();
-  instance.setVolume( e.currentTarget.volume );
 }
 
 const createToolTipEl = function( tagName, className ){

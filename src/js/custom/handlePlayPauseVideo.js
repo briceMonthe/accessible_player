@@ -83,7 +83,6 @@ let playPauseVideo = {
     this.addEventsPlayPauseVideo( this );
 
     let isPaused = getVideoStateFromCookie();
-    console.log( isPaused )
     if( !isPaused && isPaused === false  ){
       this.playVideo();
     }
@@ -149,6 +148,7 @@ let playPauseVideo = {
       setTimeout(function(){
         playToggleEl.setAttribute("title", "");
         instance.setToolTipText( playToggleEl.controlText_ );
+        console.log( tooltipEl )
         setTextContentFromEL( tooltipEl, instance.toolTipText );
       }, 2)
     })

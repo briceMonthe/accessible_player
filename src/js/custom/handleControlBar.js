@@ -22,7 +22,8 @@ const handleMenuPopup = () => {
   /**
    * add events for captions menu
    */
-  $(".vjs-menu-button-popup").on("pointerenter click pointerleave", function(e) {
+  //, .vjs-menu-button-popup
+  $(".vjs-subs-caps-button").on("pointerenter click pointerleave", function(e) {
     let tooltipEl = $(this).find(".vjs-tooltip");
     switch ( e.type ) {
       case "click":
