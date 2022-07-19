@@ -6,7 +6,8 @@ import {
   addClassToEl,
   findEl,
   setTextContentFromEL,
-  createElement
+  createElement,
+  setPropertyValue
 } from "./operationsClassEl.js";
 import {
   getVideoStateFromCookie,
@@ -85,8 +86,9 @@ let playPauseVideo = {
     let isPaused = getVideoStateFromCookie();
     if( !isPaused && isPaused === false  ){
       this.playVideo();
+    }else{
+      this.changeVideoState( true );
     }
-    this.changeVideoState( true );
   },
   addEventsPlayPauseVideo : function( instance ) {
 

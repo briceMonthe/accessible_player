@@ -25,9 +25,6 @@ const start = () => {
   profileMenu.getInstance( { accessPlayer, videoEl } );
   volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
   captionsVideo.getInstance( { accessPlayer } );
-
-  //handleMenuPopup();
-  //handlePopupTooltip();
   addAccessMenu();
 
 }

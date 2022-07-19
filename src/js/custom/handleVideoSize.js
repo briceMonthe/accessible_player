@@ -204,10 +204,13 @@ const builtSignVideo = function( videoAccessEl ){
         break;
       case "pause":
         signVideoHTML.pause();
+        console.log("Pauseeeeee")
         break;
       case "seeked":
         break;
       case "timeupdate":
+        if( !getPropertyValue( signVideoHTML, "ended") && !getPropertyValue( videoAccessEl, "paused") && getPropertyValue( signVideoHTML, "paused")  )
+          signVideoHTML.play();
         //console.log( signVideo.prop("currentTime" ), $(videoAccessEl).prop( "currentTime") )
         break;
       case "seeking":
@@ -217,7 +220,10 @@ const builtSignVideo = function( videoAccessEl ){
       case "volumechange":
         [signVideoHTML.volume, signVideoHTML.muted ]  = [ $(videoAccessEl).get(0).volume, $(videoAccessEl).get(0).muted ];
         break;
-
+      case "ended":
+        signVideoHTML.pause();
+        console.log("endedddddd")
+        break;
     }
   })
 
