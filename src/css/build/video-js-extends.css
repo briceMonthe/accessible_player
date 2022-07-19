@@ -469,6 +469,9 @@ svg line {
 .profile-container.profile-container--hide {
   display: none;
 }
+.profile-container.captions--active {
+  height: 85%;
+}
 .profile-container .container__side {
   width: 50%;
   height: 100%;
@@ -694,6 +697,10 @@ input::-webkit-inner-spin-button {
 /**
     Captions Style Template start
  */
+.vjs-texttrack-settings {
+  display: none;
+}
+
 .vjs-text-track-display {
   bottom: 3em !important;
 }

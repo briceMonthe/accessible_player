@@ -105,6 +105,7 @@ const captionsVideo = {
 
     textTrackList.forEach( (item , index) => {
       $( item.on( "click" , function(e){
+        index === 1 ? $(".profile-container").removeClass("captions--active") : $(".profile-container").addClass("captions--active")
         instance.setSelectedTrack( index, item );
       }))
     })

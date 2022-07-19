@@ -9,6 +9,9 @@
   &.profile-container--hide{
     display: none;
   }
+  &.captions--active{
+    height: 85%;
+  }
   .container__side {
     width: 50%;
     height: 100%;
