@@ -6,6 +6,10 @@ const getVideoStateFromCookie = () => {
   return parseToken( localStorage.getItem("player") )?.isPaused;
 }
 
+const getLatestTrackFromCookie = () => {
+  return parseToken( localStorage.getItem("player") )?.indexTrack;
+}
+
 
 const updateProfileFromCookie = ( key, newProfile ) => {
   let player= parseToken( localStorage.getItem("player") );
@@ -13,11 +17,9 @@ const updateProfileFromCookie = ( key, newProfile ) => {
     player = {}
     player[key] = newProfile;
     localStorage.setItem( "player", stringifyToken( player ) );
-    //localStorage.setItem( "player", stringifyToken( Object.defineProperty( player, key, { writable: true, value: newProfile }) ) );
     return;
   }
 
-  //let keyProp = getPropertyName( player, key );
   player[key] = newProfile;
   localStorage.setItem( "player", stringifyToken( {  ...player  } ) );
 }
@@ -43,4 +45,4 @@ const getProfileObjectToMap = ( profiles, profileProp ) => {
 
 
 
-export { getProfileFromCookie, updateProfileFromCookie, getProfileObjectToMap, getVideoStateFromCookie }
+export { getProfileFromCookie, updateProfileFromCookie, getProfileObjectToMap, getVideoStateFromCookie, getLatestTrackFromCookie }

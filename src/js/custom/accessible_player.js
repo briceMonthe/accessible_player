@@ -4,6 +4,7 @@ import {handleMenuPopup, handlePopupTooltip} from "./handleControlBar.js";
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {profileMenu} from "./profileAccess.js";
 import {volumePlayer} from "./handleVolume.js";
+import {captionsVideo} from "./handleCaptions.js";
 
 
 let repeat_call = setInterval( function(){
@@ -22,10 +23,11 @@ const start = () => {
   handleFullscreen();
   playPauseVideo.getInstance( { accessPlayer, videoEl });
   profileMenu.getInstance( { accessPlayer, videoEl } );
-  volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  })
+  volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
+  captionsVideo.getInstance( { accessPlayer } );
 
-  handleMenuPopup();
-  handlePopupTooltip();
+  //handleMenuPopup();
+  //handlePopupTooltip();
   addAccessMenu();
 
 }

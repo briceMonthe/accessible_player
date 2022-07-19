@@ -60,7 +60,6 @@ let volumePlayer = {
     this.addEventsVolumePlayer(this,  this.components );
   },
   addEventsVolumePlayer : function (instance,  { videoElement, volumePanel, muteToggleEl, volumeControl, toolTipEl, volumeBar  }){
-    console.log( videoElement );
     $( muteToggleEl.el() ).on("pointerover pointermove click", function( e ){
       e.preventDefault();
       setTimeout( function(){

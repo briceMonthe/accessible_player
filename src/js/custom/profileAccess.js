@@ -131,7 +131,7 @@ let profileMenu = {
       }
     });
 
-    $("li.vjs-menu-item").on("click", function(e){
+    $("#player-profile-container li.vjs-menu-item").on("click", function(e){
       switch (e.type) {
         case "click":
           let liItems = findEl( $(this).parent(), "li");
