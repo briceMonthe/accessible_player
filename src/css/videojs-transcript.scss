@@ -1,0 +1,144 @@
+.wrapper{
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+
+  //width: 80%;
+  //height: 480px;
+  border: 1px solid #464646;
+  //margin: 0 auto;
+  font-size: 18px;
+  font-family: Arial;
+  .wrapper__top{
+    width: 100%;
+    min-height: 28px;
+    background-color: #464646;
+    color: white;
+    text-align: right;
+    padding: 10px;
+    .wrapper__icon{
+      font-size: 24px;
+      line-height: 30px;
+      cursor: pointer;
+      width: 22px;
+      fill: #FFFFFF;
+    }
+  }
+  .wrapper__transcript{
+    padding: 20px 43px;
+    height: calc( 100% - 50px );
+    width: 100%;
+    background-color: #FFFFFF;
+    color: #000000;
+    overflow: auto;
+    .transcript__title{
+      font-size: 22px;
+      line-height: 26px;
+      width: 100%;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 20px;
+    }
+    .transcript__text{
+      width: 100%;
+      font-size: 18px;
+      line-height: 22px;
+      color: #000000;
+      cursor: pointer;
+    }
+    .transcript__desc{
+      width: 100%;
+      padding: 16px;
+      margin: 16px 0;
+      background-color: #FFD9B9;
+      border: 1px solid #F16E00;
+      .transcript__text{
+        width: 100%;
+        background-color: #FFFFFF;
+        color: #000000;
+        font-style: italic;
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+    .transcript-body{
+      height: fit-content;
+      overflow: auto;
+      .transcript-timestamp{
+        display: none;
+      }
+      :is(.transcript-text, .transcript-header ) {
+        margin: 0;
+      }
+      .transcript-line{
+        padding: 0;
+        display: inline;
+        .transcript-text{
+          display: inline;
+          width: fit-content;
+          font-size: 18px;
+          line-height: 22px;
+          color: #000000;
+          cursor: pointer;
+        }
+        &:is( .is-active, :hover ){
+          background: rgb(255, 255, 102);
+          .transcript-text {
+            color: #000000;
+            font-family: Arial;
+          }
+        }
+      }
+      .transcript-desc-line{
+        width: 100%;
+        padding: 16px;
+        margin: 16px 0;
+        background-color: #FFD9B9;
+        border: 1px solid #F16E00;
+        .transcript-text{
+          width: 100%;
+          background-color: #FFFFFF;
+          color: #000000;
+          font-style: italic;
+          font-size: 16px;
+          line-height: 20px;
+          cursor: pointer;
+        }
+        &:is( .is-active, :hover ){
+          background: rgb(255, 255, 102);
+        }
+      }
+    }
+
+  }
+}
+::-webkit-scrollbar{
+  background-color: #FFFFFF;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: gray;
+  width: 100%;
+  border-radius: 10px;
+}
+
+::-moz-scrollbar{
+  background-color: #FFFFFF;
+  width: 8px;
+}
+
+::-moz-scrollbar-thumb{
+  background-color: gray;
+  width: 100%;
+  border-radius: 10px;
+}
+
+
+
+
+

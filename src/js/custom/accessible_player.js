@@ -91,7 +91,6 @@ const handleTranscript = () => {
     // Set up any options.
     let options = {
       showTitle: true,
-      showTrackSelector: true,
       autoscroll: true,
       clickArea: 'line',
       followPlayerTrack: true,
@@ -110,8 +109,10 @@ const handleTranscript = () => {
     }, 300)
 
     // Then attach the widget to the page.
-    let transcriptContainer = document.querySelector('#transcript');
-    transcriptContainer.appendChild(transcript.el());
+    let transcriptContainer = $("#transcript .wrapper__transcript"); //document.querySelector('#transcript');
+    let transcriptEl = transcript.el();
+    let transcriptBodyEl = $( transcriptEl ).find(".transcript-body");
+    $(transcriptContainer).append( transcriptBodyEl  );
   });
 
   $( videoAccess ).after( $("#transcript") );

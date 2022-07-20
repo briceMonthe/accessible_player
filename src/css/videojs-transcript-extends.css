@@ -1,0 +1,135 @@
+.wrapper {
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #464646;
+  font-size: 18px;
+  font-family: Arial;
+}
+.wrapper .wrapper__top {
+  width: 100%;
+  min-height: 28px;
+  background-color: #464646;
+  color: white;
+  text-align: right;
+  padding: 10px;
+}
+.wrapper .wrapper__top .wrapper__icon {
+  font-size: 24px;
+  line-height: 30px;
+  cursor: pointer;
+  width: 22px;
+  fill: #FFFFFF;
+}
+.wrapper .wrapper__transcript {
+  padding: 20px 43px;
+  height: calc( 100% - 50px );
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #000000;
+  overflow: auto;
+}
+.wrapper .wrapper__transcript .transcript__title {
+  font-size: 22px;
+  line-height: 26px;
+  width: 100%;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.wrapper .wrapper__transcript .transcript__text {
+  width: 100%;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  cursor: pointer;
+}
+.wrapper .wrapper__transcript .transcript__desc {
+  width: 100%;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #FFD9B9;
+  border: 1px solid #F16E00;
+}
+.wrapper .wrapper__transcript .transcript__desc .transcript__text {
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 20px;
+}
+.wrapper .wrapper__transcript .transcript-body {
+  height: fit-content;
+  overflow: auto;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-timestamp {
+  display: none;
+}
+.wrapper .wrapper__transcript .transcript-body :is(.transcript-text, .transcript-header) {
+  margin: 0;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-line {
+  padding: 0;
+  display: inline;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-line .transcript-text {
+  display: inline;
+  width: fit-content;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  cursor: pointer;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-line:is(.is-active, :hover) {
+  background: #ffff66;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-line:is(.is-active, :hover) .transcript-text {
+  color: #000000;
+  font-family: Arial;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-desc-line {
+  width: 100%;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #FFD9B9;
+  border: 1px solid #F16E00;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-desc-line .transcript-text {
+  width: 100%;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.wrapper .wrapper__transcript .transcript-body .transcript-desc-line:is(.is-active, :hover) {
+  background: #ffff66;
+}
+
+::-webkit-scrollbar {
+  background-color: #FFFFFF;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  width: 100%;
+  border-radius: 10px;
+}
+
+::-moz-scrollbar {
+  background-color: #FFFFFF;
+  width: 8px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: gray;
+  width: 100%;
+  border-radius: 10px;
+}
