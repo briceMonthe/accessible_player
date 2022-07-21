@@ -18,11 +18,13 @@ let repeat_call = setInterval( function(){
 let accessPlayer ;
 const start = async () => {
   accessPlayer = videojs("#video_access");
+  console.log( accessPlayer.src() )
   let videoEl = accessPlayer.children().at(0);
   accessPlayer.src({
     src : $(videoEl).prop("src"),
-    type: "video/webm"
+    type: "video/mp4"
   })
+  console.log( accessPlayer.src() )
   await transcriptVideo.getInstance( accessPlayer );
   //handleTranscript(  );
 
