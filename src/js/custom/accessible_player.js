@@ -11,8 +11,6 @@ import {transcriptVideo} from "./transcriptVideo.js";
 let repeat_call = setInterval( function(){
   if( !!videojs ){
     start();
-    console.log("+++++++++")
-    console.log( videojs )
     clearInterval( repeat_call );
   }
 
@@ -20,9 +18,14 @@ let repeat_call = setInterval( function(){
 let accessPlayer ;
 const start = async () => {
   accessPlayer = videojs("#video_access");
+  let videoEl = accessPlayer.children().at(0);
+  accessPlayer.src({
+    src : $(videoEl).prop("src"),
+    type: "video/webm"
+  })
   await transcriptVideo.getInstance( accessPlayer );
   //handleTranscript(  );
-  let videoEl = accessPlayer.children().at(0);
+
   const volumePanel = accessPlayer.controlBar.volumePanel;
   console.log( accessPlayer );
   handleFullscreen();
