@@ -1,4 +1,4 @@
-import { addClassToEl, removeClassToEl, toggleClassToEl, findEl} from "./operationsClassEl.js";
+import { addClassToEl, removeClassToEl, toggleClassToEl, findEl, prependChildToParent, appendChildToParent} from "./operationsClassEl.js";
 import {getProfileFromCookie, updateProfileFromCookie, getProfileObjectToMap } from "./third-party-api.js";
 import {
   updateTranscriptComponent,
@@ -10,7 +10,6 @@ import {
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {videoSize} from "./handleVideoSize.js";
 import {createElement, setTextContentFromEL} from "./operationsClassEl.js";
-import {appendChildToParent} from "./operationsClassEl.js";
 
 let profileMenu = {
   isDisplayed : false,
@@ -259,6 +258,9 @@ const selectLSFPlusProfile = (videoSize, bigPlayPauseContainerEl,  previousElFro
 
 const selectConcentrationPlusProfile = (videoSize, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
   videoSize.switchToConcentrationPlusProfile( bigPlayPauseContainerEl, previousElFromBigPlayContainerEl, state, className );
+
+  $("#transcript").toggleClass("transcript--hide");
+  prependChildToParent( videoSize.components.containerRight, $("#transcript") );
 }
 
 

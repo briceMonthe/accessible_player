@@ -21,8 +21,8 @@
   <link rel="stylesheet" href="src/css/build/video-js-extends.css" type="text/css">
 
   <!-- Videojs Plugin -->
-<!--  <script src="src/js/custom/video.min.js"></script>-->
-  <script src="https://vjs.zencdn.net/7.0/video.min.js"></script>
+  <script src="src/js/custom/video.min.js"></script>
+  <!-- <script src="https://vjs.zencdn.net/7.0/video.min.js"></script>-->
 
   <!-- Video JS Transcript Plugin -->
   <script src="src/js/custom/videojs-transcript.js"></script>
@@ -85,7 +85,7 @@
       <div class="col" id="video_area">
         <!-- Video Media Element Orange Start-->
         <!-- poster="media/wwa.jpg"-->
-        <video id="video_access" muted width="1000px" controls class="video-js" data-setup="{ }">
+        <!--<video id="video_access" muted width="1000px" controls class="video-js" data-setup="{ }">
           <source type="video/webm" src="media/orange/player-dfa-orateur.webm"
                   data-sign-src="media/orange/player-dfa-lsf-optimized.webm"
                   data-sign-opt="media/orange/player-dfa-lsf-optimized.webm" muted></source>
@@ -101,11 +101,11 @@
         <ul class="able-playlist" data-player="video1" data-embedded style="display:none">
           <li data-webm="media/orange/player-dfa-orateur"></li>
           <li data-webm="media/orange/player-dfa-orateur-optimized.webm"></li>
-        </ul>
+        </ul>-->
         <!-- Video Media Element Orange End-->
 
          <!-- Video Media Element Able Player Start-->
-        <!--<video id="video_access" width="1000px"  poster="media/wwa.jpg" controls class="video-js" data-setup="{ }">
+        <video id="video_access" width="1000px"  poster="media/wwa.jpg" controls class="video-js" data-setup="{ }">
           <source type="video/webm" src="media/wwa.webm"
                   data-sign-src="media/wwa_sign.mp4"
                   data-sign-opt="media/wwa_sign.mp4"></source>
@@ -119,7 +119,7 @@
         <ul class="able-playlist" data-player="video1" data-embedded style="display:none">
           <li data-webm="media/wwa.webm"></li>
           <li data-webm="media/wwa.webm"></li>
-        </ul>-->
+        </ul>
         <!-- Video Media Element Able Player End-->
 
       </div>
@@ -203,11 +203,23 @@
   </div>
   <!-- Profile Menu Template End-->
 
+  <!-- Transcript Template Start-->
+  <div id="transcript" class="wrapper transcript--hide" >
+    <div class="wrapper__top">
+      <svg data-modal-hide="modal--hide" class="wrapper__icon wrapper__icon-setting" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M495.9 166.6C499.2 175.2 496.4 184.9 489.6 191.2L446.3 230.6C447.4 238.9 448 247.4 448 256C448 264.6 447.4 273.1 446.3 281.4L489.6 320.8C496.4 327.1 499.2 336.8 495.9 345.4C491.5 357.3 486.2 368.8 480.2 379.7L475.5 387.8C468.9 398.8 461.5 409.2 453.4 419.1C447.4 426.2 437.7 428.7 428.9 425.9L373.2 408.1C359.8 418.4 344.1 427 329.2 433.6L316.7 490.7C314.7 499.7 307.7 506.1 298.5 508.5C284.7 510.8 270.5 512 255.1 512C241.5 512 227.3 510.8 213.5 508.5C204.3 506.1 197.3 499.7 195.3 490.7L182.8 433.6C167 427 152.2 418.4 138.8 408.1L83.14 425.9C74.3 428.7 64.55 426.2 58.63 419.1C50.52 409.2 43.12 398.8 36.52 387.8L31.84 379.7C25.77 368.8 20.49 357.3 16.06 345.4C12.82 336.8 15.55 327.1 22.41 320.8L65.67 281.4C64.57 273.1 64 264.6 64 256C64 247.4 64.57 238.9 65.67 230.6L22.41 191.2C15.55 184.9 12.82 175.3 16.06 166.6C20.49 154.7 25.78 143.2 31.84 132.3L36.51 124.2C43.12 113.2 50.52 102.8 58.63 92.95C64.55 85.8 74.3 83.32 83.14 86.14L138.8 103.9C152.2 93.56 167 84.96 182.8 78.43L195.3 21.33C197.3 12.25 204.3 5.04 213.5 3.51C227.3 1.201 241.5 0 256 0C270.5 0 284.7 1.201 298.5 3.51C307.7 5.04 314.7 12.25 316.7 21.33L329.2 78.43C344.1 84.96 359.8 93.56 373.2 103.9L428.9 86.14C437.7 83.32 447.4 85.8 453.4 92.95C461.5 102.8 468.9 113.2 475.5 124.2L480.2 132.3C486.2 143.2 491.5 154.7 495.9 166.6V166.6zM256 336C300.2 336 336 300.2 336 255.1C336 211.8 300.2 175.1 256 175.1C211.8 175.1 176 211.8 176 255.1C176 300.2 211.8 336 256 336z"/></svg>
+    </div>
+    <div class="wrapper__transcript">
+      <h2 class="transcript__title">Transcription</h2>
+
+    </div>
+  </div>
+  <!-- Transcript Template End-->
+
   <!-- LSF Profile / Transcript Profile Template for resize video Start-->
   <div id="concentration-plus" class="profile-container profile-container--hide">
     <div class="container__side container__left"></div>
     <div class="container__side container__right">
-      <span class="transcript">TRANSCRIPTION</span>
+<!--      <span class="transcript">TRANSCRIPTION</span>-->
       <button class="container__btn container__btn-setting" data-modal-hide="modal--hide">
         <svg class="container__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M495.9 166.6C499.2 175.2 496.4 184.9 489.6 191.2L446.3 230.6C447.4 238.9 448 247.4 448 256C448 264.6 447.4 273.1 446.3 281.4L489.6 320.8C496.4 327.1 499.2 336.8 495.9 345.4C491.5 357.3 486.2 368.8 480.2 379.7L475.5 387.8C468.9 398.8 461.5 409.2 453.4 419.1C447.4 426.2 437.7 428.7 428.9 425.9L373.2 408.1C359.8 418.4 344.1 427 329.2 433.6L316.7 490.7C314.7 499.7 307.7 506.1 298.5 508.5C284.7 510.8 270.5 512 255.1 512C241.5 512 227.3 510.8 213.5 508.5C204.3 506.1 197.3 499.7 195.3 490.7L182.8 433.6C167 427 152.2 418.4 138.8 408.1L83.14 425.9C74.3 428.7 64.55 426.2 58.63 419.1C50.52 409.2 43.12 398.8 36.52 387.8L31.84 379.7C25.77 368.8 20.49 357.3 16.06 345.4C12.82 336.8 15.55 327.1 22.41 320.8L65.67 281.4C64.57 273.1 64 264.6 64 256C64 247.4 64.57 238.9 65.67 230.6L22.41 191.2C15.55 184.9 12.82 175.3 16.06 166.6C20.49 154.7 25.78 143.2 31.84 132.3L36.51 124.2C43.12 113.2 50.52 102.8 58.63 92.95C64.55 85.8 74.3 83.32 83.14 86.14L138.8 103.9C152.2 93.56 167 84.96 182.8 78.43L195.3 21.33C197.3 12.25 204.3 5.04 213.5 3.51C227.3 1.201 241.5 0 256 0C270.5 0 284.7 1.201 298.5 3.51C307.7 5.04 314.7 12.25 316.7 21.33L329.2 78.43C344.1 84.96 359.8 93.56 373.2 103.9L428.9 86.14C437.7 83.32 447.4 85.8 453.4 92.95C461.5 102.8 468.9 113.2 475.5 124.2L480.2 132.3C486.2 143.2 491.5 154.7 495.9 166.6V166.6zM256 336C300.2 336 336 300.2 336 255.1C336 211.8 300.2 175.1 256 175.1C211.8 175.1 176 211.8 176 255.1C176 300.2 211.8 336 256 336z"/></svg>
       </button>
@@ -218,8 +230,8 @@
   </div>
   <!-- LSF Profile / Transcript Profile Template for resize video End-->
 
-  <!-- Modal Template Start -->
-  <div id="modal-input" class="modal modal--hide">
+  <!-- Modal resize video Template Start -->
+  <div id="modal-input" class="modal modal--hide" data-modal-hide="modal--hide">
     <div class="modal__content">
       <h1 class="modal__title">Redimensionner La fenêtre</h1>
       <div class="modal__container">
@@ -234,8 +246,29 @@
       </div>
     </div>
   </div>
-  <!-- Modal Template End -->
+  <!-- Modal resize video Template Start -->
 
+  <!-- Modal Change Alignment Template Start -->
+  <div id="modal-align" class="modal modal--hide" data-modal-hide="modal--hide">
+    <div class="modal__content "  >
+      <h1 class="modal__title">Redimensionner La fenêtre de transcription</h1>
+      <div class="modal__container modal-block">
+        <div class="container__alignment">
+          <img class="alignment__img" src="button-icons/black/horizontal.png" >
+          <button class="alignment__btn" data-modal-hide="modal--hide" data-box-align="horizontal">Affichage Horizontale</button>
+        </div>
+        <div class="container__alignment">
+          <img class="alignment__img" src="button-icons/black/vertical.png">
+          <button class="alignment__btn" data-modal-hide="modal--hide" data-box-align="vertical">Affichage Verticale</button>
+        </div>
+      </div>
+      <div class="modal__btns" style="display:none">
+        <button class="modal__btn modal__btn-action" data-modal-hide="modal--hide" data-action="abort">Annuler</button>
+        <button class="modal__btn modal__btn-action" data-modal-hide="modal--hide" data-action="save">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Change Alignment Template Start -->
 
   <!--<template id="tpl_zone">
     <div title="{{test_title}}" class="test_title"></div>
@@ -1246,17 +1279,6 @@
 <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js" integrity="sha384-QnFIXbEfAgO7z63b/aNzTSdSNLoNiNX/mk/Ok+NpUNMnvriWLo5cOtB0OUCAdKNu" crossorigin="anonymous"></script>-->
 <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js" integrity="sha384-fOtis9P3S4B2asdoye1/YBpXMaRmuXu925gZhfQA/gnU3dLnftD8zvpk/lhP0YSG" crossorigin="anonymous"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/boosted@4.4.1/dist/js/boosted.min.js" integrity="sha384-Y/0NjLXRerXrg7jzex/E5ONTjY9VxGnhnsY0dVw12hlg/0XlAJFjh1biCQfdWI1R" crossorigin="anonymous"></script>
-
-<!-- Transcript Template Start-->
-<div id="transcript" class="wrapper">
-  <div class="wrapper__top">
-    <svg class="wrapper__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M495.9 166.6C499.2 175.2 496.4 184.9 489.6 191.2L446.3 230.6C447.4 238.9 448 247.4 448 256C448 264.6 447.4 273.1 446.3 281.4L489.6 320.8C496.4 327.1 499.2 336.8 495.9 345.4C491.5 357.3 486.2 368.8 480.2 379.7L475.5 387.8C468.9 398.8 461.5 409.2 453.4 419.1C447.4 426.2 437.7 428.7 428.9 425.9L373.2 408.1C359.8 418.4 344.1 427 329.2 433.6L316.7 490.7C314.7 499.7 307.7 506.1 298.5 508.5C284.7 510.8 270.5 512 255.1 512C241.5 512 227.3 510.8 213.5 508.5C204.3 506.1 197.3 499.7 195.3 490.7L182.8 433.6C167 427 152.2 418.4 138.8 408.1L83.14 425.9C74.3 428.7 64.55 426.2 58.63 419.1C50.52 409.2 43.12 398.8 36.52 387.8L31.84 379.7C25.77 368.8 20.49 357.3 16.06 345.4C12.82 336.8 15.55 327.1 22.41 320.8L65.67 281.4C64.57 273.1 64 264.6 64 256C64 247.4 64.57 238.9 65.67 230.6L22.41 191.2C15.55 184.9 12.82 175.3 16.06 166.6C20.49 154.7 25.78 143.2 31.84 132.3L36.51 124.2C43.12 113.2 50.52 102.8 58.63 92.95C64.55 85.8 74.3 83.32 83.14 86.14L138.8 103.9C152.2 93.56 167 84.96 182.8 78.43L195.3 21.33C197.3 12.25 204.3 5.04 213.5 3.51C227.3 1.201 241.5 0 256 0C270.5 0 284.7 1.201 298.5 3.51C307.7 5.04 314.7 12.25 316.7 21.33L329.2 78.43C344.1 84.96 359.8 93.56 373.2 103.9L428.9 86.14C437.7 83.32 447.4 85.8 453.4 92.95C461.5 102.8 468.9 113.2 475.5 124.2L480.2 132.3C486.2 143.2 491.5 154.7 495.9 166.6V166.6zM256 336C300.2 336 336 300.2 336 255.1C336 211.8 300.2 175.1 256 175.1C211.8 175.1 176 211.8 176 255.1C176 300.2 211.8 336 256 336z"/></svg>
-  </div>
-  <div class="wrapper__transcript">
-    <h2 class="transcript__title">Transcription</h2>
-  </div>
-</div>
-<!-- Transcript Template End-->
 
 
 

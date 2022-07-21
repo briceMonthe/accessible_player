@@ -39,7 +39,7 @@
     flex: 1;
     .container__btn{
       position: absolute;
-      border: 1px solid red;
+      //border: 1px solid red;
       width: 30px;
       aspect-ratio: 1;
       cursor: pointer;
@@ -52,6 +52,10 @@
       &.container__btn-setting{
         top: 0;
         right: 0;
+        background-color: transparent !important;
+        svg{
+          fill: #FFFFFF;
+        }
       }
       &:active{
         cursor: pointer;
@@ -74,6 +78,23 @@
     .transcript{
       display: block;
     }
+  }
+  &.horizontal{
+    flex-direction: column;
+    .container__side{
+      width: 100%;
+    }
+    .container__right{
+      height: 47%;
+      .container__btn{
+        &.container__btn-resize{
+          display: none;
+        }
+      }
+    }
+  }
+  .container__btn-setting{
+    display: none;
   }
 }
 
