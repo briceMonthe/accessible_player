@@ -386,20 +386,6 @@ svg line {
 /**
     Access Menu style end
  */
-/**
-    player style for vision plus
- */
-#video_access_html5_api.vision-plus--default {
-  background-color: black;
-  filter: grayscale(100%) contrast(150%);
-}
-
-#video_access_html5_api.vision-plus--default :is(.vision-plus__captions, .vision-plus__descriptions) {
-  font-family: 'Arial';
-  font-size: 100%;
-  color: white;
-}
-
 /*****/
 /**
     player style for audio description
@@ -466,7 +452,7 @@ svg line {
   /*60%*/
   height: 94%;
   /*80%*/
-  /*border: 1Px solid red;*/
+  border: 1Px solid #000000;
   position: absolute;
   z-index: 0;
 }
@@ -476,10 +462,18 @@ svg line {
 .profile-container.captions--active {
   height: 85%;
 }
+.profile-container.vision-plus--default video {
+  background-color: black;
+  filter: grayscale(100%) contrast(150%);
+}
+.profile-container.vision-plus--default :is(.vision-plus__captions, .vision-plus__descriptions) {
+  font-family: 'Arial';
+  font-size: 100%;
+  color: white;
+}
 .profile-container .container__side {
   width: 50%;
   height: 100%;
-  border: 1px solid black;
   position: relative;
   display: flex;
   justify-content: center;
@@ -497,6 +491,7 @@ svg line {
   position: relative;
   z-index: 1;
   flex: 1;
+  border-left: 1px solid #000000;
 }
 .profile-container .container__right .container__btn {
   position: absolute;
@@ -542,6 +537,7 @@ svg line {
 }
 #concentration-plus.horizontal .container__right {
   height: 47%;
+  border: none;
 }
 #concentration-plus.horizontal .container__right .container__btn.container__btn-resize {
   display: none;
@@ -555,6 +551,22 @@ svg line {
 }
 #lsf-plus.profile-container .container__right video {
   pointer-events: none;
+}
+
+.vjs-fullscreen.vision-plus--default video {
+  background-color: black;
+  filter: grayscale(100%) contrast(150%);
+}
+.vjs-fullscreen.vision-plus--default :is(.vision-plus__captions, .vision-plus__descriptions) {
+  font-family: 'Arial';
+  font-size: 100%;
+  color: white;
+}
+.vjs-fullscreen:fullscreen .profile-container {
+  border: none;
+}
+.vjs-fullscreen:fullscreen .profile-container .container__right .container__btn-setting, .vjs-fullscreen:fullscreen .profile-container .container__right .wrapper__icon {
+  display: none;
 }
 
 /**
@@ -763,3 +775,10 @@ input::-webkit-inner-spin-button {
 /**
     Captions Style Template end
  */
+/**
+    FullScreen Style Start
+ */
+.video-js.vjs-fullscreen {
+  overflow: auto;
+  overflow-x: hidden;
+}

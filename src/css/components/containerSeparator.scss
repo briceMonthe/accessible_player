@@ -3,7 +3,7 @@
   justify-content: center;
   width : 100%; /*60%*/;
   height: 94%; /*80%*/;
-  /*border: 1Px solid red;*/
+  border: 1Px solid #000000;
   position: absolute;
   z-index: 0;
   &.profile-container--hide{
@@ -12,10 +12,21 @@
   &.captions--active{
     height: 85%;
   }
+  &.vision-plus--default{
+    video{
+      background-color: rgb(0, 0, 0);
+      filter: grayscale(100%) contrast(150%);
+    }
+    :is(.vision-plus__captions, .vision-plus__descriptions){
+      font-family: 'Arial';
+      font-size: 100%;
+      color: white;
+    }
+  }
   .container__side {
     width: 50%;
     height: 100%;
-    border: 1px solid black;
+    //border: 1px solid black;
     position: relative;
     display: flex;
     justify-content: center;
@@ -37,6 +48,7 @@
     position: relative;
     z-index : 1;
     flex: 1;
+    border-left: 1px solid #000000;
     .container__btn{
       position: absolute;
       //border: 1px solid red;
@@ -86,6 +98,7 @@
     }
     .container__right{
       height: 47%;
+      border: none;
       .container__btn{
         &.container__btn-resize{
           display: none;
@@ -110,3 +123,29 @@
     }
   }
 }
+
+.vjs-fullscreen{
+  &.vision-plus--default{
+    video{
+      background-color: rgb(0, 0, 0);
+      filter: grayscale(100%) contrast(150%);
+    }
+    :is(.vision-plus__captions, .vision-plus__descriptions){
+      font-family: 'Arial';
+      font-size: 100%;
+      color: white;
+    }
+  }
+  &:fullscreen{
+    .profile-container{
+      border: none;
+      .container__right{
+        .container__btn-setting, .wrapper__icon{
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+

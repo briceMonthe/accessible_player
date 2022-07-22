@@ -11,12 +11,15 @@ import {
   setPropertyValue,
   setCssProperty,
   getWidthFromElInPercent,
-  getWidthInPerc
+  getWidthInPerc,
+  toggleClassToEl
 } from "./operationsClassEl.js";
+import {updateContrastComponent} from "./component-api.js";
 
 let videoSize = {
   crrSize : 0,
   tempSize: 0,
+  isVideoContrast : false,
   components : {
     videoAccessEl : null,
     container: null,
@@ -25,6 +28,9 @@ let videoSize = {
     modalEl : null,
   },
   instance : null,
+  setVideoContrast : function( state ){
+    this.isVideoContrast = state ;
+  },
   setComponents : function( components ){
     this.components = {
       ...this.components,
@@ -40,13 +46,16 @@ let videoSize = {
   loadVideoSizeComponent : function( components ){
     this.setComponents( components );
   },
+  setInstance : function( instance ){
+    this.instance = instance;
+  },
   getInstance : function (){
     if( this.instance )
       return this.instance;
 
     handleVideoSize( this );
-    this.instance = this;
-    return this;
+    this.setInstance( this );
+    return this.instance;
   },
   switchToLSFPlusProfile : function(bigPlayPauseContainerEl, previousElFromBigPlayContainerEl, state, className   ){
     this.createTwoAsideContainers( this, this.components, bigPlayPauseContainerEl, previousElFromBigPlayContainerEl, state, className,"lsf-plus" )
@@ -78,6 +87,16 @@ let videoSize = {
     }
 
   },
+  contrastVideo : function( ){
+    let { container, globalContainer } = this.components;
+    if(  $( globalContainer ).is(".vision-plus--default") )
+      this.setVideoContrast( false )
+    else
+      this.setVideoContrast( true );
+
+    toggleClassToEl( globalContainer , "vision-plus--default");
+    updateContrastComponent();
+  }
 }
 
 const createMoveSeparator = function( instance,{ container, containerLeft, containerRight , btnResizeEl} ) {
@@ -141,6 +160,14 @@ const addEventsVideoSize = (instance, { components, crrSize } ) => {
     saveSize(instance, this, components.inputEl );
     updateContainerLeft( components.containerLeft, components.containerRight, instance.crrSize );
   });
+
+  $(".modal__content").on("click", function(e){
+    e.stopPropagation();
+  })
+
+  components.modalEl.on("click", function(e){
+    showModal( this, components.modalEl );
+  })
 }
 
 const showModal = function( btnEl, modalEl ){
@@ -204,7 +231,6 @@ const builtSignVideo = function( videoAccessEl ){
         break;
       case "pause":
         signVideoHTML.pause();
-        console.log("Pauseeeeee")
         break;
       case "seeked":
         break;
@@ -222,7 +248,6 @@ const builtSignVideo = function( videoAccessEl ){
         break;
       case "ended":
         signVideoHTML.pause();
-        console.log("endedddddd")
         break;
     }
   })

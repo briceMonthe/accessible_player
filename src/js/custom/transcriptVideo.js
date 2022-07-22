@@ -1,12 +1,19 @@
-import {appendChildToParent} from "./operationsClassEl.js";
+import {appendChildToParent, toggleClassToEl} from "./operationsClassEl.js";
+import {getTranscriptAlignmentFromCookie, updateProfileFromCookie} from "./third-party-api.js";
 
 
 const transcriptVideo ={
   instance : null,
+  transcriptAlignment : "vertical",
   components : {
     transcriptContainerEl : null,
     wrapperTranscriptEl : null,
     transcriptEl : null,
+    wrapperTranscript: null,
+  },
+  setTranscriptAlignment : function( alignment ){
+    this.transcriptAlignment = alignment
+    updateProfileFromCookie("transcriptAlignment", alignment );
   },
   setComponents : function( components ){
     this.components = {
@@ -17,16 +24,27 @@ const transcriptVideo ={
   setInstance : function( instance ){
     this.instance = instance;
   },
-  getInstance : function( player ){
+  getInstance : async function( player ){
     if( this.instance )
-      return this.return;
+      return this.instance;
 
-    this.loadTranscriptVideo( player );
+    await this.loadTranscriptVideo( player );
     this.setInstance( this );
     return this;
 
   },
-  loadTranscriptVideo : function( player ){
+  setAlignment : function( alignment ){
+    if( alignment  === "horizontal" ) {
+      $("#concentration-plus").addClass("horizontal");
+      $("html").attr("data-align", "horizontal");
+    }else{
+      $("html").removeAttr("data-align");
+      $("#concentration-plus").removeClass(" horizontal ");
+    }
+
+    this.setTranscriptAlignment( alignment );
+  },
+  loadTranscriptVideo : async function( player ){
     let components = {};
     let wrapperTranscript = $("#transcript");
     let transcriptContainerEl = wrapperTranscript.find(".wrapper__transcript").first();
@@ -34,28 +52,30 @@ const transcriptVideo ={
     components = {
       wrapperTranscript, transcriptEl, transcriptContainerEl
     }
-    this.loadTextTrackForTranscript( components, player );
+    await this.loadTextTrackForTranscript( components, player );
+
+    let alignment = getTranscriptAlignmentFromCookie();
+    if( alignment ) {
+      this.setAlignment(alignment);
+      this.setTranscriptAlignment( alignment );
+    }
 
   },
-  addEventsTranscript : function( ){
+  displayWrapperTranscript : function( className ){
+    toggleClassToEl( this.components.wrapperTranscript, className );
+  },
+  addEventsTranscript : function( instance ){
 
     let settingBtnEl = $(".wrapper__icon-setting");
     let modalEl = $("#modal-align");
 
     settingBtnEl.on( "click", function(e){
-      console.log("mmmmmmmmmmmmmmm")
       showModal( this, modalEl);
     });
 
     $(".alignment__btn").on( "click" , function(e){
       let alignDisplay = $(this).data("boxAlign");
-      if( alignDisplay === "horizontal" ) {
-        $("#concentration-plus").addClass("horizontal");
-        $("html").attr("data-align", "horizontal");
-      }else{
-        $("html").removeAttr("data-align");
-        $("#concentration-plus").removeClass(" horizontal ");
-      }
+      instance.setAlignment( alignDisplay );
       showModal( this, modalEl );
     })
 
@@ -70,23 +90,19 @@ const transcriptVideo ={
 
 
   },
-  loadTextTrackForTranscript : function( components , player) {
-    let thisObj = this;
-    player.ready( async function( ){
-      let options = {
-        showTitle: true,
-        autoscroll: true,
-        clickArea: 'line',
-        followPlayerTrack: true,
-        stopScrollWhenInUse: false,
-      };
-
-      let transcript = this.transcript(options);
-      components.transcriptEl = await transcript.el();
-      thisObj.addTextTrackInTranscriptWrapper( components );
-      thisObj.setComponents( components );
-      thisObj.addEventsTranscript();
-    });
+  loadTextTrackForTranscript : async function( components , player) {
+    let options = {
+      showTitle: true,
+      autoscroll: true,
+      clickArea: 'line',
+      followPlayerTrack: true,
+      stopScrollWhenInUse: false,
+    };
+    let transcript = player.transcript(options);
+    components.transcriptEl = await transcript.el();
+    this.addTextTrackInTranscriptWrapper( components );
+    this.setComponents( components );
+    this.addEventsTranscript( this );
   },
   addTextTrackInTranscriptWrapper : function( components ){
     let transcriptBodyEl = $( components.transcriptEl ).find(".transcript-body");

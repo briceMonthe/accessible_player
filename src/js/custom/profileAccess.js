@@ -10,6 +10,7 @@ import {
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {videoSize} from "./handleVideoSize.js";
 import {createElement, setTextContentFromEL} from "./operationsClassEl.js";
+import {transcriptVideo} from "./transcriptVideo.js";
 
 let profileMenu = {
   isDisplayed : false,
@@ -21,6 +22,7 @@ let profileMenu = {
   playPauseObject: null,
   videoSizeObject: null,
   accessMenuObject : null,
+  transcriptVideo: null,
   tooltipText: null,
   components: {
     profileContainerEl : null,
@@ -45,9 +47,10 @@ let profileMenu = {
   getInstance : function( components ){
     if( this.instance )
       return this.instance;
+
     handleProfile( this, components  );
     this.setInstance( this );
-    return this.instance;
+    return this;
   },
   changePreviousProfile : function( previousProfile ){
     this.previousProfile = previousProfile;
@@ -73,12 +76,14 @@ let profileMenu = {
       ...components
     };
   },
-  loadDefaultProfile : function( components ){
+  loadDefaultProfile : async function( components ){
     let newProfile = getProfileFromCookie();
     this.playPauseObject = playPauseVideo.getInstance();
     this.videoSizeObject = videoSize.getInstance();
+    this.transcriptVideo = await transcriptVideo.getInstance();
     this.setComponents( components );
-    console.log( components );
+    prependChildToParent( this.videoSizeObject.components.containerRight, this.transcriptVideo.components.wrapperTranscript );
+
     this.addEventsToProfileContainerEl( this );
 
     if( !newProfile || this.defaultProfile === newProfile ){
@@ -152,7 +157,7 @@ let profileMenu = {
         setTextContentFromEL( tooltipEl, instance.toolTipText || $(profileMenuBtnEl).data("title") );
       }, 2)
     })
-  }
+  },
 }
 
 
@@ -177,11 +182,14 @@ const addProfileContainer = ( prevEl, childEl, defaultProfile  ) => {
 }
 
 
-const selectProfile = ( { profiles, videoSizeObject,  previousProfile, selectedProfile, accessMenuObject, playPauseObject } ) => {
+const selectProfile = ( { profiles, videoSizeObject, transcriptVideo,  previousProfile, selectedProfile, accessMenuObject, playPauseObject } ) => {
   let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileObjectToMap( profiles, "profile");
+  if( videoSizeObject.isVideoContrast ){
+    selectVisionPlusProfile( videoSizeObject );
+  }
   switch ( selectedProfile ) {
     case visionPlus :
-      selectVisionPlusProfile( playPauseObject.components.videoEl , "vision-plus--default" );
+      selectVisionPlusProfile( videoSizeObject );
       break;
     case noVisionPlus :
       selectNoVisionPlusProfile( accessMenuObject );
@@ -193,23 +201,23 @@ const selectProfile = ( { profiles, videoSizeObject,  previousProfile, selectedP
       selectLSFPlusProfile( videoSizeObject, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "show",   "profile-container--hide" );
       break;
     case concentrationPlus :
-      selectConcentrationPlusProfile( videoSizeObject, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer, "show", "profile-container--hide" );
+      selectConcentrationPlusProfile( videoSizeObject, transcriptVideo, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer, "show", "profile-container--hide" );
       break;
     case standard :
       selectStandardProfile( selectedProfile, standard, accessMenuObject, "access-menu--hide" );
       break;
     default:
-      console.log("Autre esseai")
+      console.log("Autre esseai");
       break;
   }
 }
 
 
-const resetPreviousProfile = ( {profiles, videoSizeObject,  previousProfile, selectedProfile, accessMenuObject, playPauseObject } ) => {
-  let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileObjectToMap( profiles, "profile")
+const resetPreviousProfile = ( { profiles, videoSizeObject,transcriptVideo,  previousProfile, selectedProfile, accessMenuObject, playPauseObject } ) => {
+  let [visionPlus, noVisionPlus, lsfPlus, concentrationPlus, auditionPlus, standard ] = getProfileObjectToMap( profiles, "profile");
   switch ( previousProfile ) {
     case visionPlus :
-      selectVisionPlusProfile( playPauseObject.components.videoEl, "vision-plus--default" );
+      selectVisionPlusProfile( videoSizeObject );
       break;
     case noVisionPlus :
       selectNoVisionPlusProfile( accessMenuObject );
@@ -221,7 +229,7 @@ const resetPreviousProfile = ( {profiles, videoSizeObject,  previousProfile, sel
       selectLSFPlusProfile( videoSizeObject,playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "hide",   "profile-container--hide" );
       break;
     case concentrationPlus :
-      selectConcentrationPlusProfile( videoSizeObject,playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "hide",   "profile-container--hide" );
+      selectConcentrationPlusProfile( videoSizeObject, transcriptVideo, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "hide",   "profile-container--hide" );
       break;
     case standard :
       selectStandardProfile(selectedProfile, previousProfile, accessMenuObject, "access-menu--hide" );
@@ -230,9 +238,8 @@ const resetPreviousProfile = ( {profiles, videoSizeObject,  previousProfile, sel
 };
 
 
-const selectVisionPlusProfile = ( videoEl , className  ) => {
-  toggleClassToEl(videoEl, className);
-  updateContrastComponent();
+const selectVisionPlusProfile = ( videoSizeObject  ) => {
+  videoSizeObject.contrastVideo();
 }
 
 
@@ -256,11 +263,9 @@ const selectLSFPlusProfile = (videoSize, bigPlayPauseContainerEl,  previousElFro
 }
 
 
-const selectConcentrationPlusProfile = (videoSize, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
+const selectConcentrationPlusProfile = (videoSize, transcriptVideo, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
   videoSize.switchToConcentrationPlusProfile( bigPlayPauseContainerEl, previousElFromBigPlayContainerEl, state, className );
-
-  $("#transcript").toggleClass("transcript--hide");
-  prependChildToParent( videoSize.components.containerRight, $("#transcript") );
+  transcriptVideo.displayWrapperTranscript( "transcript--hide" );
 }
 
 

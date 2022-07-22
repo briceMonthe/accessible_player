@@ -6,6 +6,7 @@ import {profileMenu} from "./profileAccess.js";
 import {volumePlayer} from "./handleVolume.js";
 import {captionsVideo} from "./handleCaptions.js";
 import {transcriptVideo} from "./transcriptVideo.js";
+import {videoSize} from "./handleVideoSize.js";
 
 
 let repeat_call = setInterval( function(){
@@ -16,26 +17,29 @@ let repeat_call = setInterval( function(){
 
 }, 200)
 let accessPlayer ;
-const start = async () => {
+const start = async function( ){
   accessPlayer = videojs("#video_access");
-  console.log( accessPlayer.src() )
   let videoEl = accessPlayer.children().at(0);
-  accessPlayer.src({
-    src : $(videoEl).prop("src"),
-    type: "video/mp4"
-  })
-  console.log( accessPlayer.src() )
-  await transcriptVideo.getInstance( accessPlayer );
-  //handleTranscript(  );
-
   const volumePanel = accessPlayer.controlBar.volumePanel;
+  // accessPlayer.src({
+  //   src : $(videoEl).prop("src"),
+  //   type: "video/mp4"
+  // })
+  accessPlayer.ready(async function(){
+    await transcriptVideo.getInstance( this );
+    handleFullscreen();
+    playPauseVideo.getInstance( { accessPlayer , videoEl });
+    profileMenu.getInstance( { accessPlayer , videoEl } );
+    console.log( videoSize.getInstance( ));
+    volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
+    //captionsVideo.getInstance( { accessPlayer } );
+    addAccessMenu( videoSize.getInstance( ) );
+
+
+
+  });
   console.log( accessPlayer );
-  handleFullscreen();
-  playPauseVideo.getInstance( { accessPlayer, videoEl });
-  profileMenu.getInstance( { accessPlayer, videoEl } );
-  volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
-  //captionsVideo.getInstance( { accessPlayer } );
-  addAccessMenu();
+
 
 }
 

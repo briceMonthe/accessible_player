@@ -1,6 +1,12 @@
-const addAccessMenu = () => {
+
+
+const addAccessMenu = ( videoResize ) => {
   $(".video-js").append( $(".access-menu") );
   handleProfileBtn();
+
+  $("#contrast-btn" ).on("click", function(e){
+    videoResize.contrastVideo();
+  })
 }
 
 
@@ -18,6 +24,7 @@ const handleProfileBtn = () => {
     $(".settings-menu").removeClass( $(this).data("class") );
   })
 }
+
 
 
 export { addAccessMenu };

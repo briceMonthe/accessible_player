@@ -10,6 +10,10 @@ const getLatestTrackFromCookie = () => {
   return parseToken( localStorage.getItem("player") )?.indexTrack;
 }
 
+const getTranscriptAlignmentFromCookie = () => {
+  return parseToken( localStorage.getItem("player") )?.transcriptAlignment;
+}
+
 
 const updateProfileFromCookie = ( key, newProfile ) => {
   let player= parseToken( localStorage.getItem("player") );
@@ -23,9 +27,6 @@ const updateProfileFromCookie = ( key, newProfile ) => {
   player[key] = newProfile;
   localStorage.setItem( "player", stringifyToken( {  ...player  } ) );
 }
-
-const getPropertyName = ( playerCookie, key ) => Object.getOwnPropertyNames( playerCookie ).find( prop => prop === key ) ;
-
 
 const parseToken = ( token ) => {
   return JSON.parse( token );
@@ -45,4 +46,4 @@ const getProfileObjectToMap = ( profiles, profileProp ) => {
 
 
 
-export { getProfileFromCookie, updateProfileFromCookie, getProfileObjectToMap, getVideoStateFromCookie, getLatestTrackFromCookie }
+export { getProfileFromCookie, updateProfileFromCookie, getProfileObjectToMap, getVideoStateFromCookie, getLatestTrackFromCookie, getTranscriptAlignmentFromCookie }

@@ -203,19 +203,7 @@ span.vjs-menu-item-text{
     Access Menu style end
  */
 
-/**
-    player style for vision plus
- */
-#video_access_html5_api.vision-plus--default{
-  background-color: rgb(0, 0, 0);
-  filter: grayscale(100%) contrast(150%);
-}
 
-#video_access_html5_api.vision-plus--default :is(.vision-plus__captions, .vision-plus__descriptions){
-  font-family: 'Arial';
-  font-size: 100%;
-  color: white;
-}
 
 /*****/
 
@@ -321,3 +309,12 @@ span.vjs-menu-item-text{
     Captions Style Template end
  */
 
+
+/**
+    FullScreen Style Start
+ */
+
+.video-js.vjs-fullscreen{
+  overflow: auto;
+  overflow-x: hidden;
+}
