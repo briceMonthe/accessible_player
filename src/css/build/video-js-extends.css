@@ -35,16 +35,19 @@
 }
 
 /* change text and appearance style of any button */
-.vjs-button > .vjs-icon-placeholder:before {
+.vjs-button > .vjs-icon-placeholder::before {
   line-height: 1.67;
   font-size: 20px;
   font-weight: 400;
 }
 
-.vjs-button:is(:hover , :focus) {
-  outline-color: #8AB839;
-  outline-style: solid;
-  background-color: var(--c-gray-hovered);
+[type=button] {
+  border: 2px solid transparent !important;
+}
+
+[type=button]:is(:hover) {
+  border: 2px solid #8AB839 !important;
+  background-color: var(--c-gray-hovered) !important;
 }
 
 .vjs-remaining-time-display {
@@ -77,6 +80,71 @@
 span.vjs-menu-item-text {
   font-size: 1.5em;
   font-weight: 700;
+}
+
+.vjs-menu li.vjs-selected {
+  color: #000000 !important;
+}
+
+/*vjs-descriptions menu button styles*/
+.vjs-descriptions-button {
+  display: none;
+}
+
+/*vjs tooltip start*/
+[type=button]:is(:hover) .vjs-tooltip,
+[type=button]:is(:hover) ~ .vjs-tooltip,
+.vjs-progress-holder .vjs-time-tooltip {
+  opacity: 1;
+  transition: opacity 1s, background-color 1S;
+}
+
+.vjs-tooltip, .vjs-time-tooltip {
+  padding: 5px 10px !important;
+  top: -2.4em;
+  position: absolute;
+  opacity: 0;
+  color: #000000 !important;
+  background-color: #cccccc !important;
+  cursor: pointer;
+  border-radius: 5px !important;
+  font-size: 1rem !important;
+  font-weight: 400;
+  text-align: center;
+  transition: opacity 1s, background-color 1S;
+  z-index: 1;
+  pointer-events: none;
+  border: none !important;
+  width: max-content !important;
+}
+
+.vjs-tooltip-hide {
+  opacity: 0 !important;
+}
+
+/*vjs tooltip end*/
+/*#player-profile-container{
+  svg{
+    width: 50%;
+    aspect-ratio: 1;
+    fill: #ffffff;
+  }
+}*/
+#player-profile-container .vjs-icon-placeholder {
+  /*fill: #ffffff;
+  width: 50%;
+  aspect-ratio: 1;*/
+}
+#player-profile-container .vjs-icon-placeholder::before {
+  display: none;
+}
+#player-profile-container svg {
+  width: 50%;
+  aspect-ratio: 1;
+  fill: #ffffff;
+}
+#player-profile-container > .vjs-tooltip {
+  right: 0px;
 }
 
 .vjs-access-menu li {
@@ -120,65 +188,46 @@ span.vjs-menu-item-text {
   background: url("https://accessible-player.djanah.com/button-icons/white/profdef.svg") no-repeat;
 }
 
-.vjs-menu li.vjs-selected {
-  color: #000000 !important;
-}
-
-/*vjs-descriptions menu button styles*/
-.vjs-descriptions-button {
+/**
+    Fullscreen Style Template Start
+ */
+/* fullscreen */
+.vjs-fullscreen-control #nofullscreen-icon {
   display: none;
 }
-
-/*vjs tooltip*/
-[type=button]:is(:hover) .vjs-tooltip,
-[type=button]:is(:hover) ~ .vjs-tooltip,
-.vjs-progress-holder .vjs-time-tooltip {
-  opacity: 1;
-  transition: opacity 1s, background-color 1S;
-}
-
-.vjs-tooltip, .vjs-time-tooltip {
-  padding: 5px 10px !important;
-  top: -2.4em;
-  position: absolute;
-  opacity: 0;
-  color: #000000 !important;
-  background-color: #cccccc !important;
-  cursor: pointer;
-  border-radius: 5px !important;
-  font-size: 1rem !important;
-  font-weight: 400;
-  text-align: center;
-  transition: opacity 1s, background-color 1S;
-  z-index: 1;
-  pointer-events: none;
-  border: none !important;
-  width: max-content !important;
-}
-
-.vjs-tooltip-hide {
-  opacity: 0 !important;
-}
-
-/* fullscreen */
-.vjs-fullscreen-control > .vjs-tooltip {
-  right: 0px;
-}
-
 .vjs-fullscreen-control .vjs-icon-placeholder {
   fill: #ffffff;
   width: 50%;
   aspect-ratio: 1;
 }
-
-.vjs-access-control svg {
+.vjs-fullscreen-control .vjs-icon-placeholder::before {
+  display: none;
+}
+.vjs-fullscreen-control svg {
   width: 50%;
   aspect-ratio: 1;
   fill: #ffffff;
+  margin: 0 auto;
+}
+.vjs-fullscreen-control > .vjs-tooltip {
+  right: 0px;
 }
 
-/*********/
-/* vjs-menu button */
+.video-js.vjs-fullscreen {
+  overflow: auto;
+  overflow-x: hidden;
+}
+.video-js.vjs-fullscreen #fullscreen-icon {
+  display: none;
+}
+.video-js.vjs-fullscreen #nofullscreen-icon {
+  display: block;
+}
+
+/**
+    Fullscreen Style Template End
+ */
+/* vjs-menu button start */
 .vjs-menu-button-popup-hide .vjs-menu {
   display: none !important;
 }
@@ -187,6 +236,7 @@ span.vjs-menu-item-text {
   display: block !important;
 }
 
+/* vjs-menu button end */
 /**
     Access Menu style start
  */
@@ -775,10 +825,3 @@ input::-webkit-inner-spin-button {
 /**
     Captions Style Template end
  */
-/**
-    FullScreen Style Start
- */
-.video-js.vjs-fullscreen {
-  overflow: auto;
-  overflow-x: hidden;
-}

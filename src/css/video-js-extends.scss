@@ -38,16 +38,21 @@
 }
 
 /* change text and appearance style of any button */
-.vjs-button>.vjs-icon-placeholder:before{
+.vjs-button>.vjs-icon-placeholder::before{
   line-height: 1.67;
   font-size: 20px;
   font-weight: 400;
 }
 
-.vjs-button:is( :hover , :focus){
-  outline-color: #8AB839;
-  outline-style: solid;
-  background-color: var(--c-gray-hovered) ;
+
+[type=button]{
+  border: 2px solid transparent !important;
+}
+
+
+[type=button]:is( :hover ){
+  border: 2px solid #8AB839 !important;
+  background-color: var(--c-gray-hovered) !important;
 }
 
 
@@ -83,45 +88,7 @@ span.vjs-menu-item-text{
   font-weight: 700;
 }
 
-.vjs-access-menu li{
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  place-items: center start;
-}
 
-.vjs-access-menu li .vjs-access-menu-item-icon {
-  width: 25px;
-  aspect-ratio: 1;
-  margin: 0 7px;
-  filter: invert(100%);
-}
-
-.vjs-access-menu .vjs-access-menu-item.vjs-selected .vjs-access-menu-item-icon{
-  filter : revert;
-}
-.vjs-menu-content .vjs-access-menu-item:first-child .vjs-access-menu-item-icon {
-  background: url("https://accessible-player.djanah.com/button-icons/white/vplus.svg") no-repeat;
-}
-
-.vjs-menu-content .vjs-access-menu-item:nth-child(2) .vjs-access-menu-item-icon {
-  background: url("https://accessible-player.djanah.com/button-icons/white/vplus.svg") no-repeat;
-}
-
-.vjs-menu-content .vjs-access-menu-item:nth-child(3) .vjs-access-menu-item-icon {
-  background: url("https://accessible-player.djanah.com/button-icons/white/lsfplus.svg") no-repeat;
-}
-
-.vjs-menu-content .vjs-access-menu-item:nth-child(4) .vjs-access-menu-item-icon {
-  background: url("https://accessible-player.djanah.com/button-icons/white/conplus.svg") no-repeat;
-}
-
-.vjs-menu-content .vjs-access-menu-item:nth-child(5) .vjs-access-menu-item-icon {
-  background: url("https://accessible-player.djanah.com/button-icons/white/audplus.svg") no-repeat;
-}
-
-.vjs-menu-content .vjs-access-menu-item:nth-child(6) .vjs-access-menu-item-icon {
-  background: url("https://accessible-player.djanah.com/button-icons/white/profdef.svg") no-repeat;
-}
 
 .vjs-menu li.vjs-selected{
   color: #000000 !important;
@@ -132,7 +99,7 @@ span.vjs-menu-item-text{
   display: none;
 }
 
-/*vjs tooltip*/
+/*vjs tooltip start*/
 [type=button]:is(:hover) .vjs-tooltip,
 [type=button]:is(:hover) ~ .vjs-tooltip,
 .vjs-progress-holder .vjs-time-tooltip{
@@ -162,28 +129,30 @@ span.vjs-menu-item-text{
 .vjs-tooltip-hide{
   opacity: 0 !important;
 }
+/*vjs tooltip end*/
+
+/*#player-profile-container{
+  svg{
+    width: 50%;
+    aspect-ratio: 1;
+    fill: #ffffff;
+  }
+}*/
+
+@import "components/profile_template";
+
+/**
+    Fullscreen Style Template Start
+ */
+
+@import "components/fullscreen_template.scss";
+
+/**
+    Fullscreen Style Template End
+ */
 
 
-
-/* fullscreen */
-.vjs-fullscreen-control > .vjs-tooltip{
-  right: 0px;
-}
-
-.vjs-fullscreen-control .vjs-icon-placeholder{
-  fill: #ffffff;
-  width: 50%;
-  aspect-ratio: 1;
-}
-
-.vjs-access-control svg{
-  width: 50%;
-  aspect-ratio: 1;
-  fill: #ffffff;
-}
-/*********/
-
-/* vjs-menu button */
+/* vjs-menu button start */
 .vjs-menu-button-popup-hide .vjs-menu{
   display: none !important;
 }
@@ -191,7 +160,7 @@ span.vjs-menu-item-text{
 .vjs-menu.vjs-menu-block{
   display: block !important;
 }
-
+/* vjs-menu button end */
 
 /**
     Access Menu style start
@@ -309,12 +278,3 @@ span.vjs-menu-item-text{
     Captions Style Template end
  */
 
-
-/**
-    FullScreen Style Start
- */
-
-.video-js.vjs-fullscreen{
-  overflow: auto;
-  overflow-x: hidden;
-}
