@@ -190,8 +190,6 @@ function videojs(id, options, ready) {
   return player;
 }
 
-console.log( { msg : "get instance of Player ", test :  videojs })
-
 videojs.hooks_ = hooks_;
 videojs.hooks = hooks;
 videojs.hook = hook;
