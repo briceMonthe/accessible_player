@@ -33,7 +33,7 @@ const start = async function( ){
     console.log( videoSize.getInstance( ));
     volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
     fullscreenPlayer.getInstance( accessPlayer );
-    //captionsVideo.getInstance( { accessPlayer } );
+    captionsVideo.getInstance( { accessPlayer } );
     addAccessMenu( videoSize.getInstance( ) );
 
 

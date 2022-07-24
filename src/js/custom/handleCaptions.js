@@ -63,7 +63,7 @@ const captionsVideo = {
     this.addEventsCaptionsVideo( this );
 
     let indexTrack = getLatestTrackFromCookie();
-    console.log( indexTrack )
+    console.log( indexTrack, textTrackList  )
     if( indexTrack ){
       let latestTrack = textTrackList.at( indexTrack );
       latestTrack.trigger( "click" );
