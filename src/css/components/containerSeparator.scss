@@ -124,7 +124,7 @@
   }
 }
 
-.vjs-fullscreen{
+.vjs-fullscreen, #video_access{
   &.vision-plus--default{
     video{
       background-color: rgb(0, 0, 0);

@@ -8,6 +8,7 @@ import {
 } from "./operationsClassEl.js";
 import {findEl} from "./operationsClassEl.js";
 import {getLatestTrackFromCookie, updateProfileFromCookie} from "./third-party-api.js";
+import {videoSize} from "./handleVideoSize.js";
 
 
 const captionsVideo = {
@@ -15,6 +16,7 @@ const captionsVideo = {
   instance: null,
   selectedTrack: null,
   previousTrack: null,
+  videoSizeObject : null,
   components : {
     tooltipEl: null,
     captionBtnEl: null,
@@ -60,10 +62,10 @@ const captionsVideo = {
     let tooltipEl = createElement("div", { class: "vjs-tooltip" });
     appendChildToParent( captionBtnEl.el(), tooltipEl);
     this.setComponents( { captionContainerEl, captionBtnEl, captionMenuEl, tooltipEl, textTrackList  } );
+    this.videoSizeObject = videoSize.getInstance();
     this.addEventsCaptionsVideo( this );
 
     let indexTrack = getLatestTrackFromCookie();
-    console.log( indexTrack, textTrackList  )
     if( indexTrack ){
       let latestTrack = textTrackList.at( indexTrack );
       latestTrack.trigger( "click" );
@@ -71,6 +73,7 @@ const captionsVideo = {
   },
   addEventsCaptionsVideo : function( instance ){
     let { captionContainerEl, captionBtnEl, captionMenuEl, tooltipEl,textTrackList } = instance.components;
+    let { container } = instance.videoSizeObject.components;
 
     $( captionContainerEl.el() ).on("pointerenter click pointerleave", function(e) {
       switch ( e.type ) {
@@ -86,7 +89,6 @@ const captionsVideo = {
           $(tooltipEl).is(".vjs-tooltip-hide") ? removeClassToEl( tooltipEl, "vjs-tooltip-hide" ) : null;
           break;
       }
-
     });
 
     $( captionBtnEl.el() ).on("pointerover pointermove click", function( e ){
@@ -105,7 +107,7 @@ const captionsVideo = {
 
     textTrackList.forEach( (item , index) => {
       $( item.on( "click" , function(e){
-        index === 1 ? $(".profile-container").removeClass("captions--active") : $(".profile-container").addClass("captions--active")
+        index === 1 ? container.removeClass("captions--active") : container.addClass("captions--active")
         instance.setSelectedTrack( index, item );
       }))
     })
