@@ -1,0 +1,59 @@
+
+#player-profile-container {
+  .vjs-icon-placeholder{
+    /*fill: #ffffff;
+    width: 50%;
+    aspect-ratio: 1;*/
+    &::before{
+      display: none;
+    }
+  }
+  svg{
+    width: 50%;
+    aspect-ratio: 1;
+    fill: #ffffff;
+  }
+  > .vjs-tooltip{
+    right: 0px;
+  }
+}
+
+.vjs-access-menu li{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  place-items: center start;
+}
+
+.vjs-access-menu li .vjs-access-menu-item-icon {
+  width: 25px;
+  aspect-ratio: 1;
+  margin: 0 7px;
+  filter: invert(100%);
+}
+
+.vjs-access-menu .vjs-access-menu-item.vjs-selected .vjs-access-menu-item-icon{
+  filter : revert;
+}
+.vjs-menu-content .vjs-access-menu-item:first-child .vjs-access-menu-item-icon {
+  background: url("https://accessible-player.djanah.com/button-icons/white/vplus.svg") no-repeat;
+}
+
+.vjs-menu-content .vjs-access-menu-item:nth-child(2) .vjs-access-menu-item-icon {
+  background: url("https://accessible-player.djanah.com/button-icons/white/vplus.svg") no-repeat;
+}
+
+.vjs-menu-content .vjs-access-menu-item:nth-child(3) .vjs-access-menu-item-icon {
+  background: url("https://accessible-player.djanah.com/button-icons/white/lsfplus.svg") no-repeat;
+}
+
+.vjs-menu-content .vjs-access-menu-item:nth-child(4) .vjs-access-menu-item-icon {
+  background: url("https://accessible-player.djanah.com/button-icons/white/conplus.svg") no-repeat;
+}
+
+.vjs-menu-content .vjs-access-menu-item:nth-child(5) .vjs-access-menu-item-icon {
+  background: url("https://accessible-player.djanah.com/button-icons/white/audplus.svg") no-repeat;
+}
+
+.vjs-menu-content .vjs-access-menu-item:nth-child(6) .vjs-access-menu-item-icon {
+  background: url("https://accessible-player.djanah.com/button-icons/white/profdef.svg") no-repeat;
+}
