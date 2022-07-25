@@ -1,0 +1,11 @@
+
+.vjs-texttrack-settings{
+  display: none;
+}
+
+.vjs-text-track-display{
+  bottom: 3em !important;
+  > div {
+    margin-bottom: 0px !important;
+  }
+}

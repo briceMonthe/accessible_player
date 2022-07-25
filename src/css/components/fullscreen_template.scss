@@ -1,0 +1,34 @@
+/* fullscreen */
+.vjs-fullscreen-control {
+  #nofullscreen-icon{
+    display: none;
+  }
+  .vjs-icon-placeholder{
+    fill: #ffffff;
+    width: 50%;
+    aspect-ratio: 1;
+    &::before{
+      display: none;
+    }
+  }
+  svg{
+    width: 50%;
+    aspect-ratio: 1;
+    fill: #ffffff;
+    margin: 0 auto;
+  }
+  > .vjs-tooltip{
+    right: 0px;
+  }
+}
+
+.video-js.vjs-fullscreen{
+  overflow: auto;
+  overflow-x: hidden;
+  #fullscreen-icon{
+    display: none;
+  }
+  #nofullscreen-icon{
+    display: block;
+  }
+}
