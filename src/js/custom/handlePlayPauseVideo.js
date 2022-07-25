@@ -99,13 +99,12 @@ let playPauseVideo = {
       bigPlayBtnEl,
       tooltipEl,
       playToggleEl, } = instance.components ;
+
+    bigPlayBtnEl.off("click", bigPlayBtnEl.handleClick );
+
     $( bigPlayContainerEl ).on( "click pointerleave pointermove", function(e){
       switch ( e.type ) {
         case "click":
-          if ( $(this).is(":button") ){
-            e.stopPropagation();
-            break;
-          }
           playToggleEl.trigger("click") ;
           break;
         case "pointerleave":
