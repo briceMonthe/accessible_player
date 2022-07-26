@@ -31,6 +31,7 @@ section{
 
 .access-menu.access-menu--hide{
   opacity: 0;
+  display: none;
 }
 :is(.access-menu, .profils-menu, .settings-menu, .subtitles-menu, .font-menu, .menu){
   width: 100%;

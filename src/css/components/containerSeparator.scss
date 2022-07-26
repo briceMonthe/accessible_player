@@ -60,6 +60,9 @@
       &.container__btn-resize{
         bottom: 0;
         left: 0;
+        &:active{
+          cursor: nw-resize;
+        }
       }
       &.container__btn-setting{
         top: 0;
@@ -71,7 +74,7 @@
       }
       &:active{
         cursor: pointer;
-        background-color: var( --c-orange-first ) !important;
+        //background-color: var( --c-orange-first ) !important;
       }
       .container__icon{
         width: 100%;

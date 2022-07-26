@@ -133,15 +133,16 @@ span.vjs-menu-item-text{
 .vjs-tooltip-hide{
   opacity: 0 !important;
 }
-/*vjs tooltip end*/
 
-/*#player-profile-container{
-  svg{
-    width: 50%;
-    aspect-ratio: 1;
-    fill: #ffffff;
-  }
-}*/
+/**
+    Volume Style start
+ */
+
+@import "components/volume-extends.scss";
+
+/**
+    Volume Style end
+ */
 
 @import "components/profile_template";
 

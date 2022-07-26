@@ -63,10 +63,10 @@ const fullscreenPlayer = {
     $(globalPlayerEl).on( "fullscreenchange", function( e ){
       let accessMenuHeight = $(globalPlayerEl).prop("scrollHeight") - $(globalPlayerEl).prop("offsetHeight");
       instance.setFullscreenMode( !instance.isFullscreen );
-      if( instance.isFullscreen )
+      /*if( instance.isFullscreen )
         $(".access-menu").css("height", accessMenuHeight );
       else
-        $(".access-menu").css("height", "fit-content");
+        $(".access-menu").css("height", "fit-content");*/
     })
 
   }

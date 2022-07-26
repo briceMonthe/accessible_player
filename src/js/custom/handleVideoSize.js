@@ -223,6 +223,7 @@ const builtSignVideo = function( videoAccessEl ){
   const srcElement = findEl( signVideo, "source");
   setAttrEl( srcElement, "src", srcElement.data("signSrc") );
   setAttrEl( signVideo, "src", srcElement.data("signSrc") );
+  setPropertyValue( signVideo, "muted", true)
 
   $(videoAccessEl).on("playing pause seeked timeupdate ended seeking volumechange", function(e) {
     switch ( e.type ) {
