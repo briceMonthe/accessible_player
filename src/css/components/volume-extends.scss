@@ -1,0 +1,27 @@
+.vjs-volume-panel{
+  &.vjs-volume-panel-vertical{
+    /* height: 19px; */
+    .vjs-volume-control{
+      transform-origin: bottom;
+      transform: scaleY(0);
+      transition: visibility 1s,opacity 1s,transform .4s !important;
+      //transition: none !important;
+      /*.vjs-volume-level{
+        width: 100% !important;
+      }*/
+    }
+    &:hover{
+      .vjs-volume-control{
+        transform: scaleY(1);
+        transition: visibility 1s,opacity 1s,transform .4s !important;
+        //transition: none !important;
+
+      }
+    }
+    .vjs-tooltip{
+      top: -6.6em;
+      left: -0.5em;
+    }
+  }
+}
+
