@@ -13,6 +13,13 @@ import {
   getVideoStateFromCookie,
   updateProfileFromCookie
 } from "./third-party-api.js";
+import {accessMenu} from "./handleAccessMenu.js";
+
+
+let translate = {
+  "Pause": "Pause",
+  "Play" : "Lecture"
+};
 
 let playPauseVideo = {
   isPaused : true,
@@ -38,13 +45,15 @@ let playPauseVideo = {
     return this;
   },
   playVideo : function(){
-    //this.components.videoEl.play();
-    this.components.playToggleEl.trigger("click");
-    this.changeVideoState( false );
+    this.components.playToggleEl.handleClick(); //trigger("click");
+    this.changeVideoState( !this.isPaused );
+    setTimeout( () => {
+      this.setToolTipText( this.components.playToggleEl.controlText_ )
+    }, 1.3)
   },
   pauseVideo : function(){
-    this.components.videoEl.pause();
-    this.changeVideoState( true );
+    this.components.playToggleEl.handleClick();
+    this.changeVideoState( !this.isPaused );
   },
   changeVideoState : function( state ){
     this.isPaused = state;
@@ -60,14 +69,16 @@ let playPauseVideo = {
     };
   },
   setToolTipText : function( text ){
-    this.toolTipText = text;
+    this.toolTipText = translate[text];
   },
   loadPlayPauseVideo : function ( { videoEl, accessPlayer } ){
     let playToggleEl  = accessPlayer.controlBar.playToggle;
     let bigPlayBtnEl = accessPlayer.bigPlayButton;
     let previousElToBigPlayContainer = accessPlayer.loadingSpinner;
     let bigPlayContainerEl = findEl( ".vid-acc", ".big-play-container");
+    console.log( bigPlayContainerEl );
     let tooltipEl = createElement("div", { class: "vjs-tooltip"} );
+    this.setToolTipText( playToggleEl.controlText_ )
     addTooltipEl( playToggleEl, tooltipEl );
     addBigPlayContainer( bigPlayContainerEl, bigPlayBtnEl, previousElToBigPlayContainer  );
 
@@ -105,7 +116,7 @@ let playPauseVideo = {
     $( bigPlayContainerEl ).on( "click pointerleave pointermove", function(e){
       switch ( e.type ) {
         case "click":
-          playToggleEl.trigger("click") ;
+          playToggleEl.handleClick(); //.trigger("click") ;
           break;
         case "pointerleave":
           if( $(this).is( ".big-play-container--pause" ) )
@@ -123,7 +134,8 @@ let playPauseVideo = {
         case "pause":
           instance.changeVideoState( true );
           removeClassToEl( bigPlayContainerEl, [ "big-play-container--pause", "container--hide"] );
-          addClassToEl( bigPlayContainerEl, ["big-play-container--play"])
+          addClassToEl( bigPlayContainerEl, ["big-play-container--play"]);
+          //accessMenu.updatePlayPause();
           break;
         case "play":
           instance.changeVideoState( false );

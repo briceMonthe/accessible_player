@@ -1,10 +1,12 @@
 import {appendChildToParent, getPropertyValue, setTextContentFromEL} from "./operationsClassEl.js";
+import {accessMenu} from "./handleAccessMenu.js";
 
 let volumePlayer = {
   components : {},
   instance : null,
   isMuted : false,
   volume : 0,
+  volumePerc : 100,
   toolTipText : null,
   isVertical : false,
   options: {},
@@ -25,8 +27,17 @@ let volumePlayer = {
   setMuted : function( muted ){
     this.isMuted = muted;
   },
+  getMuted : function(){
+    return this.isMuted;
+  },
   setVolume : function( volume ){
     this.volume = volume;
+  },
+  setVolumePerc : function( volumePerc ){
+    this.volumePerc = volumePerc;
+  },
+  getVolumePerc : function(){
+    return this.volumePerc;
   },
   setOptions : function( options ){
     this.options = {
@@ -34,7 +45,6 @@ let volumePlayer = {
       ...options
     };
     this.components.volumePanel.options( this.options );
-    //this.components.volumeControl.options( this.options );
   },
   setInstance : function( instance ){
     this.instance = instance;
@@ -53,6 +63,26 @@ let volumePlayer = {
     this.setInstance( this );
     return this;
   },
+  muteVolume : function(){
+    let { muteToggleEl , volumeBar } = this.components;
+    muteToggleEl.trigger("click");
+    this.setMuted( !this.isMuted );
+    this.updatePercVolume();
+  },
+  increaseVolume : function( ){
+    let { volumeLevel, volumeBar } = this.components;
+    volumeBar.stepForward();
+    this.setVolumePerc( volumeBar.volumeAsPercentage_() );
+    if( this.volumePerc == 0 )
+      this.setMuted( false );
+  },
+  decreaseVolume : function( ){
+    let { volumeLevel, volumeBar } = this.components;
+    volumeBar.stepBack();
+    this.setVolumePerc( volumeBar.volumeAsPercentage_() );
+    if( this.volumePerc === 0 )
+      this.setMuted( true );
+  },
   loadVolumePlayer : function( { videoElement, volumePanel } ){
     let  muteToggleEl = volumePanel.muteToggle;
     let volumeControl = volumePanel.volumeControl;
@@ -64,7 +94,7 @@ let volumePlayer = {
     this.changeVolumeAlign( this.components );
     this.addEventsVolumePlayer(this,  this.components );
   },
-  addEventsVolumePlayer : function (instance,  { videoElement, volumePanel, muteToggleEl, volumeControl, toolTipEl, volumeBar  }){
+  addEventsVolumePlayer : function (instance,  { videoElement, volumePanel, muteToggleEl, volumeControl, toolTipEl, volumeBar, volumeLevel  }){
     $( muteToggleEl.el() ).on("pointerover pointermove click", function( e ){
       e.preventDefault();
       setTimeout( function(){
@@ -77,19 +107,21 @@ let volumePlayer = {
       switch( e.type ){
         case "click":
           instance.setMuted( getPropertyValue( videoElement,  "muted" ) );
+          setTimeout(function () {
+            instance.updatePercVolume();
+            accessMenu.updateVolumeMenuStyle( instance.isMuted, "muted" );
+          }, 1.3)
+
           break;
       }
     });
 
-    //$(videoElement).on("volumechange", changeVolume );
-
-
     $(".volume-align").on("click", function(e){
       instance.changeVolumeAlign( instance.components );
       if( instance.isVertical ){
-        setTextContentFromEL( $(this).find(".access-menu-btn-text"), "Volume Align : Vertical" );
+        setTextContentFromEL( $(this).find(".btn__text-inner"), "Volume Align : Vertical" );
       }else{
-        setTextContentFromEL( $(this).find(".access-menu-btn-text"), "Volume Align : Horizontal" )
+        setTextContentFromEL( $(this).find(".btn__text-inner"), "Volume Align : Horizontal" )
       }
     })
 
@@ -97,14 +129,45 @@ let volumePlayer = {
     volumeBar.on( "mousedown", function(e){
       volumeBar.on("mouseup", function( e ){
         e.preventDefault();
-        instance.setVolume( videoElement.volume );
-        volumeBar.off( "mousemove");
+        instance.updatePercVolume();
+        if( instance.volumePerc === 0 )
+          instance.setMuted( true );
+        else
+          instance.setMuted( false );
 
+        accessMenu.updateVolumeMenuStyle( instance.isMuted, "muted" );
+        volumeBar.off( "mousemove");
       });
       volumeBar.on("mousemove", function(e){
         e.preventDefault();
+        instance.updatePercVolume();
+        if( instance.volumePerc === 0 )
+          instance.setMuted( true );
+        else
+          instance.setMuted( false );
+
+        accessMenu.updateVolumeMenuStyle( instance.isMuted, "muted" );
       })
     });
+
+    volumeBar.on( "keydown", function(e){
+      setTimeout( function(){
+        instance.updatePercVolume();
+        if( instance.volumePerc === 0 )
+          instance.setMuted( true );
+        else
+          instance.setMuted( false );
+
+        accessMenu.updateVolumeMenuStyle( instance.isMuted, "muted" );
+      }, 3);
+    });
+  },
+  updatePercVolume : function( ){
+    let { volumeLevel, volumeBar } = this.components;
+    if( this.isMuted )
+      this.setVolumePerc( 0 );
+    else
+      this.setVolumePerc( volumeBar.volumeAsPercentage_() );
   },
   changeVolumeAlign : function ( { volumePanel, volumeControl, volumeBar, volumeLevel }){
 
@@ -120,6 +183,7 @@ let volumePlayer = {
         widthLevel =  (volumeLevel.currentHeight() * 100 ) / volumeBar.currentHeight();
       this.setIsVertical( false );
       volumeBar.vertical( false );
+      this.setVolumePerc( widthLevel );
       volumeBar.removeClass("vjs-slider-vertical");
       volumeLevel.width(`${ widthLevel }%`);
       volumeLevel.height( `3px`);
@@ -129,10 +193,13 @@ let volumePlayer = {
         heightLevel = (volumeLevel.currentWidth() * 100 ) / volumeBar.currentWidth() ;
       this.setIsVertical( true );
       volumeBar.vertical( true );
+      this.setVolumePerc( heightLevel );
       volumeBar.removeClass("vjs-slider-horizontal");
       volumeLevel.height(`${ heightLevel }%` );
       volumeLevel.width( `3px`);
     }
+
+
   },
 
 }

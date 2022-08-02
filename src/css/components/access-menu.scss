@@ -7,21 +7,23 @@
   --c-gray-selected: #EEEEEE;
   --c-orange-first: #F16E00;
   --c-gray-hovered: #333333;
+  --c-gray-title : #999999;
+  --c-violet : rgb(168, 133, 216);
 }
 
 section{
-  padding: 1em;
+  //padding: 1em;
   position: absolute;
   left: 0;
   right: 0;
   top: 100%;
   color: #000000;
-  border: 2px solid #000000;
+  //border: 2px solid #000000;
 }
 
 
 .profils-menu, .settings-menu, .subtitles-menu, .font-menu, .menu{
-  padding: 1em;
+  //padding: 1em;
 }
 
 .access-menu{
@@ -39,23 +41,28 @@ section{
   background-color: #ffffff;
   display: grid;
   place-items: center;
-  grid-gap: .3em;
+  //grid-gap: 5px;
+  grid-auto-rows: clamp(1.95em, calc( 2.18vw + 1.4em ), 50px );
+  font-size: 16px;
 }
+
+
 :is(.profils-menu, .settings-menu, .subtitles-menu, .font-menu, .menu){
   position: absolute;
   top: 0;
   left: -100%;
   right: 0;
   bottom: 0;
-  transition: left 1s ease-in, opacity 1s, visibility 1s;
+  transition: left .3s ease-in, opacity .3s, visibility .3s;
   min-height: 100%;
   visibility: hidden;
   opacity: 0;
 }
 
-.access-menu.profils-menu-show .profils-menu,
+.access-menu.profiles-menu-show .profiles-menu,
 .access-menu.settings-menu-show .settings-menu,
 .access-menu.subtitles-menu-show .subtitles-menu,
+.access-menu.volume-menu-show .volume-menu,
 .settings-menu:is(.subtitles-menu-show) + :is(.subtitles-menu),
 .settings-menu:is(.font-menu-show) ~ :is(.font-menu),
 .font-menu:is(.text-color-menu-show) :is(.text-color-menu),
@@ -67,7 +74,7 @@ section{
   left: 0;
   opacity: 1;
   visibility: visible;
-  transition: left 1s ease-in, opacity 1s, visibility 1s;
+  transition: left .3s ease-in, opacity .3s, visibility .3s;
 }
 
 :is(.settings-menu, .font-menu):is(.subtitles-menu-show, .font-menu-show){
@@ -75,32 +82,31 @@ section{
   pointer-events: none;
 }
 
-.access-menu-row{
+.access-menu-row, .menu-row{
   width: 100%;
   height: 100%;
   display: grid;
   grid-auto-flow: column;
-  grid-gap: .3em;
 }
 
-:is(.access-menu-btn, .profils-menu-btn, .settings-menu-btn, .subtitles-menu-btn, .font-menu-btn, .menu-btn ){
+:is(
+  .access-menu-btn, .profils-menu-btn, .settings-menu-btn,
+  .subtitles-menu-btn, .font-menu-btn, .menu-btn, .menu__btn ){
   width: 100%;
-  height: 50px;
-  display: grid;
+  /* height: 50px; */
+  display: flex;
   justify-content: center;
-  padding: 0.25em;
-  background-color: var( --c-gray-selected );
-  border-radius: 1em;
-  font-size: 1.1em;
+  padding: 0.2em;
+  align-items: center;
+  background-color: var(--c-gray-selected);
+  border-radius: .3em;
+  font-size: clamp(1.1em, calc( 0.13vw + 1.07em ), 1.2em);
   font-weight: 600;
   font-family: "Arial";
   line-height: 1em;
-  /* place-items: center; */
-  grid-auto-flow: column;
-  grid-gap: .5em;
   cursor: pointer;
-  grid-template-columns: 5% 25%;
-  grid-template-rows: 100%;
+  line-height: clamp(1.1em, calc( 0.13vw + 1.07em ), 1.2em);
+  border: 1px solid #ffffff;
 }
 
 .font-menu-btn:first-child{
@@ -110,51 +116,152 @@ section{
   grid-template-columns: minmax(25%, max-content) 5%;
 }
 
-:is(.access-menu-btn, .profils-menu-btn, .settings-menu-btn, .subtitles-menu-btn, .font-menu-btn, .menu-btn):hover{
+:is(
+  .access-menu-btn, .profils-menu-btn, .settings-menu-btn,
+  .subtitles-menu-btn, .font-menu-btn, .menu-btn, .menu__btn ):hover{
   background-color: var(--c-gray-hovered);
   color: #ffffff;
+  border: 1px solid #ffffff;
 }
 
-:is(.access-menu-btn, .profils-menu-btn, .settings-menu-btn, .subtitles-menu-btn, .font-menu-btn, .menu-btn).vjs-selected{
+:is(
+  .access-menu-btn, .profils-menu-btn, .settings-menu-btn,
+  .subtitles-menu-btn, .font-menu-btn, .menu-btn, .menu__btn).vjs-selected{
   background-color: var(--c-violet);
   color: #000000;
 }
+.access-menu {
+  .play-pause-btn{
+    .btn__icon-pause{
+      display: none;
+    }
+    &.pause{
+      .btn__icon-play{
+        display: none;
+      }
+      .btn__icon-pause{
+        display: block;
+      }
+    }
+  }
+  .menu__btn-fullscreen{
+    .nofullscreen-icon{
+      display: none;
+    }
+    &.fullscreen{
+      .nofullscreen-icon{
+        display: block;
+      }
+      .fullscreen-icon{
+        display: none;
+      }
+    }
+  }
+  #video-speed{
+    .slow-icon{
+      display: none;
+    }
+    &.slow{
+      .slow-icon{
+        display: block;
+      }
+    }
+  }
+}
 
-:is(.access-menu-btn, .profils-menu-btn, .settings-menu-btn, .subtitles-menu-btn, .font-menu-btn):hover svg{
+.volume-menu .menu__btn{
+  &.menu__btn-unmuted{
+    .btn__icon-muted{
+      display: none;
+    }
+    .btn__text-inner{
+      .btn__text-muted{
+        display: none;
+      }
+    }
+  }
+  &.menu__btn-muted{
+    .btn__icon-unmuted{
+      display: none;
+    }
+    .btn__icon-muted{
+      display: block;
+    }
+    .btn__text-inner{
+      .btn__text-unmuted{
+        display: none;
+      }
+      .btn__text-muted{
+        display: block;
+      }
+    }
+  }
+
+}
+
+:is(
+  .access-menu-btn, .profils-menu-btn, .settings-menu-btn,
+  .subtitles-menu-btn, .font-menu-btn, .menu__btn ):hover svg{
   fill: #ffffff;
+  circle{
+    stroke: #ffffff;
+  }
 }
 
-.access-menu-btn:hover :is(svg circle){
+/*.access-menu-btn:hover :is(svg circle){
   stroke: #ffffff;
-}
+}*/
 
-:is(.access-menu-btn, .profils-menu-btn, .settings-menu-btn, .subtitles-menu-btn, .font-menu-btn, .menu-btn):active{
+:is(
+  .access-menu-btn, .profils-menu-btn, .settings-menu-btn,
+  .subtitles-menu-btn, .font-menu-btn, .menu-btn, .menu__btn ):active{
   background-color: var(--c-orange-first);
   color: #000000;
 }
 
-:is(.access-menu-btn, .profils-menu-btn, .settings-menu-btn, .subtitles-menu-btn, .font-menu-btn, .menu-btn):active :is(svg){
+:is(
+  .access-menu-btn, .profils-menu-btn, .settings-menu-btn,
+  .subtitles-menu-btn, .font-menu-btn, .menu-btn, .menu__btn):active :is(svg){
   fill: #000000;
+  stroke: #000000;;
+  circle{
+    stroke: #000000;
+  }
+}
+
+/*.access-menu-btn:active :is(svg circle){
   stroke: #000000;
+}*/
+
+
+
+:is(
+  .access-menu-btn-icon, .profils-menu-btn-icon, .settings-menu-btn-icon,
+  .subtitles-menu-btn-icon, .font-menu-btn-icon, .menu-btn-icon, .btn__icon){
+  width: 1em;
+  height: 1em;
+  font-size: 1em;
+  line-height: 1em;
+  position: absolute;
+  left: -1em;
+  top: 0;
 }
 
-.access-menu-btn:active :is(svg circle){
-  stroke: #000000;
+:is(
+  .access-menu-btn-text, .profils-menu-btn-text, .settings-menu-btn-text,
+  .subtitles-menu-btn-text, .font-menu-btn-text, .menu-btn-text, .btn__text){
+  line-height: 1em;
+  font-size: .8em;
+  width: 33%;
+  height: 1em;
+  text-align: center;
+  position: relative;
+  pointer-events: none;
 }
 
-
-
-:is(.access-menu-btn-icon, .profils-menu-btn-icon, .settings-menu-btn-icon, .subtitles-menu-btn-icon, .font-menu-btn-icon, .menu-btn-icon){
-  width: 65%;
-  height: 100%;
-  aspect-ratio: 1;
-}
-
-:is(.access-menu-btn-text, .profils-menu-btn-text, .settings-menu-btn-text, .subtitles-menu-btn-text, .font-menu-btn-text, .menu-btn-text){
-  place-self: center left;
-}
-
-:is(.access-menu-btn-text, .profils-menu-btn-text, .settings-menu-btn-text, .subtitles-menu-btn-text, .font-menu-btn-text, .menu-btn-text):hover{
+:is(
+  .access-menu-btn-text, .profils-menu-btn-text, .settings-menu-btn-text,
+  .subtitles-menu-btn-text, .font-menu-btn-text, .menu-btn-text, .btn__text):hover{
   color: #ffffff;
 }
 
@@ -163,7 +270,17 @@ section{
 }
 
 .access-menu-btn-forward{
-  grid-template-columns: 25% 15%;
+  .access-menu-btn-icon{
+    left: initial;
+    right: -1em;
+  }
+}
+
+.access-menu-btn-text, .btn__text{
+  .btn__icon-right{
+    left: initial;
+    right: -1em;
+  }
 }
 
 section svg{
@@ -176,20 +293,41 @@ svg line{
   display: none;
 }
 
-:is(.profils-menu-btn-icon, .settings-menu-btn-icon, .subtitles-menu-btn-icon, .font-menu-btn-icon, .menu-btn-icon){
+:is(
+  .profils-menu-btn-icon, .settings-menu-btn-icon, .subtitles-menu-btn-icon,
+  .font-menu-btn-icon, .menu-btn-icon, .btn__icon){
   font-size: 1em;
   place-self: center;
-  width: 100%;
+  //width: 100%;
   height: 100%;
   display: grid;
   place-content: center;
+  position: absolute;
+  top: 0;
+  left: -1em;
 }
 
-:is(.profils-menu-btn-icon, .settings-menu-btn-icon, .subtitles-menu-btn-icon, .font-menu-btn-icon, .menu-btn-icon) i{
-  font-size: 2em;
+:is(
+  .profils-menu-btn-icon, .settings-menu-btn-icon, .subtitles-menu-btn-icon,
+  .font-menu-btn-icon, .menu-btn-icon, .btn__icon) i{
+  font-size: 1em;
   width: 100%;
   height: 100%;
 }
+
+.volume-menu, .subtitles-menu{
+  .btn__text{
+    width: 30%;
+  }
+}
+
+.menu__btn-remove{
+  background-color: var(--c-gray-title);
+}
+
+
+
+
 
 /**
     Access Menu Style End

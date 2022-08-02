@@ -69,6 +69,8 @@ const captionsVideo = {
     if( indexTrack ){
       let latestTrack = textTrackList.at( indexTrack );
       latestTrack.trigger( "click" );
+      this.setSelectedTrack( indexTrack, latestTrack );
+      //latestTrack.selected()
     }
   },
   addEventsCaptionsVideo : function( instance ){

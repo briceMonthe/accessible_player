@@ -1,5 +1,3 @@
-import {addAccessMenu} from "./handleAccessMenu.js";
-import {handleMenuPopup, handlePopupTooltip} from "./handleControlBar.js";
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {profileMenu} from "./profileAccess.js";
 import {volumePlayer} from "./handleVolume.js";
@@ -7,6 +5,7 @@ import {captionsVideo} from "./handleCaptions.js";
 import {transcriptVideo} from "./transcriptVideo.js";
 import {videoSize} from "./handleVideoSize.js";
 import {fullscreenPlayer} from "./handleFullscreen.js";
+import {accessMenu} from "./handleAccessMenu.js";
 
 
 let repeat_call = setInterval( function(){
@@ -27,17 +26,12 @@ const start = async function( ){
   // })
   accessPlayer.ready(async function(){
     await transcriptVideo.getInstance( this );
-    //handleFullscreen();
     playPauseVideo.getInstance( { accessPlayer , videoEl });
     profileMenu.getInstance( { accessPlayer , videoEl } );
-    console.log( videoSize.getInstance( ));
     volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
     fullscreenPlayer.getInstance( accessPlayer );
     captionsVideo.getInstance( { accessPlayer } );
-    addAccessMenu( videoSize.getInstance( ) );
-
-
-
+    accessMenu.getInstance( accessPlayer );
   });
   console.log( accessPlayer );
 

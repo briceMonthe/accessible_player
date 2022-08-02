@@ -11,6 +11,7 @@ import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {videoSize} from "./handleVideoSize.js";
 import {createElement, setTextContentFromEL} from "./operationsClassEl.js";
 import {transcriptVideo} from "./transcriptVideo.js";
+import {accessMenu} from "./handleAccessMenu.js";
 
 let profileMenu = {
   isDisplayed : false,
@@ -64,6 +65,11 @@ let profileMenu = {
     this.defaultProfile = newProfile;
     this.changePreviousProfile( this.selectedProfile );
     this.selectedProfile = newProfile;
+
+    console.log( this.previousProfile, this.selectedProfile );
+    resetPreviousProfile( this );
+    selectProfile( this );
+
     updateProfileFromCookie( "profile" , newProfile );
     updateAccessMenuProfileComponent( $("#profiles") , "vjs-selected", this.selectedProfile);
   },
@@ -78,7 +84,7 @@ let profileMenu = {
   },
   loadDefaultProfile : async function( components ){
     let newProfile = getProfileFromCookie();
-    this.playPauseObject = playPauseVideo.getInstance();
+    this.playPauseObject = await playPauseVideo.getInstance();
     this.videoSizeObject = videoSize.getInstance();
     this.transcriptVideo = await transcriptVideo.getInstance();
     this.setComponents( components );
@@ -94,8 +100,14 @@ let profileMenu = {
     }
     this.changeProfile( newProfile, false );
     addProfileContainer( components.volumeContainerEl.el(), components.profileMenuContainerEl, newProfile );
-    selectProfile( this );
+    //selectProfile( this );
     this.profiles = this.profiles.map( ( { profile } ) => profile === newProfile ? { profile , classList : "vjs-selected" } : { profile , classList : "" }  );
+  },
+  updateProfileMenuStyle : function ( parentEl, dataProfile ){
+    let liItems = findEl( parentEl, "li");
+    liItems.each( (index, elemnt) => $(elemnt).data("profile") !== dataProfile ? removeClassToEl( elemnt , "vjs-selected") :  addClassToEl( elemnt, "vjs-selected" ) );
+    //removeClassToEl( liItems , "vjs-selected");
+    //addClassToEl( elmnt, "vjs-selected" );
   },
   addEventsToProfileContainerEl : function( instance )  {
     let { profileMenuEl, profileMenuBtnEl, tooltipEl, profileMenuContainerEl } = instance.components;
@@ -138,13 +150,12 @@ let profileMenu = {
     $("#player-profile-container li.vjs-menu-item").on("click", function(e){
       switch (e.type) {
         case "click":
-          let liItems = findEl( $(this).parent(), "li");
-          removeClassToEl( liItems , "vjs-selected");
-          addClassToEl( $(this), "vjs-selected" );
-          instance.changeProfile( $(this).data("profile")  );
+          instance.updateProfileMenuStyle( $(this).parent(), $(this) );
+          instance.changeProfile( $(this).data("profile"), true  );
           if( instance.isProfileChanged ){
-            resetPreviousProfile( instance  );
-            selectProfile( instance );
+            accessMenu.updateProfile( instance.selectedProfile );
+            //resetPreviousProfile( instance  );
+            //selectProfile( instance );
           }
           break;
       }
