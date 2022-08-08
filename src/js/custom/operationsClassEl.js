@@ -107,6 +107,10 @@ const createElement = function( tagName, attributes ){
   return newEl;
 }
 
+const getDataValue = function( element, property ){
+  return $(element).data( property );
+}
+
 
 export {
   addClassToEl ,
@@ -128,5 +132,6 @@ export {
   getWidthInPerc,
   setCssProperty,
   getWidthFromElInPercent,
-  createElement
+  createElement,
+  getDataValue
 }

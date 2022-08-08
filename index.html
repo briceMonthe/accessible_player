@@ -12,14 +12,13 @@
   <link href="./src/css/videojs-transcript.css" rel="stylesheet">
 
   <!-- Custom videosjs transcript stylesheet -->
-
   <link href="./src/css/videojs-transcript-extends.css" rel="stylesheet">
 
   <!-- Boosted CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boosted@4.4.1/dist/css/boosted.min.css" integrity="sha384-OB/gcmnjN4zOvILOKtMqzd/ZUoKc/cgZDpn0c2C5FoQAJqmQdjX4ITe6XSK32JyO" crossorigin="anonymous">
 
   <!-- accessible player stylesheet -->
-  <link rel="stylesheet" href="src/css/build/video-js-extends.css" type="text/css">
+  <link rel="stylesheet" href="src/css/build/video-js-extendss.css" type="text/css">
 
   <!-- Videojs Plugin -->
 <!--  <script src="src/js/custom/video.min.js"></script>-->
@@ -33,8 +32,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- JQuery Plugin -->
-  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-  <script src="./src/js/custom/jquery.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--  <script src="./src/js/custom/jquery.js"></script>-->
   <script src="./src/js/custom/accessible_player.js" type="module"></script>
 
 </head>
@@ -299,29 +298,30 @@
     }
   </script>-->
   <section class="access-menu access-menu--hide menu--hide">
-    <div class="menu-row menu__btn play-pause-btn" data-class="pause">
+    <div class="menu-row menu__btn play-pause-btn" data-class-pause="pause" data-class-end="ended">
       <div class="btn__text">
         <div class="btn__icon btn__icon-left">
           <svg class="btn__icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"/></svg>
           <svg class="btn__icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M272 63.1l-32 0c-26.51 0-48 21.49-48 47.1v288c0 26.51 21.49 48 48 48L272 448c26.51 0 48-21.49 48-48v-288C320 85.49 298.5 63.1 272 63.1zM80 63.1l-32 0c-26.51 0-48 21.49-48 48v288C0 426.5 21.49 448 48 448l32 0c26.51 0 48-21.49 48-48v-288C128 85.49 106.5 63.1 80 63.1z"/></svg>
+          <svg class="btn__icon-ended" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M480 256c0 123.4-100.5 223.9-223.9 223.9c-48.84 0-95.17-15.58-134.2-44.86c-14.12-10.59-16.97-30.66-6.375-44.81c10.59-14.12 30.62-16.94 44.81-6.375c27.84 20.91 61 31.94 95.88 31.94C344.3 415.8 416 344.1 416 256s-71.69-159.8-159.8-159.8c-37.46 0-73.09 13.49-101.3 36.64l45.12 45.14c17.01 17.02 4.955 46.1-19.1 46.1H35.17C24.58 224.1 16 215.5 16 204.9V59.04c0-24.04 29.07-36.08 46.07-19.07l47.6 47.63C149.9 52.71 201.5 32.11 256.1 32.11C379.5 32.11 480 132.6 480 256z"/></svg>
         </div>
         <span class="btn__text-inner" data-text="Lecture"> Lecture </span>
 
       </div>
     </div>
-    <div class="menu-row menu-back-forward">
-      <div class="menu__btn access-menu-btn-back menu__btn-back" data-type="back">
-        <div class="access-menu-btn-text">
-          <div class="access-menu-btn-icon">
+    <div class="menu-row menu-back-forward-row">
+      <div class="menu__btn" data-type="back">
+        <div class="btn__text">
+          <div class="btn__icon btn__icon-left">
             <svg viewBox="0 0 20 20"><path d="M11.25 3.125v6.25l6.25-6.25v13.75l-6.25-6.25v6.25l-6.875-6.875z" <="" path=""></path></svg>
           </div>
           Reculer
         </div>
       </div>
-      <div class="access-menu-btn access-menu-btn-forward" data-type="forward">
-        <div class="access-menu-btn-text">
+      <div class="menu__btn" data-type="forward">
+        <div class="btn__text">
           Avancer
-          <div class="access-menu-btn-icon">
+          <div class="btn__icon btn__icon-right">
             <svg viewBox="0 0 20 20"><path d="M10 16.875v-6.25l-6.25 6.25v-13.75l6.25 6.25v-6.25l6.875 6.875z" <="" path=""></path></svg>
           </div>
         </div>
@@ -339,15 +339,15 @@
         </div>
       </div>
     </div>
-    <div class="access-menu-btn access-menu-row menu__btn-fullscreen" data-class="fullscreen">
-      <div class="access-menu-btn-text">
-        <div class="access-menu-btn-icon btn__icon">
+    <div class="menu-row menu__btn menu__btn-fullscreen fullscreen" data-mode="fullscreen">
+      <div class="btn__text">
+        <div class="btn__icon btn__icon-left">
 <!--          <svg viewBox="0 0 20 20"><path d="M0 18.036v-5q0-0.29 0.212-0.502t0.502-0.212 0.502 0.212l1.607 1.607 3.705-3.705q0.112-0.112 0.257-0.112t0.257 0.112l1.272 1.272q0.112 0.112 0.112 0.257t-0.112 0.257l-3.705 3.705 1.607 1.607q0.212 0.212 0.212 0.502t-0.212 0.502-0.502 0.212h-5q-0.29 0-0.502-0.212t-0.212-0.502zM8.717 8.393q0-0.145 0.112-0.257l3.705-3.705-1.607-1.607q-0.212-0.212-0.212-0.502t0.212-0.502 0.502-0.212h5q0.29 0 0.502 0.212t0.212 0.502v5q0 0.29-0.212 0.502t-0.502 0.212-0.502-0.212l-1.607-1.607-3.705 3.705q-0.112 0.112-0.257 0.112t-0.257-0.112l-1.272-1.272q-0.112-0.112-0.112-0.257z" <="" path=""></path></svg>-->
-          <svg class="fullscreen-icon" focusable="false" aria-hidden="true" class="vjs-icon-placeholder" viewBox="0 0 20 20">
+          <svg class="nofullscreen-icon" focusable="false" aria-hidden="true" class="vjs-icon-placeholder" viewBox="0 0 20 20">
             <path d="M0 18.036v-5q0-0.29 0.212-0.502t0.502-0.212 0.502 0.212l1.607 1.607 3.705-3.705q0.112-0.112 0.257-0.112t0.257 0.112l1.272 1.272q0.112 0.112 0.112 0.257t-0.112 0.257l-3.705 3.705 1.607 1.607q0.212 0.212 0.212 0.502t-0.212 0.502-0.502 0.212h-5q-0.29 0-0.502-0.212t-0.212-0.502zM8.717 8.393q0-0.145 0.112-0.257l3.705-3.705-1.607-1.607q-0.212-0.212-0.212-0.502t0.212-0.502 0.502-0.212h5q0.29 0 0.502 0.212t0.212 0.502v5q0 0.29-0.212 0.502t-0.502 0.212-0.502-0.212l-1.607-1.607-3.705 3.705q-0.112 0.112-0.257 0.112t-0.257-0.112l-1.272-1.272q-0.112-0.112-0.112-0.257z"></path>
           </svg>
 
-          <svg class="nofullscreen-icon" viewBox="0 0 20 20">
+          <svg class="fullscreen-icon" viewBox="0 0 20 20">
             <path d="M0.145 16.964q0-0.145 0.112-0.257l3.705-3.705-1.607-1.607q-0.212-0.212-0.212-0.502t0.212-0.502 0.502-0.212h5q0.29 0 0.502 0.212t0.212 0.502v5q0 0.29-0.212 0.502t-0.502 0.212-0.502-0.212l-1.607-1.607-3.705 3.705q-0.112 0.112-0.257 0.112t-0.257-0.112l-1.272-1.272q-0.112-0.112-0.112-0.257zM8.571 9.464v-5q0-0.29 0.212-0.502t0.502-0.212 0.502 0.212l1.607 1.607 3.705-3.705q0.112-0.112 0.257-0.112t0.257 0.112l1.272 1.272q0.112 0.112 0.112 0.257t-0.112 0.257l-3.705 3.705 1.607 1.607q0.212 0.212 0.212 0.502t-0.212 0.502-0.502 0.212h-5q-0.29 0-0.502-0.212t-0.212-0.502z"></path>
           </svg>
         </div>
@@ -365,18 +365,20 @@
         </div>
       </div>
     </div>
-    <div id="video-speed" class="access-menu-btn access-menu-row" data-class="slow">
-      <div class="access-menu-btn-text">
-        <div class="access-menu-btn-icon">
+    <div id="video-speed" class="menu-row menu__btn video-speed normal" data-speed-mode="normal">
+      <div class="btn__text">
+        <div class="btn__icon btn__icon-left">
+          <i class="fa-solid fa-gauge-simple normal-icon"></i>
           <svg class="slow-icon" viewBox="0 0 20 20"><path d="M17.212 3.846c-0.281-0.014-0.549 0.025-0.817 0.144-1.218 0.542-1.662 2.708-2.163 3.942-1.207 2.972-7.090 4.619-11.755 5.216-0.887 0.114-1.749 0.74-2.428 1.466 0.82-0.284 2.126-0.297 2.74 0.144 0.007 0.488-0.376 1.062-0.625 1.37-0.404 0.5-0.398 0.793 0.12 0.793 0.473 0 0.752 0.007 1.635 0 0.393-0.003 0.618-0.16 1.49-1.49 3.592 0.718 5.986-0.264 5.986-0.264s0.407 1.755 1.418 1.755h1.49c0.633 0 0.667-0.331 0.625-0.433-0.448-1.082-0.68-1.873-0.769-2.5-0.263-1.857 0.657-3.836 2.524-5.457 0.585 0.986 2.253 0.845 2.909-0.096s0.446-2.268-0.192-3.221c-0.49-0.732-1.345-1.327-2.188-1.37zM8.221 4.663c-0.722-0.016-1.536 0.111-2.5 0.409-4.211 1.302-4.177 4.951-3.51 5.745 0 0-0.955 0.479-0.409 1.274 0.448 0.652 3.139 0.191 5.409-0.529s4.226-1.793 5.312-2.692c0.948-0.785 0.551-2.106-0.505-1.947-0.494-0.98-1.632-2.212-3.798-2.26zM18.846 5.962c0.325 0 0.577 0.252 0.577 0.577s-0.252 0.577-0.577 0.577c-0.325 0-0.577-0.252-0.577-0.577s0.252-0.577 0.577-0.577z"></path></svg>
+          <svg class="rapid-icon" viewBox="0 0 20 20"><path d="M17.212 3.846c-0.281-0.014-0.549 0.025-0.817 0.144-1.218 0.542-1.662 2.708-2.163 3.942-1.207 2.972-7.090 4.619-11.755 5.216-0.887 0.114-1.749 0.74-2.428 1.466 0.82-0.284 2.126-0.297 2.74 0.144 0.007 0.488-0.376 1.062-0.625 1.37-0.404 0.5-0.398 0.793 0.12 0.793 0.473 0 0.752 0.007 1.635 0 0.393-0.003 0.618-0.16 1.49-1.49 3.592 0.718 5.986-0.264 5.986-0.264s0.407 1.755 1.418 1.755h1.49c0.633 0 0.667-0.331 0.625-0.433-0.448-1.082-0.68-1.873-0.769-2.5-0.263-1.857 0.657-3.836 2.524-5.457 0.585 0.986 2.253 0.845 2.909-0.096s0.446-2.268-0.192-3.221c-0.49-0.732-1.345-1.327-2.188-1.37zM8.221 4.663c-0.722-0.016-1.536 0.111-2.5 0.409-4.211 1.302-4.177 4.951-3.51 5.745 0 0-0.955 0.479-0.409 1.274 0.448 0.652 3.139 0.191 5.409-0.529s4.226-1.793 5.312-2.692c0.948-0.785 0.551-2.106-0.505-1.947-0.494-0.98-1.632-2.212-3.798-2.26zM18.846 5.962c0.325 0 0.577 0.252 0.577 0.577s-0.252 0.577-0.577 0.577c-0.325 0-0.577-0.252-0.577-0.577s0.252-0.577 0.577-0.577z"></path></svg>
         </div>
         <span class="btn__text-inner"> Vitesse Normale</span>
       </div>
     </div>
-    <div id="contrast-btn" class="menu-row menu__btn">
+    <div class="menu-row menu__btn menu__contrast-btn normal" data-contrast="normal">
       <div class="btn__text">
         <div class="btn__icon btn__icon-left" >
-          <i class="fa-solid fa-circle-half-stroke"></i>
+          <i class="fa-solid fa-circle-half-stroke contrast-icon"></i>
         </div>
         <span class="btn__text-inner">Vidéo Normale</span>
       </div>
@@ -517,7 +519,7 @@
     </section>
 
     <section class="menu settings-menu">
-      <div class="menu-row menu-btn menu__btn-remove" data-class="settings-menu-show">
+      <div class="menu-row menu__btn menu__btn-remove" data-class="settings-menu-show">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left" >
 <!--            <i class="fa-solid fa-left-long"></i>-->
@@ -526,60 +528,69 @@
           Menu
         </div>
       </div>
-      <div class="menu-row menu__btn">
+      <div class="menu-row menu__btn video-speed normal" data-speed-mode="normal">
         <div class="btn__text">
-          <div class="btn__icon">
-            <i class="fa-solid fa-gauge-simple"></i>
+          <div class="btn__icon btn__icon-left">
+            <i class="fa-solid fa-gauge-simple normal-icon"></i>
+            <svg class="slow-icon" viewBox="0 0 20 20"><path d="M17.212 3.846c-0.281-0.014-0.549 0.025-0.817 0.144-1.218 0.542-1.662 2.708-2.163 3.942-1.207 2.972-7.090 4.619-11.755 5.216-0.887 0.114-1.749 0.74-2.428 1.466 0.82-0.284 2.126-0.297 2.74 0.144 0.007 0.488-0.376 1.062-0.625 1.37-0.404 0.5-0.398 0.793 0.12 0.793 0.473 0 0.752 0.007 1.635 0 0.393-0.003 0.618-0.16 1.49-1.49 3.592 0.718 5.986-0.264 5.986-0.264s0.407 1.755 1.418 1.755h1.49c0.633 0 0.667-0.331 0.625-0.433-0.448-1.082-0.68-1.873-0.769-2.5-0.263-1.857 0.657-3.836 2.524-5.457 0.585 0.986 2.253 0.845 2.909-0.096s0.446-2.268-0.192-3.221c-0.49-0.732-1.345-1.327-2.188-1.37zM8.221 4.663c-0.722-0.016-1.536 0.111-2.5 0.409-4.211 1.302-4.177 4.951-3.51 5.745 0 0-0.955 0.479-0.409 1.274 0.448 0.652 3.139 0.191 5.409-0.529s4.226-1.793 5.312-2.692c0.948-0.785 0.551-2.106-0.505-1.947-0.494-0.98-1.632-2.212-3.798-2.26zM18.846 5.962c0.325 0 0.577 0.252 0.577 0.577s-0.252 0.577-0.577 0.577c-0.325 0-0.577-0.252-0.577-0.577s0.252-0.577 0.577-0.577z"></path></svg>
+            <svg class="rapid-icon" viewBox="0 0 20 20"><path d="M17.212 3.846c-0.281-0.014-0.549 0.025-0.817 0.144-1.218 0.542-1.662 2.708-2.163 3.942-1.207 2.972-7.090 4.619-11.755 5.216-0.887 0.114-1.749 0.74-2.428 1.466 0.82-0.284 2.126-0.297 2.74 0.144 0.007 0.488-0.376 1.062-0.625 1.37-0.404 0.5-0.398 0.793 0.12 0.793 0.473 0 0.752 0.007 1.635 0 0.393-0.003 0.618-0.16 1.49-1.49 3.592 0.718 5.986-0.264 5.986-0.264s0.407 1.755 1.418 1.755h1.49c0.633 0 0.667-0.331 0.625-0.433-0.448-1.082-0.68-1.873-0.769-2.5-0.263-1.857 0.657-3.836 2.524-5.457 0.585 0.986 2.253 0.845 2.909-0.096s0.446-2.268-0.192-3.221c-0.49-0.732-1.345-1.327-2.188-1.37zM8.221 4.663c-0.722-0.016-1.536 0.111-2.5 0.409-4.211 1.302-4.177 4.951-3.51 5.745 0 0-0.955 0.479-0.409 1.274 0.448 0.652 3.139 0.191 5.409-0.529s4.226-1.793 5.312-2.692c0.948-0.785 0.551-2.106-0.505-1.947-0.494-0.98-1.632-2.212-3.798-2.26zM18.846 5.962c0.325 0 0.577 0.252 0.577 0.577s-0.252 0.577-0.577 0.577c-0.325 0-0.577-0.252-0.577-0.577s0.252-0.577 0.577-0.577z"></path></svg>
           </div>
-          Vitesse Normale
+          <span class="btn__text-inner"> Vitesse Normale</span>
         </div>
       </div>
+
       <div class="menu-row menu__btn" data-class="subtitles-menu-show">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left" >
             <svg viewBox="0 0 20 20"><path d="M 1.37,3.33 C 6.99,3.35 12.61,3.37 18.22,3.40M 2.54,4.25 C 2.54,4.25 17.35,4.25 17.35,4.25 17.88,4.24 18.56,4.29 18.54,3.90 18.53,3.51 17.85,2.82 17.35,2.82 17.35,2.82 2.54,2.82 2.54,2.82 2.01,2.83 1.60,3.16 1.62,3.55 1.63,3.94 2.03,4.24 2.54,4.25 Z M 1.19,18.83 C 1.19,18.83 2.56,18.83 2.56,18.83 2.61,18.69 1.26,15.41 1.25,10.98 1.25,6.69 2.60,2.77 2.56,2.70 2.56,2.70 1.19,2.70 1.19,2.70 1.14,2.84 -0.08,6.58 -0.08,11.01 -0.07,15.30 1.14,18.69 1.19,18.83 Z M 17.32,18.48 C 17.32,18.48 18.46,18.48 18.46,18.48 18.50,18.34 19.95,14.71 19.95,10.41 19.95,6.24 18.49,2.88 18.46,2.82 18.46,2.82 17.32,2.82 17.32,2.82 17.28,2.95 18.62,6.49 18.62,10.79 18.62,14.95 17.28,18.34 17.32,18.48 17.32,18.48 17.32,18.48 17.32,18.48 Z M 2.56,18.83 C 2.56,18.83 17.37,18.83 17.37,18.83 17.90,18.82 18.58,18.87 18.56,18.48 18.55,18.09 17.87,17.40 17.37,17.40 17.37,17.40 2.56,17.40 2.56,17.40 2.03,17.41 1.62,17.74 1.64,18.13 1.65,18.52 2.05,18.82 2.56,18.83 2.56,18.83 2.56,18.83 2.56,18.83 Z M 4.05,16.73 C 4.05,16.73 15.64,16.73 15.64,16.73 16.05,16.72 16.37,16.24 16.36,15.68 16.34,15.14 16.03,14.70 15.64,14.69 15.64,14.69 4.05,14.69 4.05,14.69 3.63,14.71 3.32,15.18 3.33,15.74 3.34,16.29 3.65,16.72 4.05,16.73 Z M 6.33,13.87 C 6.33,13.87 3.65,13.87 3.65,13.87 3.42,13.86 3.24,13.38 3.24,12.82 3.25,12.28 3.43,11.84 3.65,11.83 3.65,11.83 6.33,11.83 6.33,11.83 6.57,11.85 6.75,12.32 6.74,12.88 6.74,13.43 6.56,13.86 6.33,13.87 Z M 15.85,13.87 C 15.85,13.87 8.48,13.87 8.48,13.87 8.22,13.86 8.01,13.38 8.02,12.82 8.03,12.28 8.23,11.84 8.48,11.83 8.48,11.83 15.85,11.83 15.85,11.83 16.11,11.85 16.32,12.32 16.31,12.88 16.30,13.43 16.10,13.86 15.85,13.87 Z" <="" path=""></path></svg>
           </div>
           Sous-Titres
+          <div class="btn__icon btn__icon-right">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
-      <div class="menu-row menu__btn">
+      <div class="menu-row menu__btn menu__profile-btn" data-mode="enabled ">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left" >
             <svg viewBox="0 0 20 20"><line x1="0" y1="0" x2="200" y2="200"></line><path d="M10.954 10.307c0.378 0.302 0.569 1.202 0.564 1.193 0.697 0.221 1.136 0.682 1.136 0.682 1.070-0.596 1.094-0.326 1.558-0.682 0.383-0.263 0.366-0.344 0.567-1.048 0.187-0.572-0.476-0.518-1.021-1.558-0.95 0.358-1.463 0.196-1.784 0.167-0.145-0.020-0.12 0.562-1.021 1.247zM14.409 17.196c-0.133 0.182-0.196 0.218-0.363 0.454-0.28 0.361 0.076 0.906 0.253 0.82 0.206-0.076 0.341-0.488 0.567-0.623 0.115-0.061 0.422-0.513 0.709-0.82 0.211-0.238 0.363-0.344 0.564-0.594 0.341-0.422 0.412-0.744 0.709-1.193 0.184-0.236 0.312-0.307 0.481-0.594 0.886-1.679 0.628-2.432 1.475-3.629 0.26-0.353 0.552-0.442 0.964-0.653 0.383-2.793-0.888-4.356-0.879-4.361-1.067 0.623-1.644 0.879-2.751 0.82-0.417-0.005-0.636-0.182-1.048-0.145-0.385 0.015-0.582 0.159-0.964 0.29-0.589 0.182-0.91 0.344-1.529 0.535-0.393 0.11-0.643 0.115-1.050 0.255-0.348 0.147-0.182 0.029-0.427 0.312-0.317 0.348-0.238 0.623-0.535 1.222-0.371 0.785-0.326 0.891-0.115 0.987-0.14 0.402-0.174 0.672-0.14 1.107 0.039 0.331-0.101 0.562 0.255 0.825 0.483 0.361 1.499 1.205 1.757 1.217 0.39-0.012 1.521 0.029 2.096-0.368 0.13-0.081 0.167-0.162 0.056 0.145-0.022 0.037-1.433 1.136-1.585 1.131-1.794 0.056-1.193 0.157-1.303 0.115-0.091 0-0.955-1.055-1.477-0.682-0.196 0.12-0.287 0.236-0.363 0.452 0.066 0.137 0.383 0.358 0.675 0.54 0.422 0.27 0.461 0.552 0.881 0.653 0.513 0.115 1.060 0.039 1.387 0.081 0.125 0.034 1.256-0.297 1.961-0.675 0.65-0.336-0.898 0.648-1.276 1.131-1.141 0.358-0.82 0.373-1.362 0.483-0.503 0.115-0.479 0.086-0.822 0.196-0.356 0.086-0.648 0.572-0.312 0.825 0.201 0.167 0.827-0.066 1.445-0.086 0.275-0.005 1.391-0.518 1.644-0.653 0.633-0.339 1.099-0.81 1.472-1.077 0.518-0.361-0.584 0.991-1.050 1.558zM8.855 9.799c-0.378-0.312-0.569-1.212-0.564-1.217-0.697-0.206-1.136-0.667-1.136-0.653-1.070 0.582-1.099 0.312-1.558 0.653-0.388 0.277-0.366 0.363-0.567 1.045-0.187 0.594 0.471 0.535 1.021 1.561 0.95-0.344 1.463-0.182 1.784-0.142 0.145 0.010 0.12-0.572 1.021-1.247zM5.4 2.911c0.133-0.191 0.196-0.228 0.368-0.454 0.27-0.371-0.081-0.915-0.253-0.849-0.211 0.096-0.346 0.508-0.599 0.653-0.093 0.052-0.4 0.503-0.682 0.82-0.211 0.228-0.363 0.334-0.564 0.599-0.346 0.407-0.412 0.729-0.709 1.161-0.184 0.258-0.317 0.324-0.481 0.621-0.886 1.669-0.631 2.422-1.475 3.6-0.26 0.38-0.552 0.461-0.964 0.682-0.383 2.788 0.883 4.346 0.879 4.336 1.068-0.609 1.639-0.861 2.751-0.825 0.417 0.025 0.636 0.201 1.048 0.174 0.385-0.025 0.582-0.169 0.964-0.285 0.589-0.196 0.91-0.358 1.499-0.54 0.422-0.12 0.672-0.125 1.080-0.285 0.348-0.128 0.182-0.010 0.427-0.282 0.312-0.358 0.238-0.633 0.508-1.217 0.398-0.8 0.353-0.906 0.142-0.991 0.135-0.412 0.174-0.677 0.14-1.107-0.044-0.336 0.101-0.572-0.255-0.82-0.483-0.375-1.499-1.22-1.752-1.222-0.395 0.002-1.526-0.039-2.101 0.339-0.13 0.101-0.167 0.182-0.056-0.11 0.022-0.052 1.433-1.148 1.585-1.163 1.794-0.039 1.193-0.14 1.303-0.088 0.091-0.007 0.955 1.045 1.477 0.682 0.191-0.13 0.287-0.245 0.368-0.452-0.071-0.147-0.388-0.368-0.68-0.537-0.422-0.282-0.464-0.564-0.881-0.655-0.513-0.125-1.065-0.049-1.387-0.11-0.125-0.015-1.256 0.317-1.956 0.68-0.66 0.351 0.893-0.631 1.276-1.136 1.136-0.339 0.81-0.353 1.36-0.479 0.501-0.101 0.476-0.071 0.82-0.172 0.351-0.096 0.648-0.577 0.312-0.849-0.206-0.152-0.827 0.081-1.44 0.086-0.28 0.020-1.396 0.533-1.649 0.677-0.633 0.329-1.099 0.8-1.472 1.048-0.523 0.38 0.584-0.967 1.050-1.529z" <="" path=""></path></svg>
           </div>
-          Activer La LSF
+          <span class="btn__text-inner">Activer La LSF</span>
         </div>
       </div>
-      <div class="menu-row menu__btn" id="audioDesc">
+      <div class="menu-row menu__btn menu__audioDesc-btn" data-mode="enabled">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left" >
             <svg viewBox="0 0 30 20"><line x1="0" y1="0" x2="200" y2="200"></line><path d="M 18.02,15.96 C 20.08,15.51 21.67,13.84 22.12,11.64 22.32,10.67 22.32,9.43 22.12,8.63 21.59,6.55 19.66,4.65 17.68,4.28 17.36,4.22 16.15,4.14 14.99,4.11 14.99,4.11 12.87,4.05 12.87,4.05 12.87,4.05 12.87,10.08 12.87,10.08 12.87,10.08 12.87,16.12 12.87,16.12 12.87,16.12 15.09,16.12 15.09,16.12 16.61,16.12 17.53,16.07 18.02,15.96 18.02,15.96 18.02,15.96 18.02,15.96 Z M 15.88,13.02 C 15.88,13.02 15.59,12.98 15.59,12.98 15.59,12.98 15.59,10.13 15.59,10.13 15.59,10.13 15.59,7.28 15.59,7.28 15.59,7.28 16.38,7.28 16.38,7.28 17.31,7.28 17.72,7.43 18.16,7.95 18.66,8.53 18.86,9.29 18.81,10.35 18.75,11.47 18.37,12.25 17.67,12.69 17.21,12.97 16.45,13.11 15.88,13.02 Z M 4.71,15.31 C 4.71,15.31 5.16,14.61 5.16,14.61 5.16,14.61 7.24,14.61 7.24,14.61 7.24,14.61 9.32,14.61 9.32,14.61 9.32,14.61 9.32,15.31 9.32,15.31 9.32,15.31 9.32,16.01 9.32,16.01 9.32,16.01 10.68,16.01 10.68,16.01 10.68,16.01 12.04,16.01 12.04,16.01 12.04,16.01 12.04,10.14 12.04,10.14 12.04,6.90 12.05,4.22 12.06,4.18 12.08,4.13 11.31,4.09 10.36,4.07 10.36,4.07 8.64,4.04 8.64,4.04 8.64,4.04 4.81,9.57 4.81,9.57 2.70,12.61 0.82,15.30 0.64,15.55 0.64,15.55 0.32,16.01 0.32,16.01 0.32,16.01 2.28,16.01 2.28,16.01 2.28,16.01 4.25,16.00 4.25,16.00 4.25,16.00 4.71,15.31 4.71,15.31 Z M 6.57,12.55 C 6.57,12.49 7.69,10.75 8.43,9.66 8.43,9.66 8.86,9.02 8.86,9.02 8.86,9.02 8.86,10.81 8.86,10.81 8.86,10.81 8.86,12.61 8.86,12.61 8.86,12.61 7.71,12.61 7.71,12.61 7.08,12.61 6.57,12.59 6.57,12.55 6.57,12.55 6.57,12.55 6.57,12.55 Z M 22.78,15.90 C 24.45,13.36 24.68,9.55 23.33,6.77 23.12,6.34 22.81,5.81 22.64,5.58 22.37,5.23 22.26,5.17 21.92,5.17 21.92,5.17 21.51,5.17 21.51,5.17 21.51,5.17 21.88,5.67 21.88,5.67 22.95,7.12 23.46,9.10 23.36,11.35 23.27,13.17 22.83,14.57 21.91,15.98 21.69,16.32 21.51,16.63 21.51,16.66 21.51,16.69 21.68,16.71 21.89,16.69 22.24,16.66 22.33,16.58 22.78,15.90 22.78,15.90 22.78,15.90 22.78,15.90 Z M 25.21,16.18 C 25.70,15.49 26.34,14.05 26.59,13.10 26.87,11.99 26.84,9.52 26.54,8.39 26.31,7.49 25.78,6.34 25.28,5.63 24.99,5.22 24.91,5.17 24.54,5.17 24.54,5.17 24.12,5.17 24.12,5.17 24.12,5.17 24.48,5.66 24.48,5.66 24.96,6.31 25.41,7.30 25.70,8.35 26.05,9.58 26.05,12.05 25.71,13.28 25.41,14.36 25.07,15.15 24.55,15.94 24.31,16.30 24.12,16.62 24.12,16.65 24.12,16.68 24.28,16.71 24.47,16.71 24.78,16.71 24.88,16.63 25.21,16.18 25.21,16.18 25.21,16.18 25.21,16.18 Z M 27.46,16.30 C 28.28,15.27 28.92,13.54 29.13,11.76 29.37,9.73 28.77,7.26 27.66,5.65 27.36,5.23 27.27,5.17 26.93,5.17 26.93,5.17 26.53,5.17 26.53,5.17 26.53,5.17 27.04,6.01 27.04,6.01 28.40,8.23 28.72,11.22 27.87,13.84 27.56,14.81 26.90,16.11 26.58,16.38 26.32,16.60 26.39,16.71 26.77,16.71 27.06,16.71 27.20,16.63 27.46,16.30 27.46,16.30 27.46,16.30 27.46,16.30 Z" <="" path=""></path></svg>
           </div>
-          Activer L'audiodescription
+          <span class="btn__text-inner"> Activer L'audiodescription</span>
         </div>
       </div>
-      <div class="menu-row menu__btn">
+      <div class="menu-row menu__btn menu__transcript-btn" data-mode="enabled">
         <div class="btn__text">
-          <div class="btn__icon btn__icon-left" >
+          <div class="btn__icon btn__icon-left">
             <svg viewBox="0 0 20 20"><line x1="0" y1="0" x2="200" y2="200"></line><path d="M 3.7966102,16.598445 V 2.1312475 q 0,-0.3613356 0.2486359,-0.6149187 0.2486359,-0.253583 0.6029223,-0.253583 H 11.741044 V 6.181285 q 0,0.3613356 0.248636,0.6149186 0.248636,0.2535831 0.602922,0.2535831 h 4.822584 v 9.5486583 q 0,0.361335 -0.248636,0.614918 -0.248636,0.253584 -0.602922,0.252773 H 4.6481684 q -0.3542864,0 -0.6029223,-0.253583 Q 3.7966102,16.95897 3.7966102,16.597635 Z m 3.404644,-2.893116 q 0,0.126387 0.079436,0.208214 0.079436,0.08183 0.2041516,0.08102 H 13.72616 q 0.12392,0 0.204151,-0.08102 0.08023,-0.08102 0.07944,-0.208214 v -0.578461 q 0,-0.126386 -0.07944,-0.208213 -0.07944,-0.08183 -0.204151,-0.08102 H 7.4848422 q -0.1239208,0 -0.2041516,0.08102 -0.080231,0.08102 -0.079436,0.208213 z m 0,-2.314654 q 0,0.126387 0.079436,0.208214 0.079436,0.08183 0.2041516,0.08102 H 13.72616 q 0.12392,0 0.204151,-0.08102 0.08023,-0.08102 0.07944,-0.208214 v -0.578461 q 0,-0.126387 -0.07944,-0.208214 -0.07944,-0.08183 -0.204151,-0.08102 H 7.4848422 q -0.1239208,0 -0.2041516,0.08102 -0.080231,0.08102 -0.079436,0.208214 z m 0,-2.3154645 q 0,0.1263864 0.079436,0.2082135 0.079436,0.081827 0.2041516,0.081017 H 13.72616 q 0.12392,0 0.204151,-0.081017 0.08023,-0.081017 0.07944,-0.2082135 V 8.4967494 q 0,-0.1263864 -0.07944,-0.2082135 -0.07944,-0.081827 -0.204151,-0.081017 H 7.4848422 q -0.1239208,0 -0.2041516,0.081017 -0.080231,0.081017 -0.079436,0.2082135 z M 12.875396,5.8928646 v -4.267973 q 0.195413,0.1263864 0.319334,0.253583 l 3.617534,3.689512 q 0.123921,0.1263865 0.248636,0.3256882 h -4.18471 z" <="" path=""></path></svg>
           </div>
-          Activer La Transcription
+          <span class="btn__text-inner"> Activer La Transcription</span>
         </div>
       </div>
-      <div class="menu-row menu__btn">
+      <div class="menu-row menu__btn menu__contrast-btn normal" data-contrast="normal">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left" >
-            <i class="fa-solid fa-circle-half-stroke"></i>
+            <i class="fa-solid fa-circle-half-stroke contrast-icon"></i>
           </div>
-          Vidéo Normale
+          <span class="btn__text-inner">Vidéo Normale</span>
         </div>
       </div>
-      <div class="menu-row menu__btn">
+      <div class="menu-row menu__btn" data-class="sonores-menu-show">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left" >
             <i class="fa-solid fa-ear-listen"></i>
           </div>
-          Perception Sonore
+          <span class="btn__text-inner">Perception Sonore</span>
+          <div class="btn__icon btn__icon-right">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
       <div class="menu-row menu__btn" data-class="font-menu-show">
@@ -588,6 +599,9 @@
             <i class="fa-solid fa-sliders"></i>
           </div>
           Réglages
+          <div class="btn__icon btn__icon-right">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
     </section>
@@ -602,7 +616,7 @@
           Menu
         </div>
       </div>
-      <div class="menu-row menu__btn profil" data-profile="Vision+">
+      <div class="menu-row menu__btn profile" data-profile="Vision+">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left">
             <svg
@@ -687,7 +701,7 @@
           Vision +
         </div>
       </div>
-      <div class="menu-row menu__btn profil" data-profile="Sans Vision+">
+      <div class="menu-row menu__btn profile" data-profile="Sans Vision+">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left">
             <svg
@@ -786,7 +800,7 @@
           Sans Vision +
         </div>
       </div>
-      <div class="menu-row menu__btn profil" data-profile="Audition +">
+      <div class="menu-row menu__btn profile" data-profile="Audition +">
 
         <div class="btn__text">
           <div class="btn__icon btn__icon-left">
@@ -854,7 +868,7 @@
           Audition +
         </div>
       </div>
-      <div class="menu-row menu__btn profil" data-profile="LSF +">
+      <div class="menu-row menu__btn profile" data-profile="LSF +">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left">
             <svg
@@ -923,7 +937,7 @@
           LSF
         </div>
       </div>
-      <div class="menu-row menu__btn profil" data-profile="Concentration +">
+      <div class="menu-row menu__btn profile" data-profile="Concentration +">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left">
             <svg
@@ -994,7 +1008,7 @@
           Concentration +
         </div>
       </div>
-      <div class="menu-row menu__btn profil" data-profile="Standard">
+      <div class="menu-row menu__btn profile" data-profile="Standard">
         <div class="btn__text">
           <div class="btn__icon btn__icon-left">
             <svg
@@ -1067,361 +1081,627 @@
       </div>
     </section>
 
+    <section class="menu sonores-menu">
+      <div class="menu-row menu__btn menu__btn-remove" data-class="sonores-menu-show">
+        <div class="btn__text">
+          <div class="btn__icon btn__icon-left">
+            <!--            <i class="fa-solid fa-left-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM288 360c0 9.531-5.656 18.19-14.41 22C270.5 383.3 267.3 384 264 384c-5.938 0-11.81-2.219-16.34-6.406l-112-104C130.8 269 128 262.7 128 256s2.781-13.03 7.656-17.59l112-104c7.031-6.469 17.22-8.156 25.94-4.406C282.3 133.8 288 142.5 288 152V360z"/></svg>
+          </div>
+          Paramètres
+        </div>
+      </div>
+      <div class="menu-row">
+        <div class="menu__btn"  data-type="grave" data-increment="-10">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-closed-captioning"></i>-->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM168 232C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H168z"/></svg>
+            </div>
+            <span class="btn__toggle-text">Grave</span>
+          </div>
+        </div>
+        <div class="menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-closed-captioning"></i>-->
+              <!--              <i class="fa-regular fa-circle-plus"></i>-->
+            </div>
+            <span class="btn__text-inner">100</span>%
+          </div>
+        </div>
+        <div class="menu__btn" data-type="grave" data-increment="+10">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-closed-captioning"></i>-->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/></svg>
+            </div>
+            <span class="btn__grave-text">Grave</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-row">
+        <div class="menu__btn" data-type="aigu" data-increment="-10">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-closed-captioning"></i>-->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM168 232C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H168z"/></svg>
+            </div>
+            <span class="btn__toggle-text">Aigu</span>
+          </div>
+        </div>
+        <div class="menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-closed-captioning"></i>-->
+<!--              <i class="fa-regular fa-circle-plus"></i>-->
+            </div>
+            <span class="btn__text-inner">100</span>%
+          </div>
+        </div>
+        <div class="menu__btn" data-type="aigu" data-increment="+10">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+<!--              <i class="fa-solid fa-closed-captioning"></i>-->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/></svg>
+            </div>
+            <span class="btn__toggle-text">Aigu</span>
+          </div>
+        </div>
+      </div>
+      <div class="menu-row menu__btn" data-type="default">
+        <div class="btn__text">
+          <div class="btn__icon btn__icon-left">
+<!--            <i class="fa-solid fa-closed-captioning"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M480 256c0 123.4-100.5 223.9-223.9 223.9c-48.86 0-95.19-15.58-134.2-44.86c-14.14-10.59-17-30.66-6.391-44.81c10.61-14.09 30.69-16.97 44.8-6.375c27.84 20.91 61 31.94 95.89 31.94C344.3 415.8 416 344.1 416 256s-71.67-159.8-159.8-159.8C205.9 96.22 158.6 120.3 128.6 160H192c17.67 0 32 14.31 32 32S209.7 224 192 224H48c-17.67 0-32-14.31-32-32V48c0-17.69 14.33-32 32-32s32 14.31 32 32v70.23C122.1 64.58 186.1 32.11 256.1 32.11C379.5 32.11 480 132.6 480 256z"/></svg>
+          </div>
+          <span class="btn__toggle-text">Réglages par défaut</span>
+        </div>
+      </div>
+    </section>
+
     <section class="menu font-menu">
-      <div class="menu-btn font-menu-btn " data-class="font-menu-show">
-        <div class="menu-btn-icon font-menu-btn-icon" data-class="font-menu-show">
-<!--          <i class="fa-solid fa-arrow-left-long"></i>-->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM288 360c0 9.531-5.656 18.19-14.41 22C270.5 383.3 267.3 384 264 384c-5.938 0-11.81-2.219-16.34-6.406l-112-104C130.8 269 128 262.7 128 256s2.781-13.03 7.656-17.59l112-104c7.031-6.469 17.22-8.156 25.94-4.406C282.3 133.8 288 142.5 288 152V360z"/></svg>
-        </div>
-        <div class="menu-btn-text font-menu-btn-text">Réglages</div>
-      </div>
-      <div class="menu-btn menu-btn-show font-menu-btn " data-class="text-color-menu-show">
-        <div class="menu-btn-text font-menu-btn-text">Couleur du texte</div>
-        <div class="menu-btn-icon font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
+      <div class="menu-row menu__btn menu__btn-remove" data-class="font-menu-show">
+        <div class="btn__text">
+          <div class="btn__icon btn__icon-left">
+            <!--          <i class="fa-solid fa-arrow-left-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM288 360c0 9.531-5.656 18.19-14.41 22C270.5 383.3 267.3 384 264 384c-5.938 0-11.81-2.219-16.34-6.406l-112-104C130.8 269 128 262.7 128 256s2.781-13.03 7.656-17.59l112-104c7.031-6.469 17.22-8.156 25.94-4.406C282.3 133.8 288 142.5 288 152V360z"/></svg>
+          </div>
+          Réglages
         </div>
       </div>
-      <div class="menu-btn font-menu-btn menu-btn-show" data-class="background-menu-show">
-        <div class="menu-btn-text font-menu-btn-text">Couleur de l'arrière plan</div>
-        <div class="menu-btn-icon font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
+      <div class="menu-row menu__btn" data-class="text-color-menu-show">
+        <div class="btn__text font-menu-btn-text">
+          Couleur du texte
+          <div class="btn__icon-right font-menu-btn-icon" >
+<!--            <i class="fa-solid fa-arrow-right-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
-      <div class="menu-btn menu-btn-show font-menu-btn " data-class="text-follow-menu-show">
-        <div class="menu-btn-text font-menu-btn-text">Couleur de suivi du texte</div>
-        <div class="menu-btn-icon font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
+      <div class="menu-row menu__btn" data-class="background-menu-show">
+        <div class="btn__text">
+          Couleur de l'arrière plan
+          <div class="btn__icon-right font-menu-btn-icon" >
+            <!--            <i class="fa-solid fa-arrow-right-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
-      <div class="menu-btn font-menu-btn menu-btn-show" data-class="text-size-menu-show">
-        <div class="menu-btn-text font-menu-btn-text">Taille du texte</div>
-        <div class="menu-btn-icon font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
+      <div class="menu-row menu__btn" data-class="text-follow-menu-show">
+        <div class="btn__text">
+          Couleur de suivi du texte
+          <div class="btn__icon-right font-menu-btn-icon" >
+            <!--            <i class="fa-solid fa-arrow-right-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
-      <div class="menu-btn font-menu-btn menu-btn-show menu-btn-show" data-class="text-outline-menu-show">
-        <div class="menu-btn-text font-menu-btn-text">Contour du texte</div>
-        <div class="menu-btn-icon font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
+      <div class="menu-row menu__btn" data-class="text-size-menu-show">
+        <div class="btn__text">
+          Taille du texte
+          <div class="btn__icon-right font-menu-btn-icon" >
+            <!--            <i class="fa-solid fa-arrow-right-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
-      <div class="menu-btn font-menu-btn menu-btn-show" data-class="text-family-menu-show">
-        <div class="menu-btn-text font-menu-btn-text">Style de police</div>
-        <div class="menu-btn-icon font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
+      <div class="menu-row menu__btn" data-class="text-outline-menu-show">
+        <div class="btn__text">
+          Contour du texte
+          <div class="btn__icon-right font-menu-btn-icon" >
+            <!--            <i class="fa-solid fa-arrow-right-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
-      <div class="menu-btn font-menu-btn menu-btn-show">
-        <div class="menu-btn-text font-menu-btn-text">Paramètres du menu</div>
-        <div class="menu-btn-icon font-menu-btn-icon" >
-          <i class="fa-solid fa-arrow-right-long"></i>
+      <div class="menu-row menu__btn" data-class="text-family-menu-show">
+        <div class="btn__text">
+          Style de police
+          <div class="btn__icon-right font-menu-btn-icon" >
+            <!--            <i class="fa-solid fa-arrow-right-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="menu-row menu__btn"  data-class="params-menu-show">
+        <div class="btn__text">
+          Paramètres du menu
+          <div class="btn__icon-right font-menu-btn-icon" >
+            <!--            <i class="fa-solid fa-arrow-right-long"></i>-->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M384 32H64C28.65 32 0 60.65 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.65 419.3 32 384 32zM312.3 273.6l-112 104C195.8 381.8 189.9 384 184 384c-3.25 0-6.5-.6562-9.594-2C165.7 378.2 160 369.5 160 360v-208c0-9.531 5.656-18.19 14.41-22c8.75-3.75 18.94-2.062 25.94 4.406l112 104C317.2 242.1 320 249.3 320 256S317.2 269 312.3 273.6z"/></svg>
+          </div>
         </div>
       </div>
 
       <section class="menu text-color-menu">
-        <div class="menu-btn text-color-menu-btn menu-btn-remove" data-class="text-color-menu-show">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-arrow-left-long"></i>
+        <div class="menu-row menu__btn menu__btn-remove" data-class="text-color-menu-show">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+<!--              <i class="fa-solid fa-arrow-left-long"></i>-->
+              <i class="fa-solid fa-square-caret-left"></i>
+            </div>
+            Couleur du texte
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Couleur du texte</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:white;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:white;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:white;"> Blanc</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Blanc</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:black;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:black;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:black;">Noir</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Noir</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:red;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:red;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:red;">Rouge</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Rouge</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:green;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:green;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:green;">Vert</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Vert</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:blue;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:blue;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:blue;">Bleue</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Bleu</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:yellow;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:yellow;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:yellow;">Jaune</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Jaune</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:magenta;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:magenta;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:magenta;">Magenta</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Magenta</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:cyan;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:cyan;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:cyan;">Cyan</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Cyan</div>
         </div>
       </section>
       <section class="menu background-menu">
-        <div class="menu-btn background-menu-btn menu-btn-remove" data-class="background-menu-show">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-arrow-left-long"></i>
+        <div class="menu-row menu__btn menu__btn-remove" data-class="background-menu-show">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-arrow-left-long"></i>-->
+              <i class="fa-solid fa-square-caret-left"></i>
+            </div>
+            Couleur de l'arrière plan
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Couleur de l'arrière plan</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:white;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:white; color: white"></i>
+            </div>
+            <span class="btn__text-inner" style="color:white;"> Blanc</span>
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Blanc</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:black;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:black; color: black"></i>
+            </div>
+            <span class="btn__text-inner" style="color:black;">Noir</span>
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Noir</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:red;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:red; color: red"></i>
+            </div>
+            <span class="btn__text-inner" style="color:red;">Rouge</span>
           </div>
-          <div class="menu-btn-text background-menu-text">Rouge</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:green;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:green;color: green"></i>
+            </div>
+            <span class="btn__text-inner" style="color:green;">Vert</span>
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Vert</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:blue;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:blue;color: blue"></i>
+            </div>
+            <span class="btn__text-inner" style="color:blue;">Bleue</span>
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Bleu</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:yellow;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:yellow;color: yellow"></i>
+            </div>
+            <span class="btn__text-inner" style="color:yellow;">Jaune</span>
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Jaune</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:magenta;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:magenta;color: magenta"></i>
+            </div>
+            <span class="btn__text-inner" style="color:magenta;">Magenta</span>
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Magenta</div>
         </div>
-        <div class="menu-btn background-menu-btn">
-          <div class="menu-btn-icon background-menu-btn-icon">
-            <i class="fa-solid fa-square" style="color:cyan;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="background-color:cyan; color: cyan"></i>
+            </div>
+            <span class="btn__text-inner" style="color:cyan;">Cyan</span>
           </div>
-          <div class="menu-btn-text background-menu-btn-text">Cyan</div>
         </div>
       </section>
+
       <section class="menu text-follow-menu">
-        <div class="menu-btn text-color-menu-btn menu-btn-remove" data-class="text-follow-menu-show">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-arrow-left-long"></i>
+        <div class="menu-row menu__btn menu__btn-remove" data-class="text-follow-menu-show">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-arrow-left-long"></i>-->
+              <i class="fa-solid fa-square-caret-left"></i>
+            </div>
+            Couleur de suivi du texte
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Couleur de suivi du texte</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:white;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:white;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:white;"> Blanc</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Blanc</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:black;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:black;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:black;">Noir</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Noir</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:red;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:red;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:red;">Rouge</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Rouge</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:green;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:green;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:green;">Vert</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Vert</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:blue;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:blue;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:blue;">Bleue</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Bleu</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:yellow;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:yellow;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:yellow;">Jaune</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Jaune</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:magenta;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:magenta;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:magenta;">Magenta</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Magenta</div>
         </div>
-        <div class="menu-btn text-color-menu-btn">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-font" style="color:cyan;"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-font" style="color:cyan;"></i>
+            </div>
+            <span class="btn__text-inner" style="color:cyan;">Cyan</span>
           </div>
-          <div class="menu-btn-text text-color-menu-btn-text">Cyan</div>
         </div>
       </section>
       <section class="menu text-size-menu">
-        <div class="menu-btn text-size-menu-btn menu-btn-remove" data-class="text-size-menu-show">
-          <div class="menu-btn-icon text-color-menu-btn-icon">
-            <i class="fa-solid fa-arrow-left-long"></i>
+        <div class="menu-row menu__btn menu__btn-remove" data-class="text-size-menu-show">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-arrow-left-long"></i>-->
+              <i class="fa-solid fa-square-caret-left"></i>
+            </div>
+            Taille du texte
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">Taille du texte</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            50%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">50%</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            75%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">75%</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            100%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">100%</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            125%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">125%</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            150%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">150%</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            200%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">175%</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            300%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">200%</div>
         </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            400%
           </div>
-          <div class="menu-btn-text text-size-menu-btn-text">300%</div>
-        </div>
-        <div class="menu-btn text-size-menu-btn">
-          <div class="menu-btn-icon text-size-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
-          </div>
-          <div class="menu-btn-text text-size-menu-btn-text">400%</div>
         </div>
       </section>
       <section class="menu text-outline-menu">
-        <div class="menu-btn text-outline-menu-btn menu-btn-remove" data-class="text-outline-menu-show">
-          <div class="menu-btn-icon text-outline-menu-btn-icon">
-            <i class="fa-solid fa-arrow-left-long"></i>
+        <div class="menu-row menu__btn menu__btn-remove" data-class="text-outline-menu-show">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-arrow-left-long"></i>-->
+              <i class="fa-solid fa-square-caret-left"></i>
+            </div>
+            Contour du texte
           </div>
-          <div class="menu-btn-text text-outline-menu-btn-text">Contour du texte</div>
         </div>
-        <div class="menu-btn text-outline-menu-btn">
-          <div class="menu-btn-icon text-outline-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Aucun
           </div>
-          <div class="menu-btn-text text-outline-menu-btn-text">Aucun</div>
         </div>
-        <div class="menu-btn text-outline-menu-btn">
-          <div class="menu-btn-icon text-outline-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Elevé
           </div>
-          <div class="menu-btn-text text-outline-menu-btn-text">Elevé</div>
         </div>
-        <div class="menu-btn text-outline-menu-btn">
-          <div class="menu-btn-icon text-outline-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Enfoncé
           </div>
-          <div class="menu-btn-text text-outline-menu-btn-text">Enfoncé</div>
         </div>
-        <div class="menu-btn text-outline-menu-btn">
-          <div class="menu-btn-icon text-outline-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Uniforme
           </div>
-          <div class="menu-btn-text text-outline-menu-btn-text">Uniforme</div>
         </div>
-        <div class="menu-btn text-outline-menu-btn">
-          <div class="menu-btn-icon text-outline-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Ombre portée
           </div>
-          <div class="menu-btn-text text-outline-menu-btn-text">Ombre portée</div>
         </div>
       </section>
       <section class="menu text-family-menu">
-        <div class="menu-btn text-family-menu-btn menu-btn-remove" data-class="text-family-menu-show">
-          <div class="menu-btn-icon text-style-menu-btn-icon">
-            <i class="fa-solid fa-arrow-left-long"></i>
+        <div class="menu-row menu__btn menu__btn-remove" data-class="text-family-menu-show">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-arrow-left-long"></i>-->
+              <i class="fa-solid fa-square-caret-left"></i>
+            </div>
+            Style de police
           </div>
-          <div class="menu-btn-text text-style-menu-btn-text">Style du texte</div>
         </div>
-        <div class="menu-btn text-style-menu-btn">
-          <div class="menu-btn-icon text-style-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Helvetica Neue
           </div>
-          <div class="menu-btn-text text-style-menu-btn-text">Helvetica Neue</div>
         </div>
-        <div class="menu-btn text-style-menu-btn">
-          <div class="menu-btn-icon text-style-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Consola
           </div>
-          <div class="menu-btn-text text-style-menu-btn-text">Consola</div>
         </div>
-        <div class="menu-btn text-style-menu-btn">
-          <div class="menu-btn-icon text-style-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Accessible Dfa
           </div>
-          <div class="menu-btn-text text-style-menu-btn-text">Accessible DFA</div>
         </div>
-        <div class="menu-btn text-style-menu-btn">
-          <div class="menu-btn-icon text-style-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Comic Sans MS
           </div>
-          <div class="menu-btn-text text-style-menu-btn-text">Comis Sans MS</div>
         </div>
-        <div class="menu-btn text-style-menu-btn">
-          <div class="menu-btn-icon text-style-menu-btn-icon">
-            <i class="fa-solid fa-text-size"></i>
+        <div class="menu-row menu__btn">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Arial
           </div>
-          <div class="menu-btn-text text-style-menu-btn-text">Arial</div>
+        </div>
+      </section>
+      <section class="menu params-menu">
+        <div class="menu-row menu__btn menu__btn-remove" data-class="params-menu-show">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <!--              <i class="fa-solid fa-arrow-left-long"></i>-->
+              <i class="fa-solid fa-square-caret-left"></i>
+            </div>
+            Paramètres du menu
+          </div>
+        </div>
+        <div class="menu-row menu__btn param"  style="color:#000000; background-color: #FFFFFF">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Texte noir sur fond blanc
+          </div>
+        </div>
+        <div class="menu-row menu__btn param"  style="color: #FFFFFF; background-color: #000000">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Texte blanc sur fond noir
+          </div>
+        </div>
+        <div class="menu-row menu__btn param" style="color:#0000FF; background-color: #FFFF00">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Texte bleu sur fond jaune
+          </div>
+        </div>
+        <div class="menu-row menu__btn param" style="color: #FFFF00; background-color: #0000FF">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Texte jaune sur fond bleu
+          </div>
+        </div>
+        <div class="menu-row menu__btn param" style="color: #0000FF; background-color: #ffffff">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Texte bleu sur fond blanc
+          </div>
+        </div>
+        <div class="menu-row menu__btn param" style="color: #ffffff; background-color: #0000FF">
+          <div class="btn__text">
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Texte blanc sur fond bleu
+          </div>
+        </div>
+        <div class="menu-row menu__btn param" style="color: #000000; background-color: #eeeeee">
+          <div class="btn__text" >
+            <div class="btn__icon btn__icon-left">
+              <i class="fa-solid fa-text-size"></i>
+            </div>
+            Par Défaut
+          </div>
         </div>
       </section>
     </section>

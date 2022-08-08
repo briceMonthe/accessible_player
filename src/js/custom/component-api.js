@@ -11,11 +11,11 @@ const updateAudioDescriptionComponent = ( El = $("#audioDesc") ) => {
 }
 
 
-const updateContrastComponent = ( El = $("#contrast-btn" ) ) => {
+const updateContrastComponent = ( El = $(".access-menu .menu__contrast-btn" ) ) => {
   if( $("#video_access").is( ".vision-plus--default" ) ){
-    setTextContentFromEL( El.find(".btn__text-inner").eq(0), "Vidéo Contrastée" );
+    setTextContentFromEL( El.find(".btn__text-inner"), "Vidéo Contrastée" );
   }else{
-    setTextContentFromEL( El.find(".btn__text-inner").eq(0), "Vidéo normale" );
+    setTextContentFromEL( El.find(".btn__text-inner"), "Vidéo normale" );
   }
 }
 

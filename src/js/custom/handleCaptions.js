@@ -9,6 +9,7 @@ import {
 import {findEl} from "./operationsClassEl.js";
 import {getLatestTrackFromCookie, updateProfileFromCookie} from "./third-party-api.js";
 import {videoSize} from "./handleVideoSize.js";
+import {accessMenu} from "./handleAccessMenu.js";
 
 
 const captionsVideo = {
@@ -109,13 +110,18 @@ const captionsVideo = {
 
     textTrackList.forEach( (item , index) => {
       $( item.on( "click" , function(e){
-        index === 1 ? container.removeClass("captions--active") : container.addClass("captions--active")
-        instance.setSelectedTrack( index, item );
+        instance.openCaption( index, item );
+        accessMenu.updateCaptionsMenuStyle( item.track.language );
       }))
     })
 
-
+  },
+  openCaption : function( index, trackItem ){
+    let { container } = this.videoSizeObject.components;;
+    index === 1 ? container.removeClass("captions--active") : container.addClass("captions--active")
+    this.setSelectedTrack( index, trackItem );
   }
+
 
 }
 

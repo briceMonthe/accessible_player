@@ -34,6 +34,7 @@ const start = async function( ){
     accessMenu.getInstance( accessPlayer );
   });
   console.log( accessPlayer );
+  console.log( accessPlayer.tech('ProgressControl') );
 
 
 }

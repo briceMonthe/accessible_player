@@ -66,12 +66,13 @@ let profileMenu = {
     this.changePreviousProfile( this.selectedProfile );
     this.selectedProfile = newProfile;
 
-    console.log( this.previousProfile, this.selectedProfile );
     resetPreviousProfile( this );
     selectProfile( this );
+    let { profileMenuEl } = this.components;
+    this.updateProfileMenuStyle( profileMenuEl, newProfile );
 
     updateProfileFromCookie( "profile" , newProfile );
-    updateAccessMenuProfileComponent( $("#profiles") , "vjs-selected", this.selectedProfile);
+    //updateAccessMenuProfileComponent( $("#profiles") , "vjs-selected", this.selectedProfile);
   },
   displayMenu : function ( state ) {
     this.isDisplayed = state;
@@ -113,10 +114,13 @@ let profileMenu = {
     let { profileMenuEl, profileMenuBtnEl, tooltipEl, profileMenuContainerEl } = instance.components;
 
     $( profileMenuContainerEl ).on("pointerenter click pointerleave", function(e) {
+
       switch ( e.type ) {
         case "click":
           toggleClassToEl( tooltipEl, "vjs-tooltip-hide");
           toggleClassToEl( this, "vjs-menu-button-popup-hide" );
+          //profileMenuEl.trigger("click");
+          //toggleClassToEl( profileMenuEl, "vjs-menu-block");
           break;
         case "pointerleave":
           addClassToEl( this, "vjs-menu-button-popup-hide" )
@@ -133,16 +137,20 @@ let profileMenu = {
       switch (e.type) {
         case "click":
           addClassToEl( this, "vjs-menu-block");
-          instance.displayMenu( true );
+          //instance.displayMenu( true );
           break;
       }
     });
 
-    $(".vjs-menu-content").on("pointerleave", function(e){
+    $(".vjs-menu-content").on("pointerleave click", function(e){
+
       switch (e.type) {
         case "pointerleave":
           removeClassToEl( $(this).parent(), "vjs-menu-block");
-          instance.displayMenu( false );
+          //instance.displayMenu( false );
+          break;
+        case "click":
+          console.log("none")
           break;
       }
     });
@@ -150,7 +158,7 @@ let profileMenu = {
     $("#player-profile-container li.vjs-menu-item").on("click", function(e){
       switch (e.type) {
         case "click":
-          instance.updateProfileMenuStyle( $(this).parent(), $(this) );
+          //instance.updateProfileMenuStyle( $(this).parent(), $(this).data("profile") );
           instance.changeProfile( $(this).data("profile"), true  );
           if( instance.isProfileChanged ){
             accessMenu.updateProfile( instance.selectedProfile );
@@ -166,7 +174,12 @@ let profileMenu = {
         profileMenuBtnEl.attr("title", "");
         instance.setToolTipText( profileMenuBtnEl.controlText_ || $(profileMenuBtnEl).data("title") );
         setTextContentFromEL( tooltipEl, instance.toolTipText || $(profileMenuBtnEl).data("title") );
-      }, 2)
+      }, 2);
+
+      switch (e.type) {
+        case "click":
+          break;
+      }
     })
   },
 }
@@ -203,19 +216,19 @@ const selectProfile = ( { profiles, videoSizeObject, transcriptVideo,  previousP
       selectVisionPlusProfile( videoSizeObject );
       break;
     case noVisionPlus :
-      selectNoVisionPlusProfile( accessMenuObject );
+      selectNoVisionPlusProfile("enabled" );
       break;
     case auditionPlus :
       selectAuditionPlusProfile(accessMenuObject);
       break;
     case lsfPlus :
-      selectLSFPlusProfile( videoSizeObject, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "show",   "profile-container--hide" );
+      selectLSFPlusProfile("enabled",  videoSizeObject, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "show",   "profile-container--hide" );
       break;
     case concentrationPlus :
-      selectConcentrationPlusProfile( videoSizeObject, transcriptVideo, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer, "show", "profile-container--hide" );
+      selectConcentrationPlusProfile("enabled", videoSizeObject, transcriptVideo, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer, "show", "profile-container--hide" );
       break;
     case standard :
-      selectStandardProfile( selectedProfile, standard, accessMenuObject, "access-menu--hide" );
+      selectStandardProfile( selectedProfile );
       break;
     default:
       console.log("Autre esseai");
@@ -231,34 +244,32 @@ const resetPreviousProfile = ( { profiles, videoSizeObject,transcriptVideo,  pre
       selectVisionPlusProfile( videoSizeObject );
       break;
     case noVisionPlus :
-      selectNoVisionPlusProfile( accessMenuObject );
+      selectNoVisionPlusProfile( "disabled" );
       break;
     case auditionPlus:
       selectAuditionPlusProfile( accessMenuObject );
       break;
     case lsfPlus :
-      selectLSFPlusProfile( videoSizeObject,playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "hide",   "profile-container--hide" );
+      selectLSFPlusProfile( "disabled", videoSizeObject,playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "hide",   "profile-container--hide" );
       break;
     case concentrationPlus :
-      selectConcentrationPlusProfile( videoSizeObject, transcriptVideo, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "hide",   "profile-container--hide" );
+      selectConcentrationPlusProfile("disabled",  videoSizeObject, transcriptVideo, playPauseObject.components.bigPlayContainerEl,  playPauseObject.components.previousElToBigPlayContainer,  "hide",   "profile-container--hide" );
       break;
     case standard :
-      selectStandardProfile(selectedProfile, previousProfile, accessMenuObject, "access-menu--hide" );
+      selectStandardProfile( selectedProfile );
       break;
   }
 };
 
 
 const selectVisionPlusProfile = ( videoSizeObject  ) => {
+  accessMenu.updateContrast( videoSizeObject.isVideoContrast ? "contrast" : "normal" );
   videoSizeObject.contrastVideo();
 }
 
 
-const selectNoVisionPlusProfile = ( accessMenuObject ) => {
-  if ( !accessMenuObject )
-    updateAudioDescriptionComponent( );
-  else
-    accessMenuObject.updateAudioDescriptionComponent();
+const selectNoVisionPlusProfile = ( audioDescMode ) => {
+  accessMenu.updateAudioDesc( audioDescMode  );
 }
 
 const selectAuditionPlusProfile = ( accessMenuObject  ) => {
@@ -269,23 +280,29 @@ const selectAuditionPlusProfile = ( accessMenuObject  ) => {
 }
 
 
-const selectLSFPlusProfile = (videoSize, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
+const selectLSFPlusProfile = (lsfMode, videoSize, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
   videoSize.switchToLSFPlusProfile( bigPlayPauseContainerEl, previousElFromBigPlayContainerEl, state, className );
+  accessMenu.updateLSF( lsfMode );
 }
 
 
-const selectConcentrationPlusProfile = (videoSize, transcriptVideo, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
+const selectConcentrationPlusProfile = (transcriptMode, videoSize, transcriptVideo, bigPlayPauseContainerEl,  previousElFromBigPlayContainerEl,  state, className) => {
   videoSize.switchToConcentrationPlusProfile( bigPlayPauseContainerEl, previousElFromBigPlayContainerEl, state, className );
   transcriptVideo.displayWrapperTranscript( "transcript--hide" );
+  accessMenu.updateTranscript( transcriptMode );
 }
 
 
-const selectStandardProfile = ( selectedProfile, standard, accessMenuObject, classNameEl  ) => {
-  if( !accessMenuObject )
-    selectedProfile === standard ? addClassToEl( $(".access-menu"), classNameEl) : removeClassToEl( $(".access-menu"), classNameEl );
+const selectStandardProfile = ( selectedProfile ) => {
+  /*if( !accessMenuObject )
+    selectedProfile === standard ? addClassToEl( $(".access-menu"), classNameEl) : removeClassToEl( $(".access-menu"), classNameEl );*/
+
+  accessMenu.displayAccessMenu( selectedProfile );
+
 }
 
 
 export { profileMenu };
 
 
+9

@@ -15,6 +15,7 @@ import {
   toggleClassToEl
 } from "./operationsClassEl.js";
 import {updateContrastComponent} from "./component-api.js";
+import {accessMenu} from "./handleAccessMenu.js";
 
 let videoSize = {
   crrSize : 0,
@@ -87,7 +88,7 @@ let videoSize = {
     }
 
   },
-  contrastVideo : function( ){
+   contrastVideo : function( ){
     let { container, globalContainer } = this.components;
     if(  $( globalContainer ).is(".vision-plus--default") )
       this.setVideoContrast( false )
@@ -95,7 +96,7 @@ let videoSize = {
       this.setVideoContrast( true );
 
     toggleClassToEl( globalContainer , "vision-plus--default");
-    updateContrastComponent();
+    //accessMenu.updateContrast();
   }
 }
 
