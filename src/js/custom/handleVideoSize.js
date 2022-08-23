@@ -15,7 +15,6 @@ import {
   toggleClassToEl
 } from "./operationsClassEl.js";
 import {updateContrastComponent} from "./component-api.js";
-import {accessMenu} from "./handleAccessMenu.js";
 
 let videoSize = {
   crrSize : 0,
