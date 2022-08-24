@@ -18,7 +18,8 @@ import {accessMenu} from "./handleAccessMenu.js";
 
 let translate = {
   "Pause": "Pause",
-  "Play" : "Lecture"
+  "Play" : "Lecture",
+  "Replay" : "Replay"
 };
 
 let playPauseVideo = {
@@ -57,6 +58,7 @@ let playPauseVideo = {
   },
   changeVideoState : function( state ){
     this.isPaused = state;
+    this.setToolTipText();
     updateProfileFromCookie( "isPaused", state );
   },
   videoEnded : function( isEnded ){
@@ -68,19 +70,27 @@ let playPauseVideo = {
       ...components
     };
   },
-  setToolTipText : function( text ){
-    this.toolTipText = translate[text];
+  setToolTipText : function( ){
+    let { tooltipEl , bigPlayBtnEl, playToggleEl } = this.components;
+    setTimeout( () => {
+      this.toolTipText = translate[ playToggleEl.controlText() ];
+      playToggleEl.setAttribute("title", "");
+      bigPlayBtnEl.setAttribute("title", "");
+      setTextContentFromEL( tooltipEl, this.toolTipText );
+    }, .5);
+
   },
   loadPlayPauseVideo : function ( { videoEl, accessPlayer } ){
     let playToggleEl  = accessPlayer.controlBar.playToggle;
     let bigPlayBtnEl = accessPlayer.bigPlayButton;
     let previousElToBigPlayContainer = accessPlayer.loadingSpinner;
     let bigPlayContainerEl = findEl( ".vid-acc", ".big-play-container");
-    console.log( bigPlayContainerEl );
     let tooltipEl = createElement("div", { class: "vjs-tooltip"} );
-    this.setToolTipText( playToggleEl.controlText_ )
+    //this.setToolTipText( playToggleEl.controlText_ )
     addTooltipEl( playToggleEl, tooltipEl );
     addBigPlayContainer( bigPlayContainerEl, bigPlayBtnEl, previousElToBigPlayContainer  );
+    let bigTooltipEl = createElement("div", { class: "vjs-tooltip"} );
+    addTooltipEl( bigPlayBtnEl, tooltipEl );
 
     let components = {
       videoEl,
@@ -89,14 +99,15 @@ let playPauseVideo = {
       bigPlayBtnEl,
       tooltipEl,
       playToggleEl,
+      accessPlayer
     };
     this.setComponents( components );
-    this.setToolTipText( playToggleEl.controlText_ )
+    //this.setToolTipText( playToggleEl.controlText() )
     this.addEventsPlayPauseVideo( this );
 
     let isPaused = getVideoStateFromCookie();
     if( !isPaused && isPaused === false  ){
-      this.playVideo();
+      playToggleEl.handleClick();
     }else{
       this.changeVideoState( true );
     }
@@ -109,7 +120,8 @@ let playPauseVideo = {
       previousElToBigPlayContainer,
       bigPlayBtnEl,
       tooltipEl,
-      playToggleEl, } = instance.components ;
+      playToggleEl,
+      accessPlayer } = instance.components ;
 
     bigPlayBtnEl.off("click", bigPlayBtnEl.handleClick );
 
@@ -145,9 +157,10 @@ let playPauseVideo = {
           removeClassToEl( bigPlayContainerEl,"big-play-container--play" )
           break;
         case "ended":
-          instance.changeVideoState( true );
-          instance.videoEnded( true );
-          toggleClassToEl( bigPlayContainerEl, [ "big-play-container--ended"] );
+          /*instance.changeVideoState( true );
+          instance.videoEnded( true );*/
+          addClassToEl( bigPlayContainerEl, [ "big-play-container--ended"] );
+          instance.changeVideoState( accessPlayer.paused() );
           break;
         case "seeked":
           instance.videoEnded(false );
@@ -157,13 +170,30 @@ let playPauseVideo = {
       }
     })
 
-    $(playToggleEl.el()).on( "pointerenter click" , function(e){
-      setTimeout(function(){
-        playToggleEl.setAttribute("title", "");
-        instance.setToolTipText( playToggleEl.controlText_ );
-        setTextContentFromEL( tooltipEl, instance.toolTipText );
-      }, 2)
-    })
+    $(playToggleEl).on( "click" , function(e){
+      instance.changeVideoState( accessPlayer.paused() )
+    });
+
+    $(playToggleEl).on( "pointerenter" , function(e){
+      instance.setToolTipText( );
+    });
+
+    $( bigPlayBtnEl ).on( "pointerenter" , function(e){
+      instance.setToolTipText( );
+    });
+
+    $( bigPlayBtnEl ).on( "click" , function(e){
+      instance.changeVideoState( accessPlayer.paused() )
+    });
+
+
+    $(window).on("keydown", function(e){
+      e.code === "Enter" || e.code === "Space" ? accessPlayer.handleTechClick_( e ) : null ;
+      /*setTimeout( function(){
+        $("html").prop("scrollTop", 0)
+      }, .5 );*/
+    });
+
   }
 }
 

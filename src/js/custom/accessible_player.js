@@ -1,20 +1,18 @@
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
-import {profileMenu} from "./profileAccess.js";
+import {profileMenu} from "./profileMenu.js";
 import {volumePlayer} from "./handleVolume.js";
 import {captionsVideo} from "./handleCaptions.js";
 import {transcriptVideo} from "./transcriptVideo.js";
-import {videoSize} from "./handleVideoSize.js";
 import {fullscreenPlayer} from "./handleFullscreen.js";
 import {accessMenu} from "./handleAccessMenu.js";
 
-
-let repeat_call = setInterval( function(){
+/*let repeat_call = setInterval( function(){
   if( !!videojs ){
     start();
     clearInterval( repeat_call );
   }
 
-}, 200)
+}, 200)*/
 let accessPlayer ;
 const start = async function( ){
   accessPlayer = videojs("#video_access");
@@ -26,6 +24,9 @@ const start = async function( ){
   // })
   accessPlayer.ready(async function(){
     await transcriptVideo.getInstance( this );
+
+
+    //$('head').append('<link rel="stylesheet" type="text/css" href="src/css/build/video-js-extendss.css">');
     playPauseVideo.getInstance( { accessPlayer , videoEl });
     profileMenu.getInstance( { accessPlayer , videoEl } );
     volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
@@ -34,8 +35,29 @@ const start = async function( ){
     accessMenu.getInstance( accessPlayer );
   });
   console.log( accessPlayer );
-  console.log( accessPlayer.tech('ProgressControl') );
 
 
 }
+
+start();
+
+
+/*
+console.log( $("head"))
+
+const addLink = function(url, rel){
+  let linkCss = document.createElement( "link");
+  linkCss.setAttribute("rel", "stylesheet");
+  linkCss.setAttribute( "src", "src/css/build/video-js-extendss.css");
+  linkCss.setAttribute("type", "text/css");
+  console.log( linkCss );
+  $("head").prepend( $(linkCss) );
+}
+
+window.addEventListener("load", function(){
+  addLink();
+});
+*/
+
+
 

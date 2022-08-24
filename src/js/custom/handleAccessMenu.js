@@ -1,6 +1,6 @@
 import {getDataValue, setAttrEl, appendChildToParent, addClassToEl, findEl, removeClassToEl, setTextContentFromEL, toggleClassToEl} from "./operationsClassEl.js";
 import {videoSize} from "./handleVideoSize.js";
-import {profileMenu} from "./profileAccess.js";
+import {profileMenu} from "./profileMenu.js";
 import {captionsVideo} from "./handleCaptions.js";
 import {volumePlayer} from "./handleVolume.js";
 import {playPauseVideo} from "./handlePlayPauseVideo.js";
@@ -158,9 +158,7 @@ const accessMenu = {
 
     }
 
-    $(document).on("keydown", function(e){
-      e.code === "Enter" || e.code === "Space" ? globalPlayer.handleTechClick_( e ) : null ;
-    });
+
 
 
     fullscreenBtnEl.on("click", function(e){
@@ -363,17 +361,6 @@ const accessMenu = {
     addClassToEl( audioDescBtnEl, [ audioDescMode.mode, audioDescMode.classStyle ] );
     $( audioDescBtnEl ).data( "mode",  audioDescMode.mode );
     setTextContentFromEL( $( audioDescBtnEl ).find(".btn__text-inner"), audioDescMode.textDesc );
-
-    //  console.log( audioDescMode );
-    /*if(  selectedProfile && selectedProfile === "Sans Vision+" ){
-      textInner = "Ôter l'Audiodescription"
-      addClassToEl( audioDescBtnEl, [ mode, "vjs-selectedd" ] );
-    }else{
-      textInner = "Activer l'Audiodescription";
-      removeClassToEl( audioDescBtnEl, [ mode, "vjs-selectedd" ] );
-    }
-    setTextContentFromEL( textInnerEl, textInner );*/
-
   },
   updateAudioDesc : function( audiDescMode ){
     if( this.getChooseParams()["audioDesc"] ){
@@ -399,17 +386,6 @@ const accessMenu = {
     addClassToEl( transcriptBtnEl, [ transcriptMode.mode, transcriptMode.classStyle ] );
     $(transcriptBtnEl ).data( "mode",  transcriptMode.mode );
     setTextContentFromEL( $( transcriptBtnEl ).find(".btn__text-inner"), transcriptMode.textDesc );
-
-    //  console.log( audioDescMode );
-    /*if(  selectedProfile && selectedProfile === "Sans Vision+" ){
-      textInner = "Ôter l'Audiodescription"
-      addClassToEl( audioDescBtnEl, [ mode, "vjs-selectedd" ] );
-    }else{
-      textInner = "Activer l'Audiodescription";
-      removeClassToEl( audioDescBtnEl, [ mode, "vjs-selectedd" ] );
-    }
-    setTextContentFromEL( textInnerEl, textInner );*/
-
   },
   updateTranscript : function( transcriptMode ){
     if( this.getChooseParams()["transcript"] ){
@@ -435,17 +411,6 @@ const accessMenu = {
     addClassToEl( lsfBtnEl, [ lsfMode.mode, lsfMode.classStyle ] );
     $( lsfBtnEl ).data( "mode",  lsfMode.mode );
     setTextContentFromEL( $( lsfBtnEl ).find(".btn__text-inner"), lsfMode.textDesc );
-
-    //  console.log( audioDescMode );
-    /*if(  selectedProfile && selectedProfile === "Sans Vision+" ){
-      textInner = "Ôter l'Audiodescription"
-      addClassToEl( audioDescBtnEl, [ mode, "vjs-selectedd" ] );
-    }else{
-      textInner = "Activer l'Audiodescription";
-      removeClassToEl( audioDescBtnEl, [ mode, "vjs-selectedd" ] );
-    }
-    setTextContentFromEL( textInnerEl, textInner );*/
-
   },
   updateLSF : function( lsfMode ){
     if( this.getChooseParams()["lsf"] ){
@@ -471,13 +436,6 @@ const accessMenu = {
       }
     }
     let { globalPlayer, fullscreenBtnEl } = this.components;
-    /*let textInnerEl = $( fullscreenEl ).find(".btn__text-inner");
-    if(  globalPlayer.isFullscreen() ){
-      setTextContentFromEL( textInnerEl, "Désactiver Plein Ecran" );
-    }else{
-      setTextContentFromEL( textInnerEl, "Activer Plein Ecran" );
-    }
-    toggleClassToEl( fullscreenEl , [ $(fullscreenEl).data("class") ]);*/
 
     removeClassToEl( fullscreenBtnEl , fullscreenMode  );
     fullscreenMode = Object.values( fullscreenModes )[ ( Object.keys( fullscreenModes ).indexOf( fullscreenMode ) + 1 ) % 2 ];
@@ -582,14 +540,6 @@ const accessMenu = {
           }
 
           if( mode && profileData === "Sans Vision +"  ){
-            /*if( selectedProfile === "Concentration +"){
-              textInner = "Ôter La Transcription"
-              addClassToEl( elemnt, mode );
-            }else{
-              textInner = "Activer La Transcription";
-              removeClassToEl( elemnt, mode );
-            }
-            setTextContentFromEL( textInnerEl, textInner);*/
             this.updateAudioDesc( selectedProfile );
           }
         });
