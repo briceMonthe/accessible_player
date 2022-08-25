@@ -210,7 +210,7 @@ span.vjs-menu-item-text{
     player style for audition plus from captions/subtitles components and transcript components
  */
 .vjs-text-track-display.audition-plus{
-  background-color: red;
+  //background-color: red;
 }
 
 :is( .vjs-text-track-display, .vjs-trasncript-display).audition-plus span.speakerInScreen {
@@ -284,22 +284,17 @@ span.vjs-menu-item-text{
  */
 
 /**
-  Seek to live control Template Start
+  Control Bar Template Start
  */
-.vjs-control-bar .vjs-seek-to-live-control{
-  display: none;
+.video-js .vjs-control-bar {
+  display: flex;
+  .vjs-seek-to-live-control{
+    display: none;
+  }
+  .vjs-picture-in-picture-control{
+    display: none;
+  }
 }
 /**
-  Seek To live control End
- */
-
-
-/**
-  picture in picture control start
- */
-.vjs-control-bar .vjs-picture-in-picture-control{
-  display: none;
-}
-/**
-  picture in picture control End
+  Control Bar Template End
  */

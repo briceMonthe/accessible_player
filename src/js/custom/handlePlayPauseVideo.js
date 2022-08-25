@@ -71,12 +71,13 @@ let playPauseVideo = {
     };
   },
   setToolTipText : function( ){
-    let { tooltipEl , bigPlayBtnEl, playToggleEl } = this.components;
+    let { tooltipEl, bigTooltipEl , bigPlayBtnEl, playToggleEl } = this.components;
     setTimeout( () => {
       this.toolTipText = translate[ playToggleEl.controlText() ];
       playToggleEl.setAttribute("title", "");
       bigPlayBtnEl.setAttribute("title", "");
       setTextContentFromEL( tooltipEl, this.toolTipText );
+      setTextContentFromEL( bigTooltipEl, this.toolTipText );
     }, .5);
 
   },
@@ -86,11 +87,11 @@ let playPauseVideo = {
     let previousElToBigPlayContainer = accessPlayer.loadingSpinner;
     let bigPlayContainerEl = findEl( ".vid-acc", ".big-play-container");
     let tooltipEl = createElement("div", { class: "vjs-tooltip"} );
-    //this.setToolTipText( playToggleEl.controlText_ )
     addTooltipEl( playToggleEl, tooltipEl );
     addBigPlayContainer( bigPlayContainerEl, bigPlayBtnEl, previousElToBigPlayContainer  );
     let bigTooltipEl = createElement("div", { class: "vjs-tooltip"} );
-    addTooltipEl( bigPlayBtnEl, tooltipEl );
+    addTooltipEl( bigPlayBtnEl, bigTooltipEl );
+    this.setToolTipText( playToggleEl.controlText() )
 
     let components = {
       videoEl,
@@ -98,6 +99,7 @@ let playPauseVideo = {
       previousElToBigPlayContainer,
       bigPlayBtnEl,
       tooltipEl,
+      bigTooltipEl,
       playToggleEl,
       accessPlayer
     };

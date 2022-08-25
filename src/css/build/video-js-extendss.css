@@ -615,10 +615,6 @@ svg line {
 /**
     player style for audition plus from captions/subtitles components and transcript components
  */
-.vjs-text-track-display.audition-plus {
-  background-color: red;
-}
-
 :is(.vjs-text-track-display, .vjs-trasncript-display).audition-plus span.speakerInScreen {
   color: #fff;
 }
@@ -706,9 +702,8 @@ svg line {
 .profile-container .container__right .container__btn.container__btn-resize {
   bottom: 0;
   left: 0;
-}
-.profile-container .container__right .container__btn.container__btn-resize:active {
-  cursor: nw-resize;
+  border: 1px solid #000;
+  border-left: none;
 }
 .profile-container .container__right .container__btn.container__btn-setting {
   top: 0;
@@ -1050,22 +1045,18 @@ input::-webkit-inner-spin-button {
     Captions Style Template end
  */
 /**
-  Seek to live control Template Start
+  Control Bar Template Start
  */
-.vjs-control-bar .vjs-seek-to-live-control {
+.video-js .vjs-control-bar {
+  display: flex;
+}
+.video-js .vjs-control-bar .vjs-seek-to-live-control {
+  display: none;
+}
+.video-js .vjs-control-bar .vjs-picture-in-picture-control {
   display: none;
 }
 
 /**
-  Seek To live control End
- */
-/**
-  picture in picture control start
- */
-.vjs-control-bar .vjs-picture-in-picture-control {
-  display: none;
-}
-
-/**
-  picture in picture control End
+  Control Bar Template End
  */
