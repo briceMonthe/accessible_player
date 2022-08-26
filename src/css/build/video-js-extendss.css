@@ -677,6 +677,9 @@ svg line {
   justify-content: center;
   align-items: center;
 }
+.profile-container .container__left {
+  overflow: hidden;
+}
 .profile-container .container__left .big-play-container {
   position: absolute;
   width: 100%;
