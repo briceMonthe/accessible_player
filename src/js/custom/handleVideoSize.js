@@ -109,7 +109,7 @@ const createMoveSeparator = function( instance,{ container, containerLeft, conta
       e.preventDefault();
       let mouseXInContainer = e.clientX - shiftX - container.get(0).offsetLeft;
       let perc = getWidthInPerc( container.get(0).offsetWidth, mouseXInContainer );
-      if( 100 - perc < 10  ){
+      if( 100 - perc < 20  ){
         return;
       }
       setCssProperty( containerLeft, "flexBasis", `${perc}%` );
@@ -139,13 +139,37 @@ const removeVideoSign = ( containerLeft ) => {
 const addEventsVideoSize = (instance, { components, crrSize } ) => {
   $(".container__btn-setting" ).on( "click", function(e){
     let currSize = getWidthFromElInPercent( components.containerLeft, components.container );
-    instance.setCrrSize( parseInt(currSize) );
-    updateInputSize( instance, components.inputEl, instance.crrSize)
+    instance.setCrrSize( currSize );
+    //instance.setCrrSize( parseInt(currSize) );
+    updateInputSize( instance, components.inputEl, Math.round( instance.crrSize ) );
     showModal( this, components.modalEl);
   });
 
-  $(".container__input").on("change", function(e){
+  $(".container__input").on("change keyup", function(e){
     let currValue = e.currentTarget.valueAsNumber;
+
+    switch ( e.type ) {
+      case "keyup":
+        if( currValue > 80 ){
+          instance.setTempSize( 80 );
+          updateInputSize( instance, components.inputEl, Math.round( instance.tempSize ) );
+        }else if( currValue < 0 ) {
+          instance.setTempSize( 0 );
+          updateInputSize( instance, components.inputEl, Math.round( instance.tempSize ) );
+        }
+        return;
+      case "change":
+        if( !currValue && currValue !== 0 ){
+          updateInputSize( instance, components.inputEl, Math.round( instance.tempSize ) );
+          return;
+        }
+    }
+    // if( e.type === "keyup" ){
+    //
+    // }else if( e.type === "change" ) {
+    //
+    // }
+
     changeSize( instance, components.inputEl, currValue, 0 );
   });
 
@@ -157,8 +181,14 @@ const addEventsVideoSize = (instance, { components, crrSize } ) => {
 
   $(".modal__btn-action" ).on( "click", function(e){
     showModal( this, components.modalEl);
-    saveSize(instance, this, components.inputEl );
-    updateContainerLeft( components.containerLeft, components.containerRight, instance.crrSize );
+    let action = $(this).data("action");
+    if( action && action === "save" ){
+      if( Math.abs( instance.crrSize - instance.tempSize ) < 1 ){
+        return;
+      }
+      saveSize(instance, this, components.inputEl );
+      updateContainerLeft( components.containerLeft, components.containerRight, instance.crrSize );
+    }
   });
 
   $(".modal__content").on("click", function(e){
@@ -176,12 +206,13 @@ const showModal = function( btnEl, modalEl ){
 }
 
 const saveSize =(instance,  btnEl, inputEl) => {
-  let action = $(btnEl).data("action");
+ /* let action = $(btnEl).data("action");
   if( action && action == "save" )
-    instance.setCrrSize( instance.tempSize );
+    instance.setCrrSize( instance.tempSize );*/
+  instance.setCrrSize( instance.tempSize );
 
-  if( action && action === "abort" )
-    changeSize( inputEl, instance.crrSize, 0 );
+  //if( action && action === "abort" )
+    //changeSize( inputEl, instance.crrSize, 0 );
 }
 
 

@@ -91,7 +91,7 @@ let playPauseVideo = {
     addBigPlayContainer( bigPlayContainerEl, bigPlayBtnEl, previousElToBigPlayContainer  );
     let bigTooltipEl = createElement("div", { class: "vjs-tooltip"} );
     addTooltipEl( bigPlayBtnEl, bigTooltipEl );
-    this.setToolTipText( playToggleEl.controlText() )
+    //this.setToolTipText( playToggleEl.controlText() )
 
     let components = {
       videoEl,
