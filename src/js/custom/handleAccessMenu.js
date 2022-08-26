@@ -290,11 +290,13 @@ const accessMenu = {
       },
     }
     let { speedBtnEl, globalPlayer } = this.components;
+    let { signVideoEl } = this.videoResize.components;
     removeClassToEl( speedBtnEl , speedMode );
     speedMode = Object.values(speedModes)[ ( Object.keys( speedModes ).indexOf( speedMode ) + 1 ) % 3 ];
     $(speedBtnEl).data("speedMode", speedMode.mode );
     addClassToEl( $(speedBtnEl), speedMode.mode );
     globalPlayer.playbackRate( speedMode.speed  );
+    signVideoEl.prop("playbackRate", speedMode.speed );
     setTextContentFromEL( $(speedBtnEl).find(".btn__text-inner"), speedMode.textSpeed );
   },
   updateSonore : function( btn, btnType, increment ){
