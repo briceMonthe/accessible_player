@@ -13,7 +13,7 @@ import {
   getVideoStateFromCookie,
   updateProfileFromCookie
 } from "./third-party-api.js";
-import {accessMenu} from "./handleAccessMenu.js";
+import {accessMenu} from "./handle-access-menu.js";
 
 
 let translate = {

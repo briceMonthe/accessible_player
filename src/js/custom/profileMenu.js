@@ -8,7 +8,7 @@ import {playPauseVideo} from "./handlePlayPauseVideo.js";
 import {videoSize} from "./handleVideoSize.js";
 import {createElement, setTextContentFromEL} from "./operationsClassEl.js";
 import {transcriptVideo} from "./transcriptVideo.js";
-import {accessMenu} from "./handleAccessMenu.js";
+import {accessMenu} from "./handle-access-menu.js";
 
 let profileMenu = function(){
   return {

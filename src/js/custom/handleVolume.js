@@ -1,5 +1,5 @@
 import {appendChildToParent, getPropertyValue, setTextContentFromEL} from "./operationsClassEl.js";
-import {accessMenu} from "./handleAccessMenu.js";
+import {accessMenu} from "./handle-access-menu.js";
 
 let volumePlayer = {
   components : {},

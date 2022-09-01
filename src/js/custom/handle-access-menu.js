@@ -91,7 +91,6 @@ const accessMenu = {
     let selectedTrack = this.captionsVideo.selectedTrack;
     this.setSelectedTrack( selectedTrack );
     this.updateCaptionsMenu( textTrackList, selectedTrack );
-
     this.profileMenu = await profileMenu.getInstance();
     this.updateProfile( this.profileMenu.selectedProfile );
 
@@ -119,12 +118,19 @@ const accessMenu = {
     if( selectedLang )
       this.updateCaptionsMenuStyle( selectedLang );
   },
-  updateCaptionsMenuStyle : function( selectedLang ){
+   updateCaptionsMenuStyle : function( selectedLang ){
     let { subtitleBtnEls } = this.components;
     subtitleBtnEls
       .each(
-        (index, elemnt ) => selectedLang && $(elemnt).data("lang") === selectedLang
-          ? addClassToEl( elemnt , "vjs-selected") : removeClassToEl( elemnt , "vjs-selected") );
+        (index, elemnt ) => {
+          if( selectedLang && $(elemnt).data("lang") === selectedLang ){
+            addClassToEl( elemnt , "vjs-selected")
+            setTextContentFromEL( $(elemnt).find(".toggle-text"), "Désactiver");
+          }else{
+            removeClassToEl( elemnt , "vjs-selected");
+            setTextContentFromEL( $(elemnt).find(".toggle-text"), "Activer");
+          }
+        } );
   },
   appendAccessMenuToPlayer : function( globalPlayer, accessMenu ){
     appendChildToParent( globalPlayer, accessMenu );
@@ -157,9 +163,6 @@ const accessMenu = {
       }, 1.3)
 
     }
-
-
-
 
     fullscreenBtnEl.on("click", function(e){
       let fullscreen = globalPlayer.controlBar.fullscreenToggle;
@@ -200,7 +203,11 @@ const accessMenu = {
     })
 
     subtitleBtnEls.on( "click", function(e){
-      instance.changeSubsCaptions( $(this).data("lang") );
+      let lang = null;
+      if( !$(this).is(".vjs-selected") ){
+        lang = $(this).data("lang");
+      }
+      instance.changeSubsCaptions( lang );
     })
 
     $( contrastBtnEl ).on("click", function(e){
@@ -263,6 +270,12 @@ const accessMenu = {
   },
   selectTrackItem : function( lang ){
     let { globalPlayer } = this.components;
+    let subsCapsButton = globalPlayer.controlBar.subsCapsButton.menu.children();
+
+    if( !lang ){
+      subsCapsButton.at(1).trigger("click");
+      return ;
+    }
     globalPlayer.controlBar.subsCapsButton.menu.children().slice(2).forEach(
       ( caption ) => caption.track.language === lang  ? caption.trigger("click") : null
     );
@@ -563,3 +576,6 @@ const accessMenu = {
 }
 
 export { accessMenu };
+
+
+

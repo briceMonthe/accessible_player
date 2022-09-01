@@ -4,7 +4,7 @@ import {volumePlayer} from "./handleVolume.js";
 import {captionsVideo} from "./handleCaptions.js";
 import {transcriptVideo} from "./transcriptVideo.js";
 import {fullscreenPlayer} from "./handleFullscreen.js";
-import {accessMenu} from "./handleAccessMenu.js";
+import {accessMenu} from "./handle-access-menu.js";
 
 let repeat_call = setInterval( function(){
   if( !!videojs ){
@@ -25,7 +25,7 @@ const start = async function( ){
   accessPlayer.ready(async function(){
     await transcriptVideo.getInstance( this );
 
-    //$('head').append('<link rel="stylesheet" type="text/css" href="src/css/build/video-js-extendss.css">');
+    //$('head').append('<link rel="stylesheet" type="text/css" href="src/css/build/videojs-extends.css">');
     playPauseVideo.getInstance( { accessPlayer , videoEl });
     profileMenu.getInstance( { accessPlayer , videoEl } );
     volumePlayer.getInstance( {videoElement: videoEl ,  volumePanel  });
@@ -47,7 +47,7 @@ console.log( $("head"))
 const addLink = function(url, rel){
   let linkCss = document.createElement( "link");
   linkCss.setAttribute("rel", "stylesheet");
-  linkCss.setAttribute( "src", "src/css/build/video-js-extendss.css");
+  linkCss.setAttribute( "src", "src/css/build/videojs-extends.css");
   linkCss.setAttribute("type", "text/css");
   console.log( linkCss );
   $("head").prepend( $(linkCss) );

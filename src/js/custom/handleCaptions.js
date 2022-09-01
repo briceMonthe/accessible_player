@@ -9,7 +9,7 @@ import {
 import {findEl} from "./operationsClassEl.js";
 import {getLatestTrackFromCookie, updateProfileFromCookie} from "./third-party-api.js";
 import {videoSize} from "./handleVideoSize.js";
-import {accessMenu} from "./handleAccessMenu.js";
+import {accessMenu} from "./handle-access-menu.js";
 
 
 const captionsVideo = {
@@ -78,13 +78,19 @@ const captionsVideo = {
     let { captionContainerEl, captionBtnEl, captionMenuEl, tooltipEl,textTrackList } = instance.components;
     let { container } = instance.videoSizeObject.components;
 
-    $( captionContainerEl.el() ).on("pointerenter click pointerleave", function(e) {
+    $( captionContainerEl.el() ).on("pointerenter click touchend touchcancel pointerleave", function(e) {
+      e.stopPropagation();
       switch ( e.type ) {
-        case "click":
+        case ("click" || "touchend"):
           toggleClassToEl( tooltipEl, "vjs-tooltip-hide");
           toggleClassToEl( this, "vjs-menu-button-popup-hide" );
           break;
-        case "pointerleave":
+        case "touchend":
+          toggleClassToEl( tooltipEl, "vjs-tooltip-hide");
+          toggleClassToEl( this, "vjs-menu-button-popup-hide" );
+          break;
+        case ("pointerleave" || "touchcancel" ):
+          console.log("++++++++++++++++vvvv");
           addClassToEl( this, "vjs-menu-button-popup-hide" )
           break;
         case "pointerenter":
@@ -94,8 +100,10 @@ const captionsVideo = {
       }
     });
 
-    $( captionBtnEl.el() ).on("pointerover pointermove click", function( e ){
-      e.preventDefault();
+    $( captionBtnEl.el() ).on("pointerover pointermove touchcancel", function( e ){
+      //e.preventDefault();
+      //e.stopPropagation();
+      //console.log("+++++++++++++++++++++")
       setTimeout( function(){
         captionBtnEl.removeAttribute("title");
         instance.setTooltipText( captionBtnEl.controlText_ );
@@ -109,15 +117,19 @@ const captionsVideo = {
     });*/
 
     textTrackList.forEach( (item , index) => {
-      $( item.on( "click" , function(e){
+      item.on( "click" , function(e){
         instance.openCaption( index, item );
         accessMenu.updateCaptionsMenuStyle( item.track.language );
-      }))
+      })
+      item.on( "touch touchstart touchend touchcancel" , function(e){
+        e.stopPropagation();
+        console.log("°°°°°°°°°°°")
+      })
     })
 
   },
   openCaption : function( index, trackItem ){
-    let { container } = this.videoSizeObject.components;;
+    let { container } = this.videoSizeObject.components;
     index === 1 ? container.removeClass("captions--active") : container.addClass("captions--active")
     this.setSelectedTrack( index, trackItem );
   }
