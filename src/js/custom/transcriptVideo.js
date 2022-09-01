@@ -102,6 +102,7 @@ const transcriptVideo = (function(){
           stopScrollWhenInUse: false,
         };
         let transcript = player.transcript(options);
+        console.log( transcript );
         components.transcriptEl = await transcript.el();
         this.addTextTrackInTranscriptWrapper( components );
         this.setComponents( components );

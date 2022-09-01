@@ -6,13 +6,13 @@ import {transcriptVideo} from "./transcriptVideo.js";
 import {fullscreenPlayer} from "./handleFullscreen.js";
 import {accessMenu} from "./handleAccessMenu.js";
 
-/*let repeat_call = setInterval( function(){
+let repeat_call = setInterval( function(){
   if( !!videojs ){
     start();
     clearInterval( repeat_call );
   }
 
-}, 200)*/
+}, 200)
 let accessPlayer ;
 const start = async function( ){
   accessPlayer = videojs("#video_access");
@@ -24,7 +24,6 @@ const start = async function( ){
   // })
   accessPlayer.ready(async function(){
     await transcriptVideo.getInstance( this );
-
 
     //$('head').append('<link rel="stylesheet" type="text/css" href="src/css/build/video-js-extendss.css">');
     playPauseVideo.getInstance( { accessPlayer , videoEl });
@@ -39,7 +38,7 @@ const start = async function( ){
 
 }
 
-start();
+//start();
 
 
 /*
